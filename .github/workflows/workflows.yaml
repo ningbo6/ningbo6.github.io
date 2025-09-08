@@ -46,7 +46,7 @@ jobs:
     - name: Deploy hexo blog
       env: 
         # Github 仓库
-        GITHUB_REPO: github.com/ningbo6/ningbo6.github.io
+        GITHUB_REPO: github.com/ningbo6/ningbo6.github.io.git
         # # Coding 仓库
         # CODING_REPO: e.coding.net/ningbo6/blogs.git
         # # Gitee 仓库
