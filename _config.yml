@@ -85,7 +85,7 @@ theme: next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo:  git@github.com/ningbo6/ningbo6.github.io.git
+  repo:  git@github.com:ningbo6/ningbo6.github.io.git
   branch: master
   name: ningbo6
   emai: 365220121@qq.com
