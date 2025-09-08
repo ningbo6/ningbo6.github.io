@@ -87,7 +87,7 @@ deploy:
   type: git
   repo: git@github.com:ningbo6/ningbo6.github.io.git
   branch: master
-  name: Ningbo Yang
+  name: Ningbo
   emai: 365220121@qq.com
 
 #Comment support
