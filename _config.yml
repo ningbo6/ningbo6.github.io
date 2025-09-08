@@ -12,7 +12,7 @@ timezone: Asia/Shanghai
 keywords: ros, ubuntu, TensorFlow, gazebo, rviz, robot, reinforcement learning
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://yangningbocn.github.io/
+url: https://ningbo6.github.io/
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -85,10 +85,10 @@ theme: next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: git@github.com:yangningbocn/yangningbocn.github.io.git
+  repo: git@github.com:ningbo6/ningbo6.github.io.git
   branch: master
   name: Ningbo Yang
-  emai: yangningbocn@gmail.com
+  emai: 365220121@qq.com
 
 #Comment support
 duoshuo:
