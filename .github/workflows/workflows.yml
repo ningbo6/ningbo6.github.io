@@ -8,7 +8,7 @@ on:
 
 jobs:
   deployment:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - name: Git checkout
         uses: actions/checkout@v2
@@ -21,7 +21,7 @@ jobs:
       - name: Config environment
         env:
           WORKFLOW: ${{ secrets.WORKFLOW }}
-          PUBLISH_NAME: 'ningbo'
+          PUBLISH_NAME: 'ningbo6'
           PUBLISH_MAIL: '365220121@qq.com'
         run: |
           git config --global user.name $PUBLISH_NAME
