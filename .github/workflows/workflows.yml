@@ -2,9 +2,8 @@ name: Publish Github Page
 
 on:
   push:
-    branches: [master]
-  pull_request:
     branches: [hexo]
+
 
 jobs:
   deployment:
