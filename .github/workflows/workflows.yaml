@@ -1,61 +1,42 @@
-name: Blog CI/CD
+name: Publish Github Page
 
-# 触发条件：在 push 到 hexo 分支后触发
 on:
   push:
-    branches: 
-      - hexo
-
-env:
-  TZ: Asia/Shanghai
+    branches: [master]
+  pull_request:
+    branches: [master]
 
 jobs:
-  blog-cicd:
-    name: Hexo blog build & deploy
-    runs-on: ubuntu-latest # 使用最新的 Ubuntu 系统作为编译部署的环境
-
+  deployment:
+    runs-on: ubuntu-20.04
     steps:
-    - name: Checkout codes
-      uses: actions/checkout@v2
+      - name: Git checkout
+        uses: actions/checkout@v2
 
-    - name: Setup node
-      # 设置 node.js 环境
-      uses: actions/setup-node@v4
-      with:
-        node-version: '12.x'
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '12.x'
 
-    - name: Cache node modules
-      # 设置包缓存目录，避免每次下载
-      uses: actions/cache@v4
-      with:
-        path: ~/.npm
-        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+      - name: Config environment
+        env:
+          PAGE_PUBLISH_TOKEN: ${{ secrets.WORKFLOW }}
+          PUBLISH_NAME: 'ningbo'
+          PUBLISH_MAIL: '365220121@qq.com'
+        run: |
+          git config --global user.name $PUBLISH_NAME
+          git config --global user.email $PUBLISH_MAIL
+          sed -i "s/WORKFLOW/$WORKFLOW/g" ./_config.yml
 
-    - name: Install hexo dependencies
-      # 下载 hexo-cli 脚手架及相关安装包
-      run: |
-        npm install -g hexo-cli
-        npm install
+      - name: Install dependencies
+        run: |
+          npm install hexo-cli -g
+          npm install
 
-    - name: Generate files
-      # 编译 markdown 文件
-      run: |
-        hexo clean
-        hexo generate
+      - name: Generate hexo static page
+        run: |
+          hexo clean
+          hexo generate
 
-    - name: Deploy hexo blog
-      env: 
-        # Github 仓库
-        GITHUB_REPO: github.com/ningbo6/ningbo6.github.io.git
-        # # Coding 仓库
-        # CODING_REPO: e.coding.net/ningbo6/blogs.git
-        # # Gitee 仓库
-        # GITEE_REPO: gitee.com/ningbo6/yifangzheng.gitee.io.git
-      # 将编译后的博客文件推送到指定仓库
-      run: |
-        cd ./public && git init && git add .
-        git config user.name "ningbo6"
-        git config user.email "365220121@qq.com"
-        git add .
-        git commit -m "GitHub Actions Auto Builder at $(date +'%Y-%m-%d %H:%M:%S')"
-        git push --force "https://${{ secrets.WORKFLOW }}@$GITHUB_REPO" master:master
+      - name: Deploy hexo static page
+        run: hexo deploy
