@@ -20,7 +20,7 @@ jobs:
 
       - name: Config environment
         env:
-          PAGE_PUBLISH_TOKEN: ${{ secrets.WORKFLOW }}
+          WORKFLOW: ${{ secrets.WORKFLOW }}
           PUBLISH_NAME: 'ningbo'
           PUBLISH_MAIL: '365220121@qq.com'
         run: |
