@@ -3,7 +3,7 @@ name: Publish Github Page
 on: 
   push:
     branches:
-      - master
+      - hexo
       
 jobs:
   build: 
