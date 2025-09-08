@@ -14,7 +14,7 @@ keywords: ubuntu, ros, gym, gazebo, Tensorflow，gym-gazebo
 description: python连接gazebo/openAI的gym/erlerobot的gym-gazebo/google的tensorflow
 date: 2018-01-10 23:15:48
 ---
-（转载请注明作者和出处：https://yangningbo666.github.io）
+（转载请注明作者和出处：https://ningbo6.github.io）
 笔记本型号：联想Y500 
 CPU　:　Intel® Core™ i7-3630QM CPU @ 2.40GHz × 8 
 内存：7.7 GiB 

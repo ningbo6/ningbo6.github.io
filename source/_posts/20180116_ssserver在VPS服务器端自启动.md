@@ -11,7 +11,7 @@ keywords: ssserver, shadowsocks, nohup, chacha20
 description: ssserver在VPS服务器端自启动
 date: 2018-01-16 19:41:17
 ---
-（转载请注明作者和出处：https://yangningbo666.github.io 未经允许请勿用于商业用途）
+（转载请注明作者和出处：https://ningbo6.github.io 未经允许请勿用于商业用途）
 系统环境:Ubuntu
 操作要求：能够进行基本的linux操作
 

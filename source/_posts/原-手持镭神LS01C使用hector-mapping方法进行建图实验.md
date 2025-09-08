@@ -11,7 +11,7 @@ keywords: ROS, gazebo, robot, hector, 镭神ls01c
 description:   手持镭神LS01C使用hector_mapping方法进行建图实验
 date: 2017-12-04 11:23:05
 --- 
-（转载请注明作者和出处：https://yangningbo666.github.io）
+（转载请注明作者和出处：https://ningbo6.github.io）
 我的代码在[ls01c](https://github.com/365220121/ls01c.git)可以拿去下载。 
 
 本博客只是个人学习记录使用，瞎写写，内容比较粗糙。

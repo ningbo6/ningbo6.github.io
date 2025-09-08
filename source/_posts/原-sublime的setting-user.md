@@ -10,7 +10,7 @@ keywords: setting, sublime
 description: sublime的setting-user
 date: 2017-12-08 23:45:05
 ---
-（转载请注明作者和出处：https://yangningbo666.github.io）
+（转载请注明作者和出处：https://ningbo6.github.io）
 刚开始用sublime,因为感觉很好用，所以想折腾一下。 
 
 系统:ubuntu 14.04 

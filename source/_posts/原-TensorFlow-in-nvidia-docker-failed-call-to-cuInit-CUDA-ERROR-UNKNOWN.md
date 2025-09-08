@@ -10,7 +10,7 @@ keywords: TensorFlow, CUDA_ERROR_UNKNOWN, cuInit, failed
 description: 解决failed call to cuInit CUDA_ERROR_UNKNOWN的问题
 date: 2017-12-28 20:28:01
 ---
-（转载请注明作者和出处：https://yangningbo666.github.io）
+（转载请注明作者和出处：https://ningbo6.github.io）
 
 背景：
 Ubuntu

@@ -10,7 +10,7 @@ keywords: ROS, rviz, robot, 闪退
 description: 在机器人上装上了一个miniPC，在上面装上了ros indigo版本，使用远程桌面连接miniPC，然后操作机器人进行建图实验，出现闪退，并提出解决方案。
 date: 2017-12-21 21:01:57
 ---
-（转载请注明作者和出处：https://yangningbo666.github.io）
+（转载请注明作者和出处：https://ningbo6.github.io）
 背景：项目用到自己做的机器人，在机器人上装上了一个miniPC，在上面装上了ros indigo版本，使用远程桌面连接miniPC，然后操作机器人进行建图实验。
 
 * * *

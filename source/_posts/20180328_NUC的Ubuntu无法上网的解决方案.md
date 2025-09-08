@@ -10,7 +10,7 @@ keywords: NUC, Ubuntu, Network
 description: NUC的Linux网卡驱动没有装好，解决NUC的Ubuntu无法上网的方案
 date: 2018-03-28 13:00:00
 ---
-（转载请注明作者和出处：https://yangningbo666.github.io）
+（转载请注明作者和出处：https://ningbo6.github.io）
 # 查询网卡型号
     lspci
 Ethernet controller是有线网卡

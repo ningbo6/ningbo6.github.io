@@ -10,7 +10,7 @@ keywords: ros, tf, map, odom, base_link
 description: 这篇博客用通俗易懂的方法详细讲解了map odom base_link这三者的关系。
 date: 2017-12-22 20:38:01
 ---
-（转载请注明作者和出处：https://yangningbo666.github.io）
+（转载请注明作者和出处：https://ningbo6.github.io）
 
     为了更好的集成和重用软件模块，驱动，模型以及库的开发人员需要一个坐标系的共享公约。该坐标系的共享规约让开发者为移动基座创建驱动和模型提供了一个规范。同样，开发人员用与本规范兼容的一些移动机器人基座软件能很容易的创建相应的库和应用。
     `</pre>

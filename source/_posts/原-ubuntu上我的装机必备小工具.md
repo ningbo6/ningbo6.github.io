@@ -10,7 +10,7 @@ keywords: ubuntu, tools, software
 description: ubuntu上我的装机必备小工具
 date: 2018-01-10 22:12:51
 ---
-（转载请注明作者和出处：https://yangningbo666.github.io）
+（转载请注明作者和出处：https://ningbo6.github.io）
 1.system monitor indicator
 
 系统监视软件

@@ -11,7 +11,7 @@ keywords: ROS, 横向移动, 机器人, youbot
 description: 这篇博客讨论的如何在gazebo中实现横向移动。
 date: 2017-10-17 11:29:43
 ---
-（转载请注明作者和出处：https://yangningbo666.github.io）
+（转载请注明作者和出处：https://ningbo6.github.io）
 一个老外给出了一个观点：把他当做平面移动处理，比较贴合我的想法，整体的运动与轮无关，这样复杂的问题简单化。 
 
 他的原话： 

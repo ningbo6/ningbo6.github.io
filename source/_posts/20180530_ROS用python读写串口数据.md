@@ -7,7 +7,7 @@ keywords: ROS, python, serial, struct
 description: 在ROS环境下，使用python读取串口数据，控制小车，并读取传感器数据并解析。
 date: 2018-05-30 13:00:00
 ---
-（转载请注明作者和出处：https://yangningbo666.github.io）
+（转载请注明作者和出处：https://ningbo6.github.io）
 ##程序：
     
     import serial

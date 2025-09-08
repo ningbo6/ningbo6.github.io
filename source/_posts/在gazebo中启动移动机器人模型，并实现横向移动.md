@@ -10,7 +10,7 @@ keywords: ROS, 横向移动, 机器人
 description: 在gazebo中启动移动机器人模型，并实现横向移动
 date: 2017-01-010 13:00:00
 ---
-（转载请注明作者和出处：https://yangningbo666.github.io）
+（转载请注明作者和出处：https://ningbo6.github.io）
 本博客只是个人学习记录使用，瞎写写，内容比较粗糙。编写过程中，借鉴了yaked大神的[实战youBot](http://blog.csdn.net/yaked/article/details/51483531)和ROS-WIKI以及其它一些大神的内容。 
 现在大部分的移动机器人主要差动轮进行运动，只有linear.x和angular.z两个值，但是我的模型是４个瑞典轮，能提供横向的移动速度，即linear.y。
 在gazebo中的横向移动同样要修改控制方式，只不过在与rviz不同，不能直接修改，文件格式打不开，这里采用的方案是直接在xacro中加载一个平面移动的插件就可以了

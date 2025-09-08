@@ -11,7 +11,7 @@ keywords: ROS, 横向移动, 机器人, rviz, gazebo
 description: 在gazebo中启动移动机器人模型，并实现横向移动
 date: 2017-10-09 15:59:54
 ---
-（转载请注明作者和出处：https://yangningbo666.github.io）
+（转载请注明作者和出处：https://ningbo6.github.io）
 本博客只是个人学习记录使用，瞎写写，内容比较粗糙。编写过程中，借鉴了古月居大神的smartcar和ROS-WIKI以及其它一些大神的内容。  
 
 引入古月居大神的链接[使用smartcar进行仿真](http://www.guyuehome.com/248)和[smartcar源码上传](http://www.guyuehome.com/251)

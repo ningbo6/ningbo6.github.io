@@ -9,7 +9,7 @@ date: 2018-02-02 22:27:00
 
 ---
 
-（转载请注明作者和出处：https://yangningbo666.github.io）
+（转载请注明作者和出处：https://ningbo6.github.io）
 
 # 固态硬盘的安装
 ## 注意事项

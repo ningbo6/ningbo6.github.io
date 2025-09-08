@@ -10,7 +10,7 @@ keywords: ros, urdf, solidworks, sw2urdf
 description: 建立urdf模型，并转化为xacro格式，用在gazebo和rviz中。
 date: 2017-10-09 09:46:33
 ---
-（转载请注明作者和出处：https://yangningbo666.github.io）
+（转载请注明作者和出处：https://ningbo6.github.io）
 本博客只是个人学习记录使用，第一次写，瞎写写，内容比较粗糙。编写过程中，借鉴了古月居大神的smartcar以及其它一些大神的内容。 
 
 硕士课题中的移动机器人的SolidWorks三维模型转换为ros中的urdf文件的步骤如下：

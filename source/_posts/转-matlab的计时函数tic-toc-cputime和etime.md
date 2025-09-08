@@ -10,7 +10,7 @@ keywords: matlab, tic, toc
 description: matlab里面的计时函数：Matlab7的计时函数主要有tic,toc,cputime和etime等，计时函数可以定量的计算完成制定程序所消耗的时间资源，因为可以作为比较程序优劣的一个重要标准。 
 date: 2017-11-09 23:54:28
 ---
-（转载请注明作者和出处：https://yangningbo666.github.io）
+（转载请注明作者和出处：https://ningbo6.github.io）
 matlab里面的计时函数：Matlab7的计时函数主要有tic,toc,cputime和etime等，计时函数可以定量的计算完成制定程序所消耗的时间资源，因为可以作为比较程序优劣的一个重要标准。 
 
   a、tic和toc函数 
