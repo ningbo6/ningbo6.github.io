@@ -2,6 +2,7 @@
 title: about
 comments: false
 date: 2018-01-19 23:18:36
+layout: about
 ---
 # Basic Information
 
