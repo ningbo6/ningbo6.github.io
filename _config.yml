@@ -37,7 +37,7 @@ titlecase: false # Transform title into titlecase
 external_link: true # Open external links in new tab
 filename_case: 0
 render_drafts: false
-post_asset_folder: false
+post_asset_folder: true
 relative_link: false
 future: true
 highlight:
@@ -77,6 +77,14 @@ pagination_dir: page
 Plugins:
 - hexo-generator-feed
 - hexo-generator-sitemap
+
+# Server #本地服务参数
+## Hexo uses Connect as a server
+## You can customize the logger format as defined in
+## http://www.senchalabs.org/connect/logger.html
+port: 4000
+logger: true
+logger_format:
 
 ## Themes: https://hexo.io/themes/
 theme: next
