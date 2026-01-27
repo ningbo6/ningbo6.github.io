@@ -3,14 +3,14 @@
   "version": "0.0.0",
   "private": true,
   "hexo": {
-    "version": "3.9.0"
+    "version": "8.1.0"
   },
   "scripts": {
     "postinstall": "patch-package",
     "build": "hexo generate --debug"
   },
   "dependencies": {
-    "hexo": "^3.9.0",
+    "hexo": "^8.1.0",
     "hexo-asset-image": "git+https://github.com/CodeFalling/hexo-asset-image.git",
     "hexo-deployer-git": "^4.0.0",
     "hexo-generator-archive": "^0.1.4",

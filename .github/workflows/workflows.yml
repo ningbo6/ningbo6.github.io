@@ -19,7 +19,7 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v4 # 建议升级到 v3 或 v4
       with:
-        node-version: '20' # 【关键】这里一定要改成 20 (至少 18)
+        node-version: '16' # 【关键】这里一定要改成 20 (至少 18)
     
     - name: Setup Hexo Dependencies
       run: |
