@@ -1,0 +1,15 @@
+diff --git a/node_modules/hexo-front-matter/lib/front_matter.js b/node_modules/hexo-front-matter/lib/front_matter.js
+index 2579406..6c626d3 100644
+--- a/node_modules/hexo-front-matter/lib/front_matter.js
++++ b/node_modules/hexo-front-matter/lib/front_matter.js
+@@ -2,7 +2,9 @@
+ 
+ var yaml = require('js-yaml');
+ var util = require('util');
+-var isDate = util.isDate;
++var isDate = function(obj) {
++  return obj instanceof Date || Object.prototype.toString.call(obj) === '[object Date]';
++};
+ var rPrefixSep = /^(-{3,}|;{3,})/;
+ var rFrontMatter = /^(-{3,}|;{3,})\n([\s\S]+?)\n\1(?:$|\n([\s\S]*)$)/;
+ var rFrontMatterNew = /^([\s\S]+?)\n(-{3,}|;{3,})(?:$|\n([\s\S]*)$)/;

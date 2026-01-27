@@ -5,6 +5,9 @@
   "hexo": {
     "version": "3.9.0"
   },
+  "scripts": {
+    "postinstall": "patch-package"
+  },
   "dependencies": {
     "hexo": "^3.9.0",
     "hexo-asset-image": "git+https://github.com/CodeFalling/hexo-asset-image.git",
@@ -23,5 +26,9 @@
     "hexo-renderer-stylus": "^0.3.1",
     "hexo-server": "^0.2.2",
     "hexo-wordcount": "^6.0.1"
+  },
+  "devDependencies": {
+    "patch-package": "^8.0.1",
+    "postinstall-postinstall": "^2.1.0"
   }
 }
