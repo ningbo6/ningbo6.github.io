@@ -165,3 +165,9 @@ theme_config:
     enable: true
     number: true
     wrap: false
+# `Follow me on GitHub` banner in the top-right corner.
+github_banner:
+  enable: false
+  permalink: https://github.com/ningbo6
+  title: Follow me on GitHub
+baidu_push: true
