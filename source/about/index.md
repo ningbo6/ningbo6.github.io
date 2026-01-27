@@ -7,24 +7,29 @@ layout: about
 # Basic Information
 
 Author: Ningbo Yang
-GitHub: https://github.com/ningbo6 
-E-Mail: 365220121@qq.com  365220121@qq.com 
-QQ: 365220121 
+GitHub: <https://github.com/ningbo6>
+E-Mail: <365220121@qq.com>
+QQ: 365220121
 
 # Education
-Bachelor: Yanshan University 
+
 Master: Haerbin Institute of Technology University
+Bachelor: Yanshan University
 
 # Field of Research
+
 Robot
 navigation
 reinforcement learning
+deep learning
+LLM
+backend develope
 
 # Skills
+
 runner
 basketballer
 coder
 designer
 fan of technology
 geek
-
