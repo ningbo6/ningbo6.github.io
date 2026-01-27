@@ -7,7 +7,7 @@ on:
       
 jobs:
   build: 
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
         
     steps:
     # check it to your workflow can access it
@@ -16,10 +16,10 @@ jobs:
       uses: actions/checkout@master 
       
     # from: https://github.com/actions/setup-node  
-    - name: Setup Node.js 12.x 
-      uses: actions/setup-node@master
+    - name: Setup Node.js
+      uses: actions/setup-node@v4 # 建议升级到 v3 或 v4
       with:
-        node-version: "12.x"
+        node-version: '20' # 【关键】这里一定要改成 20 (至少 18)
     
     - name: Setup Hexo Dependencies
       run: |
@@ -35,12 +35,9 @@ jobs:
         chmod 600 ~/.ssh/id_rsa
         ssh-keyscan github.com >> ~/.ssh/known_hosts
         
-    - name: Setup Git Infomation
+    - name: Deploy
       run: | 
         git config --global user.name 'ningbo6' 
         git config --global user.email '365220121@qq.com'
-    - name: Deploy Hexo 
-      run: |
         hexo clean
-        hexo generate 
         hexo deploy
