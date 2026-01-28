@@ -35,9 +35,11 @@ jobs:
         chmod 600 ~/.ssh/id_rsa
         ssh-keyscan github.com >> ~/.ssh/known_hosts
         
+    - name: Ensure nojekyll marker
+      run: echo "" > public/.nojekyll
     - name: Deploy
-      run: | 
-        git config --global user.name 'ningbo6' 
+      run: |
+        git config --global user.name 'ningbo6'
         git config --global user.email '365220121@qq.com'
         hexo clean
         hexo deploy
