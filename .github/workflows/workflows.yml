@@ -25,7 +25,10 @@ jobs:
       run: |
         npm install hexo-cli -g
         npm install
-    
+    # 2. 然后生成博客 (这一步会创建 public 文件夹)
+    - name: Build Hexo
+      run: npx hexo generate
+      
     - name: Setup Deploy Private Key
       env:
         PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
@@ -35,7 +38,8 @@ jobs:
         chmod 600 ~/.ssh/id_rsa
         ssh-keyscan github.com >> ~/.ssh/known_hosts
         
-    - name: Ensure nojekyll marker
+# 3. 最后再创建 .nojekyll (顺序很重要！)
+    - name: Create .nojekyll
       run: echo "" > public/.nojekyll
     - name: Deploy
       run: |
