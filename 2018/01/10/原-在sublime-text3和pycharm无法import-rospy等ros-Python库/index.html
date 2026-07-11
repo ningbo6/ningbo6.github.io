@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ningbo6.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"b2t":false,"scrollpercent":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="python连接gazebo&#x2F;openAI的gym&#x2F;erlerobot的gym-gazebo&#x2F;google的tensorflow">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在sublime-text3和pycharm无法import-rospy等ros-Python库">
+<meta property="og:url" content="https://ningbo6.github.io/2018/01/10/%E5%8E%9F-%E5%9C%A8sublime-text3%E5%92%8Cpycharm%E6%97%A0%E6%B3%95import-rospy%E7%AD%89ros-Python%E5%BA%93/index.html">
+<meta property="og:site_name" content="Ningbo&#39;s blogs">
+<meta property="og:description" content="python连接gazebo&#x2F;openAI的gym&#x2F;erlerobot的gym-gazebo&#x2F;google的tensorflow">
+<meta property="og:locale">
+<meta property="article:published_time" content="2018-01-10T13:58:21.000Z">
+<meta property="article:modified_time" content="2026-01-26T15:09:48.981Z">
+<meta property="article:author" content="Ningbo Yang">
+<meta property="article:tag" content="Tensorflow">
+<meta property="article:tag" content="gazebo">
+<meta property="article:tag" content="gym">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="ros">
+<meta property="article:tag" content="ubuntu">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://ningbo6.github.io/2018/01/10/%E5%8E%9F-%E5%9C%A8sublime-text3%E5%92%8Cpycharm%E6%97%A0%E6%B3%95import-rospy%E7%AD%89ros-Python%E5%BA%93/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>在sublime-text3和pycharm无法import-rospy等ros-Python库 | Ningbo's blogs</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Ningbo's blogs</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">just for fun</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="sitemap fa-fw"></i>Sitemap</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="user fa-fw"></i>About</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://ningbo6.github.io/2018/01/10/%E5%8E%9F-%E5%9C%A8sublime-text3%E5%92%8Cpycharm%E6%97%A0%E6%B3%95import-rospy%E7%AD%89ros-Python%E5%BA%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ningbo Yang">
+      <meta itemprop="description" content="A coder who want to be a programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ningbo's blogs">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          在sublime-text3和pycharm无法import-rospy等ros-Python库
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2018-01-10 21:58:21" itemprop="dateCreated datePublished" datetime="2018-01-10T21:58:21+08:00">2018-01-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-01-26 23:09:48" itemprop="dateModified" datetime="2026-01-26T23:09:48+08:00">2026-01-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/tools/" itemprop="url" rel="index"><span itemprop="name">tools</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">python连接gazebo/openAI的gym/erlerobot的gym-gazebo/google的tensorflow</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>（转载请注明作者和出处：<a href="https://ningbo6.github.io)/">https://ningbo6.github.io）</a></p>
+<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>笔记本型号：联想Y500  </p>
+<p>CPU　:　Intel® Core™ i7-3630QM CPU @ 2.40GHz × 8  </p>
+<p>内存：7.7 GiB  </p>
+<p>显卡：GeForce GT 750M&#x2F;PCIe&#x2F;SSE2  </p>
+<p>系统版本：ubuntu 14.04 LTS 64bit </p>
+<p>软件：sublime text 3 ;pycharm</p>
+<p>#错误情况</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import rospy</span><br><span class="line">ImportError: No module named rospy</span><br></pre></td></tr></table></figure>
+<hr>
+<p>#问题描述<br>在pycharm和sublime下无法import rospy等模块，但是在Terminal下用命令行就可以正常运行，经过分析，原因为　&#x2F;opt&#x2F;ros&#x2F;indigo&#x2F;lib&#x2F;python2.7&#x2F;dist-packages　下的路径没有被添加到环境中</p>
+<hr>
+<p>#解决方案<br>##sublime text 3<br>1.Terminal下 cd &#x2F;opt&#x2F;sublime_text&#x2F;Packages<br>2.sudo gedit Python.sublime-package<br>3.粘贴</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;shell_cmd&quot;: &quot;python -u \&quot;$file\&quot;&quot;,</span><br><span class="line">    &quot;file_regex&quot;: &quot;^[ ]*File \&quot;(...*?)\&quot;, line ([0-9]*)&quot;,</span><br><span class="line">    &quot;selector&quot;: &quot;source.python&quot;,</span><br><span class="line"></span><br><span class="line">    &quot;env&quot;: &#123;&quot;PYTHONPATH&quot;:&quot;/opt/ros/indigo/lib/python2.7/dist-packages&quot;&#125;,</span><br><span class="line"></span><br><span class="line">    &quot;variants&quot;:</span><br><span class="line">    [</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;name&quot;: &quot;Syntax Check&quot;,</span><br><span class="line">            &quot;shell_cmd&quot;: &quot;python -m py_compile \&quot;$&#123;file&#125;\&quot;&quot;,</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>４．保存退出<br>５．接下来，用zip命令删除C++.sublime-package中的Python.sublime-build文件：sudo zip -d Python.sublime-package Python.sublime-build<br>6.最后将之前的Python.sublime-build添加到此时的Python.sublime-package中：sudo zip -g Python.sublime-package Python.sublime-build<br>7. 重启sublime text，实验调用默认的Python build system，成功！</p>
+<p>#pycharm<br>1.打开File–&gt;Settings–&gt;Project:XXXX–&gt;Project Interpreter<br>2.在Project Interpreter : Python 2.7 &#x2F;usr&#x2F;bin&#x2F;python (顶部的位置)点击下拉箭头<br>3.选择Show ALL…<br>4.点击右侧第四个按钮：interpreter Paths<br>5.点击右侧的第一个加号按钮，并在弹出的对话框中粘贴以下路径</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/opt/ros/indigo/lib/python2.7/dist-packages</span><br></pre></td></tr></table></figure>
+<p>6.一路ok就可以了<br>7.然后运行一下，成功!</p>
+<hr>
+<p>#sublime 和pycharm的使用感受<br>sublime实在是太轻便快捷了，用户体验极好，但是功能不够强大<br>pycharm使用起来功能很多，比如看库的这种操作。但是有时候卡卡的。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/python/" rel="tag"># python</a>
+              <a href="/tags/ros/" rel="tag"># ros</a>
+              <a href="/tags/ubuntu/" rel="tag"># ubuntu</a>
+              <a href="/tags/gazebo/" rel="tag"># gazebo</a>
+              <a href="/tags/gym/" rel="tag"># gym</a>
+              <a href="/tags/Tensorflow/" rel="tag"># Tensorflow</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/12/28/%E5%8E%9F-TensorFlow-in-nvidia-docker-failed-call-to-cuInit-CUDA-ERROR-UNKNOWN/" rel="prev" title="TensorFlow in nvidia-docker: failed call to cuInit: CUDA_ERROR_UNKNOWN">
+      <i class="fa fa-chevron-left"></i> TensorFlow in nvidia-docker: failed call to cuInit: CUDA_ERROR_UNKNOWN
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/01/10/%E5%8E%9F-ubuntu%E4%B8%8A%E6%88%91%E7%9A%84%E8%A3%85%E6%9C%BA%E5%BF%85%E5%A4%87%E5%B0%8F%E5%B7%A5%E5%85%B7/" rel="next" title="Ubuntu上装机必备小工具">
+      Ubuntu上装机必备小工具 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ningbo Yang</p>
+  <div class="site-description" itemprop="description">A coder who want to be a programmer.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">61</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ningbo6" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ningbo6" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:365220121@qq.com" title="E-Mail → mailto:365220121@qq.com" rel="noopener" target="_blank"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ningbo Yang</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ningbo6.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"b2t":false,"scrollpercent":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="python连接gazebo&#x2F;openAI的gym&#x2F;erlerobot的gym-gazebo&#x2F;google的tensorflow">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python连接gazebo&#x2F;openAI的gym&#x2F;erlerobot的gym-gazebo&#x2F;google的tensorflow">
+<meta property="og:url" content="https://ningbo6.github.io/2018/01/10/%E5%8E%9F-python%E8%BF%9E%E6%8E%A5gazebo-openAI%E7%9A%84gym-erlerobot%E7%9A%84gym-gazebo-google%E7%9A%84tensorflow/index.html">
+<meta property="og:site_name" content="Ningbo&#39;s blogs">
+<meta property="og:description" content="python连接gazebo&#x2F;openAI的gym&#x2F;erlerobot的gym-gazebo&#x2F;google的tensorflow">
+<meta property="og:locale">
+<meta property="article:published_time" content="2018-01-10T15:15:48.000Z">
+<meta property="article:modified_time" content="2026-01-26T15:09:48.981Z">
+<meta property="article:author" content="Ningbo Yang">
+<meta property="article:tag" content="Tensorflow">
+<meta property="article:tag" content="gazebo">
+<meta property="article:tag" content="gym">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="ros">
+<meta property="article:tag" content="ubuntu">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://ningbo6.github.io/2018/01/10/%E5%8E%9F-python%E8%BF%9E%E6%8E%A5gazebo-openAI%E7%9A%84gym-erlerobot%E7%9A%84gym-gazebo-google%E7%9A%84tensorflow/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>python连接gazebo/openAI的gym/erlerobot的gym-gazebo/google的tensorflow | Ningbo's blogs</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Ningbo's blogs</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">just for fun</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="sitemap fa-fw"></i>Sitemap</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="user fa-fw"></i>About</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://ningbo6.github.io/2018/01/10/%E5%8E%9F-python%E8%BF%9E%E6%8E%A5gazebo-openAI%E7%9A%84gym-erlerobot%E7%9A%84gym-gazebo-google%E7%9A%84tensorflow/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ningbo Yang">
+      <meta itemprop="description" content="A coder who want to be a programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ningbo's blogs">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          python连接gazebo/openAI的gym/erlerobot的gym-gazebo/google的tensorflow
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2018-01-10 23:15:48" itemprop="dateCreated datePublished" datetime="2018-01-10T23:15:48+08:00">2018-01-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-01-26 23:09:48" itemprop="dateModified" datetime="2026-01-26T23:09:48+08:00">2026-01-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/reinforcement-learning/" itemprop="url" rel="index"><span itemprop="name">reinforcement learning</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">python连接gazebo/openAI的gym/erlerobot的gym-gazebo/google的tensorflow</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>（转载请注明作者和出处：<a href="https://ningbo6.github.io)/">https://ningbo6.github.io）</a><br>笔记本型号：联想Y500<br>CPU　:　Intel® Core™ i7-3630QM CPU @ 2.40GHz × 8<br>内存：7.7 GiB<br>显卡：GeForce GT 750M&#x2F;PCIe&#x2F;SSE2<br>系统版本：ubuntu 14.04 LTS 64bit<br>ROS版本：indigo<br>gazebo版本：gazebo7<br>tensorflow：1.4.1-gpu<br>python：2.7</p>
+<hr>
+<p>中间一些令我吐血的地方：<br>1.必须python2.7，不然要解决的问题太多了，我尝试了好久，边擦干净屏幕上的血，边把所有的东西改为了python2.7<br>2.百度不是解决问题的方法，谷歌才是，科学上网才是第一生产力<br>3.遇到无法import rospy等ros的包的问题，请移步我的另一篇博客。<br><a href="http://blog.csdn.net/ynb19930428/article/details/79028807">在sublime text3和pycharm无法import rospy等ros Python库</a><br>4.中间用到的一些工具，请移步我的另一篇博客<br><a href="ubuntu%E4%B8%8A%E6%88%91%E7%9A%84%E8%A3%85%E6%9C%BA%E5%BF%85%E5%A4%87%E5%B0%8F%E5%B7%A5%E5%85%B7">ubuntu上我的装机必备小工具</a></p>
+<hr>
+<p>#安装步骤<br>##1.先安装gazebo7<br>我用的是新立得软件包管理装的，很方便，当然你可以选择别的方式<br>##2.安装ros<br>请移步ROSwiki<br><a href="http://wiki.ros.org/cn/indigo/Installation/Ubuntu">roswiki</a><br>注意：这里必须安装ros-indigo-desktop版本 不要装full<br>##3.安装gazebo7和ros的control package<br>在新立得软件包管理一搜就有了，关键词为：ros-indigo-gazebo7-ros<br>把其中的都装了就好了<br>##4.安装gym<br><a href="https://github.com/openai/gym">openAI-gym的github</a><br>按照github中的步骤来就好<br>首先装依赖</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install -y python-numpy python-dev cmake zlib1g-dev libjpeg-dev xvfb libav-tools xorg-dev python-opengl libboost-all-dev libsdl2-dev swig</span><br></pre></td></tr></table></figure>
+
+<p>注意git clone之后要装all版本<br><code>git clone https://github.com/openai/gym.git cd gym pip install -e &#39;.[all]&#39;</code><br>在他的安装说明提到了Rendering on a server，这个是我之前一直在找的东西。可以在你不查屏幕的时候运行gazebo和rviz，这在我之前的博文中提到了<br>Rendering on a server<br>If you’re trying to render video on a server, you’ll need to connect a fake display. The easiest way to do this is by running under xvfb-run (on Ubuntu, install the xvfb package):</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xvfb-run -s &quot;-screen 0 1400x900x24&quot; bash</span><br></pre></td></tr></table></figure>
+<p>##5.gym-gazebo<br>这个很难装，很繁琐，现在我还是比较懵逼的。不过我总结了一下经。<br>先去看一下他的安装文档，然后不要着急。我们之前的有些已经装过了，那我们采用step-by-step的方式，安装过程中要看着setup.bash来，把不用的步骤省去<br>参照此人的博客：<a href="http://blog.csdn.net/zhangdadadawei/article/details/78956156">理解gym-gazebo</a><br>注意：<br>    1.安装过程中可以打开gazebo.repos把系统中已经有的可以屏蔽掉。<br>    2.如果CPU性能不是特别好，不建议那么多线程，make -j 1就好，慢点就慢点吧，不然会编译冲突错误。<br>    3.路径的设置要根据自己安装的路径来。<br>##6.tensorflow<br>因为ros不兼容python3，所以我只能把原来的Python3的tensorflow废弃掉了。<br>我编译安装tensorflow没成功，这里，我用pip安装的。<br>安装过程中，不知道是网还是我的电脑的问题很多包在pip的时候会下载不下来，导致安装失败，我的应对方法是：从python官网把需要安装的whl包最新版下载下来用pip安装。</p>
+<p>##pip安装whl的方法如下：<br>1.cd到whl包所在的目录<br>2.pip install xxxx.whl（也可以加sudo）</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/python/" rel="tag"># python</a>
+              <a href="/tags/ros/" rel="tag"># ros</a>
+              <a href="/tags/ubuntu/" rel="tag"># ubuntu</a>
+              <a href="/tags/gazebo/" rel="tag"># gazebo</a>
+              <a href="/tags/gym/" rel="tag"># gym</a>
+              <a href="/tags/Tensorflow/" rel="tag"># Tensorflow</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/01/10/%E5%8E%9F-ubuntu%E4%B8%8A%E6%88%91%E7%9A%84%E8%A3%85%E6%9C%BA%E5%BF%85%E5%A4%87%E5%B0%8F%E5%B7%A5%E5%85%B7/" rel="prev" title="Ubuntu上装机必备小工具">
+      <i class="fa fa-chevron-left"></i> Ubuntu上装机必备小工具
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/01/16/20180116_ssserver%E5%9C%A8VPS%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E8%87%AA%E5%90%AF%E5%8A%A8/" rel="next" title="ssserver在vps服务器端自启动">
+      ssserver在vps服务器端自启动 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ningbo Yang</p>
+  <div class="site-description" itemprop="description">A coder who want to be a programmer.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">61</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ningbo6" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ningbo6" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:365220121@qq.com" title="E-Mail → mailto:365220121@qq.com" rel="noopener" target="_blank"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ningbo Yang</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

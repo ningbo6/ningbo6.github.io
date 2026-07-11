@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ningbo6.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"b2t":false,"scrollpercent":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="ssserver在VPS服务器端自启动">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ssserver在vps服务器端自启动">
+<meta property="og:url" content="https://ningbo6.github.io/2018/01/16/20180116_ssserver%E5%9C%A8VPS%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E8%87%AA%E5%90%AF%E5%8A%A8/index.html">
+<meta property="og:site_name" content="Ningbo&#39;s blogs">
+<meta property="og:description" content="ssserver在VPS服务器端自启动">
+<meta property="og:locale">
+<meta property="article:published_time" content="2018-01-16T11:41:17.000Z">
+<meta property="article:modified_time" content="2026-01-26T15:09:48.980Z">
+<meta property="article:author" content="Ningbo Yang">
+<meta property="article:tag" content="chacha20">
+<meta property="article:tag" content="nohup">
+<meta property="article:tag" content="shadowsocks">
+<meta property="article:tag" content="ssserver">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://ningbo6.github.io/2018/01/16/20180116_ssserver%E5%9C%A8VPS%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E8%87%AA%E5%90%AF%E5%8A%A8/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>ssserver在vps服务器端自启动 | Ningbo's blogs</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Ningbo's blogs</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">just for fun</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="sitemap fa-fw"></i>Sitemap</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="user fa-fw"></i>About</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://ningbo6.github.io/2018/01/16/20180116_ssserver%E5%9C%A8VPS%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E8%87%AA%E5%90%AF%E5%8A%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ningbo Yang">
+      <meta itemprop="description" content="A coder who want to be a programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ningbo's blogs">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ssserver在vps服务器端自启动
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2018-01-16 19:41:17" itemprop="dateCreated datePublished" datetime="2018-01-16T19:41:17+08:00">2018-01-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-01-26 23:09:48" itemprop="dateModified" datetime="2026-01-26T23:09:48+08:00">2026-01-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/tools/" itemprop="url" rel="index"><span itemprop="name">tools</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">ssserver在VPS服务器端自启动</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>（转载请注明作者和出处：<a href="https://ningbo6.github.io/">https://ningbo6.github.io</a> 未经允许请勿用于商业用途）<br>系统环境:Ubuntu<br>操作要求：能够进行基本的linux操作</p>
+<hr>
+<p>说明：<br>nohup可以让你关闭终端之后，进程依旧在后台运行，如果用&amp;，终端关闭之后进程也随之关闭。就是这样。</p>
+<p>##命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">1.安装pip</span><br><span class="line"> apt-get install python-pip</span><br><span class="line"> </span><br><span class="line">2.安装shadowsocks</span><br><span class="line"> pip install shadowsocks</span><br><span class="line"></span><br><span class="line">3. 添加配置文件</span><br><span class="line">sudo vim /etc/shadowsocks.json</span><br><span class="line">    内容如下：</span><br><span class="line">    &#123;</span><br><span class="line">    &quot;server&quot;:&quot;服务器的ip&quot;,</span><br><span class="line">    &quot;server_port&quot;:19175,</span><br><span class="line">    &quot;local_address&quot;:&quot;127.0.0.1&quot;,</span><br><span class="line">    &quot;local_port&quot;:1080,</span><br><span class="line">    &quot;password&quot;:&quot;密码&quot;,</span><br><span class="line">    &quot;timeout&quot;:300,</span><br><span class="line">    &quot;method&quot;:&quot;aes-256-cfb&quot;,</span><br><span class="line">    &quot;fast_open&quot;:false</span><br><span class="line">    &#125;</span><br><span class="line">    ：wq来保存退出</span><br><span class="line">	</span><br><span class="line">4.开机自启动</span><br><span class="line">sudo vim /etc/rc.local</span><br><span class="line">    在exit 0之前输入</span><br><span class="line">    nohup ssserver -c /etc/shadowsocks.json</span><br><span class="line">    保存退出</span><br><span class="line">5.reboot</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<p>加密方式改为”chacha20-ietf-poly1305”<br>优点：据说加密更牛逼，网速也牛逼。然后并没有发现哪里牛逼了，感觉也就手机快一点点吧，这可能就是玄学吧。不管怎么先把过程写出来吧。<br>shadowsocks版本不能太低，2.x.x的版本没有chacha20、chacha20-ietf等加密方式，所以要重新装，也要装chacha20的依赖库libsodium。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">1.升级pip</span><br><span class="line">pip install --upgrade pip</span><br><span class="line"></span><br><span class="line">2.升级安装工具</span><br><span class="line">pip install -U setuptools</span><br><span class="line"></span><br><span class="line">3.安装新的shadowsocks</span><br><span class="line">pip install git+https://github.com/shadowsocks/shadowsocks.git@master</span><br><span class="line"></span><br><span class="line">4.安装libsodium</span><br><span class="line">    apt-get install build-essential</span><br><span class="line">    wget https://download.libsodium.org/libsodium/releases/LATEST.tar.gz</span><br><span class="line">    tar zxf LATEST.tar.gz</span><br><span class="line">    cd libsodium*</span><br><span class="line">    ./configure</span><br><span class="line">    make &amp;&amp; make install</span><br><span class="line">    ldconfig</span><br><span class="line"></span><br><span class="line">5.修改配置文件</span><br><span class="line">sudo vim /etc/shadowsocks.json</span><br><span class="line">    把加密方式改为：chacha20-ietf-poly1305</span><br><span class="line"></span><br><span class="line">5.reboot</span><br></pre></td></tr></table></figure>
+
+<p>遇到的问题:</p>
+<ol>
+<li>pip install shadowsocks时出现locale.Error: unsupported locale setting</li>
+</ol>
+<p>在终端输入<br>    export LC_ALL &#x3D; C<br>就是在locale中让LC_ALL 的值为C就ok了.</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/ssserver/" rel="tag"># ssserver</a>
+              <a href="/tags/shadowsocks/" rel="tag"># shadowsocks</a>
+              <a href="/tags/nohup/" rel="tag"># nohup</a>
+              <a href="/tags/chacha20/" rel="tag"># chacha20</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/01/10/%E5%8E%9F-python%E8%BF%9E%E6%8E%A5gazebo-openAI%E7%9A%84gym-erlerobot%E7%9A%84gym-gazebo-google%E7%9A%84tensorflow/" rel="prev" title="python连接gazebo/openAI的gym/erlerobot的gym-gazebo/google的tensorflow">
+      <i class="fa fa-chevron-left"></i> python连接gazebo/openAI的gym/erlerobot的gym-gazebo/google的tensorflow
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/01/18/20180120_%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%E6%95%99%E5%AD%A6/" rel="next" title="科学上网教学">
+      科学上网教学 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ningbo Yang</p>
+  <div class="site-description" itemprop="description">A coder who want to be a programmer.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">61</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ningbo6" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ningbo6" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:365220121@qq.com" title="E-Mail → mailto:365220121@qq.com" rel="noopener" target="_blank"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ningbo Yang</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

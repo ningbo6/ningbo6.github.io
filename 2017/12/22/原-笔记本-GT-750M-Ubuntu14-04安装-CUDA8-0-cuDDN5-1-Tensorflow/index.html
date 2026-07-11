@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ningbo6.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"b2t":false,"scrollpercent":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="安装TensorFlow的教程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="笔记本(GT 750M)Ubuntu14.04安装[CUDA8.0][cuDDN5.1][Tensorflow]">
+<meta property="og:url" content="https://ningbo6.github.io/2017/12/22/%E5%8E%9F-%E7%AC%94%E8%AE%B0%E6%9C%AC-GT-750M-Ubuntu14-04%E5%AE%89%E8%A3%85-CUDA8-0-cuDDN5-1-Tensorflow/index.html">
+<meta property="og:site_name" content="Ningbo&#39;s blogs">
+<meta property="og:description" content="安装TensorFlow的教程">
+<meta property="og:locale">
+<meta property="article:published_time" content="2017-12-22T02:39:02.000Z">
+<meta property="article:modified_time" content="2026-01-26T15:09:48.981Z">
+<meta property="article:author" content="Ningbo Yang">
+<meta property="article:tag" content="CUDA">
+<meta property="article:tag" content="Tensorflow">
+<meta property="article:tag" content="cuDDN">
+<meta property="article:tag" content="ubuntu">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://ningbo6.github.io/2017/12/22/%E5%8E%9F-%E7%AC%94%E8%AE%B0%E6%9C%AC-GT-750M-Ubuntu14-04%E5%AE%89%E8%A3%85-CUDA8-0-cuDDN5-1-Tensorflow/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>笔记本(GT 750M)Ubuntu14.04安装[CUDA8.0][cuDDN5.1][Tensorflow] | Ningbo's blogs</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Ningbo's blogs</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">just for fun</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="sitemap fa-fw"></i>Sitemap</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="user fa-fw"></i>About</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://ningbo6.github.io/2017/12/22/%E5%8E%9F-%E7%AC%94%E8%AE%B0%E6%9C%AC-GT-750M-Ubuntu14-04%E5%AE%89%E8%A3%85-CUDA8-0-cuDDN5-1-Tensorflow/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ningbo Yang">
+      <meta itemprop="description" content="A coder who want to be a programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ningbo's blogs">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          笔记本(GT 750M)Ubuntu14.04安装[CUDA8.0][cuDDN5.1][Tensorflow]
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2017-12-22 10:39:02" itemprop="dateCreated datePublished" datetime="2017-12-22T10:39:02+08:00">2017-12-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-01-26 23:09:48" itemprop="dateModified" datetime="2026-01-26T23:09:48+08:00">2026-01-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/tools/" itemprop="url" rel="index"><span itemprop="name">tools</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">安装TensorFlow的教程</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>（转载请注明作者和出处：<a href="https://ningbo6.github.io)/">https://ningbo6.github.io）</a></p>
+<p>笔记本型号：联想Y500 </p>
+<p>CPU　:　Intel® Core™ i7-3630QM CPU @ 2.40GHz × 8 </p>
+<p>内存：7.7 GiB </p>
+<p>显卡：GeForce GT 750M&#x2F;PCIe&#x2F;SSE2 </p>
+<p>系统版本：ubuntu 14.04 LTS 64bit</p>
+<hr>
+<p>我的安装流程如下所示。</p>
+<p>1.准备</p>
+<p>首先确保你的系统是ubuntu14.04,而且一切都是正常的，如果有问题就重装吧，长痛不如短痛。</p>
+<p>需要准备以下几个安装包： </p>
+<pre><code>(1)NVIDIA显卡驱动包 
+
+我用的是375版本的，我试了一下382，是通过图形界面的系统设置安装的，会进入循环登录，进不去桌面，所以学乖了，用命令行安装官网上下载好的NVIDIA-375驱动包。 
+
+(2)CUDA8.0驱动包 
+
+[CUDA下载地址](https://developer.nvidia.com/cuda-downloads)  
+
+进入到下载的网页之后，你可能找不到CUDA8.0,这时候你按着下面的步骤走就可以了 
+
+打开网页之后，点绿色的Release Notes,点右上角的蓝色的older,然后点绿色的CUDA Toolkit 8.0 GA2[Feb 2017]，然后选择适合你的选项，最后的Installer Type建议选择runfile[local] 
+
+(3)cuDDN5.1安装包 
+
+[cuDDN下载地址](https://developer.nvidia.com/rdp/cudnn-download) 
+
+打开网页需要你注册一个NVIDIA developer的账号，登录之后，同意他们的声明就可以下载，下载cuDNN v5.1 (Jan 20, 2017), for CUDA 8.0就可以了。 
+</code></pre>
+<p>2.安装 </p>
+<pre><code>(1)安装NVIDIA显卡驱动 
+
+    [安装NVIDIA驱动的博客](http://blog.csdn.net/cosmoshua/article/details/76644029) 
+
+    [安装NVIDIA驱动的博客](https://www.cnblogs.com/alexanderkun/p/6905512.html)
+
+    按Ctrl + Alt +F1切换到控制台，关闭图形环境
+
+    <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">卸载原有NVIDIA驱动</span><br><span class="line">sudo apt-get remove --purge nvidia*</span><br><span class="line"></span><br><span class="line">sudo init 3</span><br><span class="line">sudo rm -r /tmp/.X* </span><br><span class="line">sudo service lightdm stop</span><br><span class="line">sudo sh 你的显卡驱动包.run</span><br><span class="line">sudo service lightdm start</span><br><span class="line">查看是否安装正确：</span><br><span class="line">cat /proc/driver/nvidia/version</span><br></pre></td></tr></table></figure>
+(2)安装CUDA8.0
+    <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod 777 cuda_8.0.44_linux.run</span><br><span class="line">sudo sh cuda_8.0.44_linux.run</span><br></pre></td></tr></table></figure>
+    然后根据提示就可以安装了，安装驱动的那一行可以不用安装了
+    之后加入配置
+
+    <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/profile </span><br><span class="line">添加以下内容(cuda-8.0可能不对，我的是需要改为cuda)</span><br><span class="line">export CUDA_HOME=/usr/local/cuda-8.0  </span><br><span class="line">export PATH=$CUDA_HOME/bin:$PATH    </span><br><span class="line">export LD_LIBRARY_PATH=$CUDA_HOME/lib64:$LD_LIBRARY_PATH</span><br><span class="line">使环境变量生效</span><br><span class="line">source /etc/profile</span><br><span class="line"></span><br><span class="line">测试：在新终端打开</span><br><span class="line">nvidia-smi</span><br></pre></td></tr></table></figure>
+(3)把GCC版本降到5.0以下，一般这里不用更改
+(4)安装cuDDN5.1
+    首先解压cudnn-8.0-linux-x64-v5.1.tgz
+    <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo tar xvzf cudnn-8.0-linux-x64-v5.1.tgz</span><br><span class="line">sudo cp cuda/include/cudnn.h /usr/local/cuda-8.0/include</span><br><span class="line">sudo cp cuda/lib64/libcudnn* /usr/local/cuda-8.0/lib64</span><br><span class="line">sudo chmod a+r /usr/local/cuda-8.0/include/cudnn.h /usr/local/cuda-8.0/lib64/libcudnn*</span><br></pre></td></tr></table></figure>
+    中间根据自己的路径进行修改
+(5)安装TensorFlow
+    我的python是3.4版本，所以下载对应的whl文件然后安装
+    `sudo pip3 install tensorflow_gpu-1.2.1-cp34-cp34m-linux_x86_64.whl`
+(6)检查是否安装好
+    <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import tensorflow as tf</span><br><span class="line">hello=tf.constant(&#x27;Hello, TensorFlow&#x27;)</span><br><span class="line">sess=tf.Session()</span><br><span class="line">print(sess.run(hello))</span><br></pre></td></tr></table></figure>
+</code></pre>
+<hr>
+<p>可能出现的问题及解决方案： </p>
+<p>以后补充 </p>
+<p>遇到这个问题 </p>
+<p> CUDA Device Query (Runtime API) version (CUDART static linking) </p>
+<p>cudaGetDeviceCount returned 30 </p>
+<p>-&gt; unknown error </p>
+<p>Result &#x3D; FAIL </p>
+<p>执行以下命令 </p>
+<p>sudo update-alternatives –config x86_64-linux-gnu_gl_conf </p>
+<p>然后选　&#x2F;usr&#x2F;lib&#x2F;x86_64-linux-gnu&#x2F;mesa&#x2F;ld.so.conf　</p>
+<p><a href="http://haiy.github.io/2016/07/17/ubuntu16.04%E4%B8%8AGTX1080%E7%9A%84CUDA%E5%AE%89%E8%A3%85.html">这个教程也不错，从中参考了很多</a></p>
+<hr>
+<p>版权声明：本文为博主原创文章，未经博主允许不得转载。</p>
+<div>作者：ynb19930428发表于2017/12/22 10:39:02[ 原文链接 ](http://blog.csdn.net/ynb19930428/article/details/78870667)</div><div> 阅读：118评论：0[查看评论 ](http://blog.csdn.net/ynb19930428/article/details/78870667#commentstarget =) </div>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/ubuntu/" rel="tag"># ubuntu</a>
+              <a href="/tags/Tensorflow/" rel="tag"># Tensorflow</a>
+              <a href="/tags/CUDA/" rel="tag"># CUDA</a>
+              <a href="/tags/cuDDN/" rel="tag"># cuDDN</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/12/21/%E5%8E%9F-%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%9A%84%E6%9C%BA%E8%BD%BDPC%E7%9A%84rviz%E9%97%AA%E9%80%80%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" rel="prev" title="rviz闪退的解决方案">
+      <i class="fa fa-chevron-left"></i> rviz闪退的解决方案
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/12/22/%E5%8E%9F-map-odom-base-link%E4%B8%89%E8%80%85%E5%85%B3%E7%B3%BB%E7%9A%84%E9%80%9A%E4%BF%97%E7%90%86%E8%A7%A3/" rel="next" title="map odom base_link三者关系的通俗理解">
+      map odom base_link三者关系的通俗理解 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ningbo Yang</p>
+  <div class="site-description" itemprop="description">A coder who want to be a programmer.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">61</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ningbo6" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ningbo6" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:365220121@qq.com" title="E-Mail → mailto:365220121@qq.com" rel="noopener" target="_blank"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ningbo Yang</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

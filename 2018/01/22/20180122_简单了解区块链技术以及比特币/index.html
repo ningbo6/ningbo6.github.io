@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ningbo6.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"b2t":false,"scrollpercent":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="本文主要介绍了比特币的技术和特点,解释了区块链技术的原理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="简单了解区块链技术以及比特币">
+<meta property="og:url" content="https://ningbo6.github.io/2018/01/22/20180122_%E7%AE%80%E5%8D%95%E4%BA%86%E8%A7%A3%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF%E4%BB%A5%E5%8F%8A%E6%AF%94%E7%89%B9%E5%B8%81/index.html">
+<meta property="og:site_name" content="Ningbo&#39;s blogs">
+<meta property="og:description" content="本文主要介绍了比特币的技术和特点,解释了区块链技术的原理">
+<meta property="og:locale">
+<meta property="article:published_time" content="2018-01-22T14:27:00.000Z">
+<meta property="article:modified_time" content="2026-01-26T15:09:48.980Z">
+<meta property="article:author" content="Ningbo Yang">
+<meta property="article:tag" content="区块链">
+<meta property="article:tag" content="挖矿">
+<meta property="article:tag" content="比特币">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://ningbo6.github.io/2018/01/22/20180122_%E7%AE%80%E5%8D%95%E4%BA%86%E8%A7%A3%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF%E4%BB%A5%E5%8F%8A%E6%AF%94%E7%89%B9%E5%B8%81/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>简单了解区块链技术以及比特币 | Ningbo's blogs</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Ningbo's blogs</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">just for fun</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="sitemap fa-fw"></i>Sitemap</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="user fa-fw"></i>About</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://ningbo6.github.io/2018/01/22/20180122_%E7%AE%80%E5%8D%95%E4%BA%86%E8%A7%A3%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF%E4%BB%A5%E5%8F%8A%E6%AF%94%E7%89%B9%E5%B8%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ningbo Yang">
+      <meta itemprop="description" content="A coder who want to be a programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ningbo's blogs">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          简单了解区块链技术以及比特币
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2018-01-22 22:27:00" itemprop="dateCreated datePublished" datetime="2018-01-22T22:27:00+08:00">2018-01-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-01-26 23:09:48" itemprop="dateModified" datetime="2026-01-26T23:09:48+08:00">2026-01-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index"><span itemprop="name">IT</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">本文主要介绍了比特币的技术和特点,解释了区块链技术的原理</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>（转载请注明作者和出处：<a href="https://ningbo6.github.io/">https://ningbo6.github.io</a> 未经允许请勿用于商业用途）</p>
+<p>视频地址: <a href="https://www.youtube.com/watch?v=obRzfcvMshM">https://www.youtube.com/watch?v=obRzfcvMshM</a></p>
+<h1 id="比特币主要技术和特点"><a href="#比特币主要技术和特点" class="headerlink" title="比特币主要技术和特点:"></a>比特币主要技术和特点:</h1><ol>
+<li>利用SHA-256算法和非对称加密算法制作数字签名</li>
+<li>利用区块链中的区块存储比特币和交易记录</li>
+<li>设置额外的工作从而控制单位时间内生成区块的个数</li>
+<li>给予一定数量的比特币和交易费奖励生成区块链的矿工,激励矿工加入区块链社区,促进区块链社区的成长和发展</li>
+<li>不依赖银行和其他金融机构,达到去中心化的目的</li>
+<li>比特币的总量不超过2100万</li>
+</ol>
+<hr>
+<h1 id="SHA-256函数与非对称加密算法"><a href="#SHA-256函数与非对称加密算法" class="headerlink" title="SHA-256函数与非对称加密算法"></a>SHA-256函数与非对称加密算法</h1><h2 id="SHA-256函数"><a href="#SHA-256函数" class="headerlink" title="SHA-256函数"></a>SHA-256函数</h2><p>全称是安全哈希算法.用此方法把原始记录转化为256个二进制数字串</p>
+<h2 id="非对称加密算法"><a href="#非对称加密算法" class="headerlink" title="非对称加密算法"></a>非对称加密算法</h2><p><strong>加密算法</strong>通过把SHA-256生成的哈希值加密后,生成新的字符串,然后再通过解密来达到还原哈希值<br><strong>非对称</strong>指的是,用私钥来加密,用公钥来解密,私钥只有自己拥有,公钥可以通过私钥推到,但是公钥不能反推到私钥.<br>#整个流程如下:</p>
+<ol>
+<li>SHA-256计算<em>原始信息</em>得到256位的二进制哈希值</li>
+<li>哈希值经过老王的私钥加密,得到加密后的哈希值,这个加密后的哈希值就是老王的数字签名</li>
+<li>老李得到老王的数字签名,用老王提供的公钥来解密得到哈希值1</li>
+<li>老李再使用SHA-256把老王的<em>原始信息</em>计算得到哈希值2</li>
+<li>如果哈希值1 &#x3D; 哈希值2,那么说明这个数字签名是针对这个原始信息的,签名是老王的,记录使没有经过篡改的.</li>
+</ol>
+<h1 id="比特币在SHA-256和非对称加密算法例子的改进和适配"><a href="#比特币在SHA-256和非对称加密算法例子的改进和适配" class="headerlink" title="比特币在SHA-256和非对称加密算法例子的改进和适配"></a>比特币在SHA-256和非对称加密算法例子的改进和适配</h1><ol>
+<li>使用比特币作为基础货币</li>
+<li>使用支付作为专业的名字</li>
+<li>用一种方法确认付款方是否有足够的比特币进行支付,这个方法是这次交易的判断依据是上一次交易获得的比特币.比如:老王支付20比特币给老李-&gt;支付10比特币给老张+支付10比特币给老李<br><strong>流程如下</strong><br>老李支付时发送:支付消息 + 付款方的数字签名(针对该消息的) + 老李的公钥<br>老张接收到支付消息后:</li>
+</ol>
+<ul>
+<li>判断是否足够金额</li>
+<li>用SHA-256解析接收到的支付消息,转化为哈希值1</li>
+<li>使用老李的公钥对老李的数字签名进行解密,得到哈希值2</li>
+<li>如果哈希值1&#x3D;哈希值2,交易成功</li>
+</ul>
+<ol start="4">
+<li>交易双方使用账号进行交易<br>账号是通过把公钥输入某个函数得到</li>
+<li>转账记录的存储和维护<br>很多设备同时存储和维护</li>
+</ol>
+<h1 id="三个一致性方面的问题和解决方案"><a href="#三个一致性方面的问题和解决方案" class="headerlink" title="三个一致性方面的问题和解决方案"></a>三个一致性方面的问题和解决方案</h1><h2 id="三个一致性方面的问题"><a href="#三个一致性方面的问题" class="headerlink" title="三个一致性方面的问题:"></a>三个一致性方面的问题:</h2><ul>
+<li>如何进行同步</li>
+<li>如何防止记录被篡改</li>
+<li>如何防止同一笔比特别收入被重复使用</li>
+</ul>
+<h2 id="比特币利用区块链解决三个一致性方面的问题"><a href="#比特币利用区块链解决三个一致性方面的问题" class="headerlink" title="比特币利用区块链解决三个一致性方面的问题:"></a>比特币利用区块链解决三个一致性方面的问题:</h2><ol>
+<li>区块中包含很多交易信息</li>
+<li>区块线性连接成为一个区块链</li>
+<li>由矿工产生新区块,在此之前需要接收网络上的结点,并验证,然后才能去产生新区块</li>
+<li>使用额外的工作的方法限制矿工单位时间产生的新区快的数量<br>额外的工作为:</li>
+</ol>
+<ul>
+<li>新制作的区块内容(组成一个字符串):前一个区块的SHA-256函数值 + 这个新区块的基本信息 + 这个新区块所包含的所有交易记录.每一个区块都含有上一个的SHA-256值</li>
+<li>在字符串后面加上一个随机数,组成新的字符串.新的字符串经过SHA-256计算后得到的256位的二进制数.如果这个256位二进制数的前72位全是0,则完成了这个额外的工作.<br> 每一位为0的概率为0.5,72位全为0的概率为1&#x2F;72<br>额外的工作完成之后把:前一个区块的SHA-256函数值 + 这个新区快的基本信息 + 这个新区快所包含的所有交易记录+找到的随机数 组成一个新的字符串,然后生成新区块加到区块链的末尾.</li>
+</ul>
+<h1 id="对矿工的激励措施"><a href="#对矿工的激励措施" class="headerlink" title="对矿工的激励措施"></a>对矿工的激励措施</h1><ol>
+<li>比特别网络奖励</li>
+<li>交易费收入</li>
+</ol>
+<h1 id="比特币网络的调整"><a href="#比特币网络的调整" class="headerlink" title="比特币网络的调整"></a>比特币网络的调整</h1><ol>
+<li>增加额外工作的难度,前73位为0</li>
+<li>同时生成了2个新区块,看下一个新区块产生在谁的后面,那么就用谁.</li>
+<li>比特币网络只采用最长的新区块</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag"># 区块链</a>
+              <a href="/tags/%E6%AF%94%E7%89%B9%E5%B8%81/" rel="tag"># 比特币</a>
+              <a href="/tags/%E6%8C%96%E7%9F%BF/" rel="tag"># 挖矿</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/01/20/20180119_markdown%E5%9B%BE%E7%89%87%E9%93%BE%E6%8E%A5/" rel="prev" title="在markdown中引入图片的解决方案">
+      <i class="fa fa-chevron-left"></i> 在markdown中引入图片的解决方案
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/02/02/%E5%8E%9F-%E5%AE%89%E8%A3%85%E5%9B%BA%E6%80%81%E7%A1%AC%E7%9B%98%E5%90%8EWindows%E5%8F%8AUbuntu%E7%9A%84%E5%AE%89%E8%A3%85/" rel="next" title="小谈安装固态硬盘后Windows及Ubuntu的安装">
+      小谈安装固态硬盘后Windows及Ubuntu的安装 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AF%94%E7%89%B9%E5%B8%81%E4%B8%BB%E8%A6%81%E6%8A%80%E6%9C%AF%E5%92%8C%E7%89%B9%E7%82%B9"><span class="nav-number">1.</span> <span class="nav-text">比特币主要技术和特点:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SHA-256%E5%87%BD%E6%95%B0%E4%B8%8E%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">SHA-256函数与非对称加密算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SHA-256%E5%87%BD%E6%95%B0"><span class="nav-number">2.1.</span> <span class="nav-text">SHA-256函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95"><span class="nav-number">2.2.</span> <span class="nav-text">非对称加密算法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AF%94%E7%89%B9%E5%B8%81%E5%9C%A8SHA-256%E5%92%8C%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E4%BE%8B%E5%AD%90%E7%9A%84%E6%94%B9%E8%BF%9B%E5%92%8C%E9%80%82%E9%85%8D"><span class="nav-number">3.</span> <span class="nav-text">比特币在SHA-256和非对称加密算法例子的改进和适配</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89%E4%B8%AA%E4%B8%80%E8%87%B4%E6%80%A7%E6%96%B9%E9%9D%A2%E7%9A%84%E9%97%AE%E9%A2%98%E5%92%8C%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">4.</span> <span class="nav-text">三个一致性方面的问题和解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E4%B8%AA%E4%B8%80%E8%87%B4%E6%80%A7%E6%96%B9%E9%9D%A2%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">4.1.</span> <span class="nav-text">三个一致性方面的问题:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AF%94%E7%89%B9%E5%B8%81%E5%88%A9%E7%94%A8%E5%8C%BA%E5%9D%97%E9%93%BE%E8%A7%A3%E5%86%B3%E4%B8%89%E4%B8%AA%E4%B8%80%E8%87%B4%E6%80%A7%E6%96%B9%E9%9D%A2%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">4.2.</span> <span class="nav-text">比特币利用区块链解决三个一致性方面的问题:</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AF%B9%E7%9F%BF%E5%B7%A5%E7%9A%84%E6%BF%80%E5%8A%B1%E6%8E%AA%E6%96%BD"><span class="nav-number">5.</span> <span class="nav-text">对矿工的激励措施</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AF%94%E7%89%B9%E5%B8%81%E7%BD%91%E7%BB%9C%E7%9A%84%E8%B0%83%E6%95%B4"><span class="nav-number">6.</span> <span class="nav-text">比特币网络的调整</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ningbo Yang</p>
+  <div class="site-description" itemprop="description">A coder who want to be a programmer.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">61</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ningbo6" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ningbo6" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:365220121@qq.com" title="E-Mail → mailto:365220121@qq.com" rel="noopener" target="_blank"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ningbo Yang</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

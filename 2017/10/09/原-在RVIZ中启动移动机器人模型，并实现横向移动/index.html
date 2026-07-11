@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ningbo6.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"b2t":false,"scrollpercent":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="在gazebo中启动移动机器人模型，并实现横向移动">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在RVIZ中启动移动机器人模型，并实现横向移动">
+<meta property="og:url" content="https://ningbo6.github.io/2017/10/09/%E5%8E%9F-%E5%9C%A8RVIZ%E4%B8%AD%E5%90%AF%E5%8A%A8%E7%A7%BB%E5%8A%A8%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A8%A1%E5%9E%8B%EF%BC%8C%E5%B9%B6%E5%AE%9E%E7%8E%B0%E6%A8%AA%E5%90%91%E7%A7%BB%E5%8A%A8/index.html">
+<meta property="og:site_name" content="Ningbo&#39;s blogs">
+<meta property="og:description" content="在gazebo中启动移动机器人模型，并实现横向移动">
+<meta property="og:locale">
+<meta property="article:published_time" content="2017-10-09T07:59:54.000Z">
+<meta property="article:modified_time" content="2026-01-26T15:09:48.981Z">
+<meta property="article:author" content="Ningbo Yang">
+<meta property="article:tag" content="ros">
+<meta property="article:tag" content="rviz">
+<meta property="article:tag" content="机器人">
+<meta property="article:tag" content="横向移动">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://ningbo6.github.io/2017/10/09/%E5%8E%9F-%E5%9C%A8RVIZ%E4%B8%AD%E5%90%AF%E5%8A%A8%E7%A7%BB%E5%8A%A8%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A8%A1%E5%9E%8B%EF%BC%8C%E5%B9%B6%E5%AE%9E%E7%8E%B0%E6%A8%AA%E5%90%91%E7%A7%BB%E5%8A%A8/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>在RVIZ中启动移动机器人模型，并实现横向移动 | Ningbo's blogs</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Ningbo's blogs</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">just for fun</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="sitemap fa-fw"></i>Sitemap</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="user fa-fw"></i>About</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://ningbo6.github.io/2017/10/09/%E5%8E%9F-%E5%9C%A8RVIZ%E4%B8%AD%E5%90%AF%E5%8A%A8%E7%A7%BB%E5%8A%A8%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A8%A1%E5%9E%8B%EF%BC%8C%E5%B9%B6%E5%AE%9E%E7%8E%B0%E6%A8%AA%E5%90%91%E7%A7%BB%E5%8A%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ningbo Yang">
+      <meta itemprop="description" content="A coder who want to be a programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ningbo's blogs">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          在RVIZ中启动移动机器人模型，并实现横向移动
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2017-10-09 15:59:54" itemprop="dateCreated datePublished" datetime="2017-10-09T15:59:54+08:00">2017-10-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-01-26 23:09:48" itemprop="dateModified" datetime="2026-01-26T23:09:48+08:00">2026-01-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ros/" itemprop="url" rel="index"><span itemprop="name">ros</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">在gazebo中启动移动机器人模型，并实现横向移动</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>（转载请注明作者和出处：<a href="https://ningbo6.github.io)/">https://ningbo6.github.io）</a><br>本博客只是个人学习记录使用，瞎写写，内容比较粗糙。编写过程中，借鉴了古月居大神的smartcar和ROS-WIKI以及其它一些大神的内容。  </p>
+<p>引入古月居大神的链接<a href="http://www.guyuehome.com/248">使用smartcar进行仿真</a>和<a href="http://www.guyuehome.com/251">smartcar源码上传</a></p>
+<h2 id="下面我针对自己的机器人编写的代码和文件。"><a href="#下面我针对自己的机器人编写的代码和文件。" class="headerlink" title="下面我针对自己的机器人编写的代码和文件。"></a>下面我针对自己的机器人编写的代码和文件。</h2><p>launch文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">&lt;launch&gt;  </span><br><span class="line"></span><br><span class="line">    &lt;param name=&quot;/use_sim_time&quot; value=&quot;false&quot; /&gt;  </span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">    &lt;!-- Load the URDF/Xacro model of our robot --&gt;  </span><br><span class="line"></span><br><span class="line">    &lt;arg name=&quot;urdf_file&quot; default=&quot;$(find xacro)/xacro.py &#x27;$(find smartcar_description)/urdf/smartcar.urdf.xacro&#x27;&quot; /&gt;  </span><br><span class="line"></span><br><span class="line">    &lt;arg name=&quot;gui&quot; default=&quot;true&quot; /&gt;  </span><br><span class="line">    &lt;param name=&quot;robot_description&quot; command=&quot;$(arg urdf_file)&quot; /&gt;  </span><br><span class="line">    &lt;param name=&quot;use_gui&quot; value=&quot;$(arg gui)&quot;/&gt;  </span><br><span class="line">    &lt;node name=&quot;arbotix&quot; pkg=&quot;arbotix_python&quot; type=&quot;arbotix_driver&quot; output=&quot;screen&quot;&gt;  </span><br><span class="line">        &lt;rosparam file=&quot;$(find smartcar_description)/config/smartcar_arbotix.yaml&quot; command=&quot;load&quot; /&gt; </span><br><span class="line">        &lt;param name=&quot;sim&quot; value=&quot;true&quot;/&gt;  </span><br><span class="line">    &lt;/node&gt;  </span><br><span class="line"></span><br><span class="line">    &lt;node name=&quot;joint_state_publisher&quot; pkg=&quot;joint_state_publisher&quot; type=&quot;joint_state_publisher&quot; &gt;  </span><br><span class="line"></span><br><span class="line">    &lt;/node&gt;  </span><br><span class="line"></span><br><span class="line">    &lt;node name=&quot;robot_state_publisher&quot; pkg=&quot;robot_state_publisher&quot; type=&quot;state_publisher&quot;&gt;  </span><br><span class="line"></span><br><span class="line">        &lt;param name=&quot;publish_frequency&quot; type=&quot;double&quot; value=&quot;20.0&quot; /&gt;  </span><br><span class="line"></span><br><span class="line">    &lt;/node&gt;  </span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">     &lt;!-- We need a static transforms for the wheels --&gt;  </span><br><span class="line"></span><br><span class="line">     &lt;node pkg=&quot;tf&quot; type=&quot;static_transform_publisher&quot; name=&quot;odom_left_wheel_broadcaster&quot; args=&quot;0 0 0 0 0 0 /base_link /left_front_link 100&quot; /&gt;  </span><br><span class="line"></span><br><span class="line">     &lt;node pkg=&quot;tf&quot; type=&quot;static_transform_publisher&quot; name=&quot;odom_right_wheel_broadcaster&quot; args=&quot;0 0 0 0 0 0 /base_link /right_front_link 100&quot; /&gt;  </span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">    &lt;node name=&quot;rviz&quot; pkg=&quot;rviz&quot; type=&quot;rviz&quot; args=&quot;-d $(find smartcar_description)/urdf.rviz&quot; /&gt;  </span><br><span class="line"></span><br><span class="line">&lt;/launch&gt;</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<p>xacro文件包括三部分：</p>
+<ol>
+<li>smartcar_body</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;  </span><br><span class="line">&lt;robot name=&quot;smartcar&quot; xmlns:xacro=&quot;http://ros.org/wiki/xacro&quot;&gt;  </span><br><span class="line">  &lt;xacro:property name=&quot;M_PI&quot; value=&quot;3.14159&quot;/&gt;    </span><br><span class="line">  &lt;!-- Macro for SmartCar body. Including Gazebo extensions, but does not include Kinect --&gt;  </span><br><span class="line">  &lt;xacro:include filename=&quot;$(find smartcar_description)/urdf/gazebo.urdf.xacro&quot;/&gt;  </span><br><span class="line">  &lt;xacro:property name=&quot;base_x&quot; value=&quot;0.33&quot; /&gt;  </span><br><span class="line">  &lt;xacro:property name=&quot;base_y&quot; value=&quot;0.33&quot; /&gt;  </span><br><span class="line">  &lt;xacro:macro name=&quot;smartcar_body&quot;&gt;  </span><br><span class="line">    &lt;link name=&quot;base_footprint&quot;&gt;</span><br><span class="line">      &lt;inertial&gt;</span><br><span class="line">        &lt;mass value=&quot;0.0001&quot; /&gt;</span><br><span class="line">        &lt;origin xyz=&quot;0 0 0&quot; /&gt;</span><br><span class="line">        &lt;inertia ixx=&quot;0.0001&quot; ixy=&quot;0.0&quot; ixz=&quot;0.0&quot;</span><br><span class="line">            iyy=&quot;0.0001&quot; iyz=&quot;0.0&quot; </span><br><span class="line">            izz=&quot;0.0001&quot; /&gt;</span><br><span class="line">      &lt;/inertial&gt;</span><br><span class="line">      &lt;visual&gt;</span><br><span class="line">          &lt;origin xyz=&quot;0 0 0&quot; rpy=&quot;0 0 0&quot; /&gt;</span><br><span class="line">          &lt;geometry&gt;</span><br><span class="line">              &lt;box size=&quot;0.001 0.001 0.001&quot; /&gt;</span><br><span class="line">          &lt;/geometry&gt;</span><br><span class="line">      &lt;/visual&gt;</span><br><span class="line">    &lt;/link&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &lt;joint name=&quot;base_footprint_joint&quot; type=&quot;fixed&quot;&gt;</span><br><span class="line">      &lt;origin xyz=&quot;0 0 0&quot; rpy=&quot;0 0 0&quot; /&gt;</span><br><span class="line">      &lt;parent link=&quot;base_footprint&quot;/&gt;</span><br><span class="line">      &lt;child link=&quot;base_link&quot; /&gt;</span><br><span class="line">    &lt;/joint&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &lt;link</span><br><span class="line">    name=&quot;base_link&quot;&gt;</span><br><span class="line">    &lt;inertial&gt;</span><br><span class="line">      &lt;origin</span><br><span class="line">        xyz=&quot;0.0032273 -0.060593 1.3595E-05&quot;</span><br><span class="line">        rpy=&quot;0 0 0&quot; /&gt;</span><br><span class="line">      &lt;mass</span><br><span class="line">        value=&quot;4.2623&quot; /&gt;</span><br><span class="line">      &lt;inertia</span><br><span class="line">        ixx=&quot;0.04568&quot;</span><br><span class="line">        ixy=&quot;-0.00094545&quot;</span><br><span class="line">        ixz=&quot;-8.9814E-06&quot;</span><br><span class="line">        iyy=&quot;0.11402&quot;</span><br><span class="line">        iyz=&quot;5.3399E-06&quot;</span><br><span class="line">        izz=&quot;0.11035&quot; /&gt;</span><br><span class="line">    &lt;/inertial&gt;</span><br><span class="line">    &lt;visual&gt;</span><br><span class="line">      &lt;origin</span><br><span class="line">        xyz=&quot;0 0 0.23&quot;</span><br><span class="line">        rpy=&quot;0 0 0&quot; /&gt;</span><br><span class="line">      &lt;geometry&gt;</span><br><span class="line">        &lt;mesh</span><br><span class="line">          filename=&quot;package://smartcar_description/meshes/base_link.STL&quot; /&gt;</span><br><span class="line">      &lt;/geometry&gt;</span><br><span class="line">      &lt;material</span><br><span class="line">        name=&quot;&quot;&gt;</span><br><span class="line">        &lt;color</span><br><span class="line">          rgba=&quot;1 1 1 1&quot; /&gt;</span><br><span class="line">      &lt;/material&gt;</span><br><span class="line">    &lt;/visual&gt;</span><br><span class="line">    &lt;collision&gt;</span><br><span class="line">      &lt;origin</span><br><span class="line">        xyz=&quot;0 0 0.23&quot;</span><br><span class="line">        rpy=&quot;0 0 0&quot; /&gt;</span><br><span class="line">      &lt;geometry&gt;</span><br><span class="line">        &lt;mesh</span><br><span class="line">          filename=&quot;package://smartcar_description/meshes/base_link.STL&quot; /&gt;</span><br><span class="line">      &lt;/geometry&gt;</span><br><span class="line">    &lt;/collision&gt;</span><br><span class="line">  &lt;/link&gt;</span><br><span class="line">  &lt;link</span><br><span class="line">    name=&quot;left_front_wheel&quot;&gt;</span><br><span class="line">    &lt;inertial&gt;</span><br><span class="line">      &lt;origin</span><br><span class="line">        xyz=&quot;0 -1.98217916108356E-05 0&quot;</span><br><span class="line">        rpy=&quot;0 0 0&quot; /&gt;</span><br><span class="line">      &lt;mass</span><br><span class="line">        value=&quot;0.176438810476987&quot; /&gt;</span><br><span class="line">      &lt;inertia</span><br><span class="line">        ixx=&quot;8.8965933887671E-05&quot;</span><br><span class="line">        ixy=&quot;-1.27636183461175E-23&quot;</span><br><span class="line">        ixz=&quot;8.0831821149659E-23&quot;</span><br><span class="line">        iyy=&quot;8.89898462049031E-05&quot;</span><br><span class="line">        iyz=&quot;2.16519665002917E-23&quot;</span><br><span class="line">        izz=&quot;0.000130905430632044&quot; /&gt;</span><br><span class="line">    &lt;/inertial&gt;</span><br><span class="line">    &lt;visual&gt;</span><br><span class="line">      &lt;origin</span><br><span class="line">        xyz=&quot;0 0 0&quot;</span><br><span class="line">        rpy=&quot;0 0 0&quot; /&gt;</span><br><span class="line">      &lt;geometry&gt;</span><br><span class="line">        &lt;mesh</span><br><span class="line">          filename=&quot;package://smartcar_description/meshes/left_front_wheel.STL&quot; /&gt;</span><br><span class="line">      &lt;/geometry&gt;</span><br><span class="line">      &lt;material</span><br><span class="line">        name=&quot;&quot;&gt;</span><br><span class="line">        &lt;color</span><br><span class="line">          rgba=&quot;1 1 0 1&quot; /&gt;</span><br><span class="line">      &lt;/material&gt;</span><br><span class="line">    &lt;/visual&gt;</span><br><span class="line">    &lt;collision&gt;</span><br><span class="line">      &lt;origin</span><br><span class="line">        xyz=&quot;0 0 0&quot;</span><br><span class="line">        rpy=&quot;0 0 0&quot; /&gt;</span><br><span class="line">      &lt;geometry&gt;</span><br><span class="line">        &lt;mesh</span><br><span class="line">          filename=&quot;package://smartcar_description/meshes/left_front_wheel.STL&quot; /&gt;</span><br><span class="line">      &lt;/geometry&gt;</span><br><span class="line">    &lt;/collision&gt;</span><br><span class="line">  &lt;/link&gt;</span><br><span class="line">  &lt;joint</span><br><span class="line">    name=&quot;left_front_wheel_joint&quot;</span><br><span class="line">    type=&quot;continuous&quot;&gt;</span><br><span class="line">    &lt;origin</span><br><span class="line">      xyz=&quot;0.12875 0.1504 0.04&quot;</span><br><span class="line">      rpy=&quot;1.5708 0 0&quot; /&gt;</span><br><span class="line">    &lt;parent</span><br><span class="line">      link=&quot;base_link&quot; /&gt;</span><br><span class="line">    &lt;child</span><br><span class="line">      link=&quot;left_front_wheel&quot; /&gt;</span><br><span class="line">    &lt;axis</span><br><span class="line">      xyz=&quot;0 0 1&quot; /&gt;</span><br><span class="line">  &lt;/joint&gt;</span><br><span class="line">  &lt;link</span><br><span class="line">    name=&quot;right_front_wheel&quot;&gt;</span><br><span class="line">    &lt;inertial&gt;</span><br><span class="line">      &lt;origin</span><br><span class="line">        xyz=&quot;0 -1.98217916108079E-05 0&quot;</span><br><span class="line">        rpy=&quot;0 0 0&quot; /&gt;</span><br><span class="line">      &lt;mass</span><br><span class="line">        value=&quot;0.176438810476987&quot; /&gt;</span><br><span class="line">      &lt;inertia</span><br><span class="line">        ixx=&quot;8.8965933887671E-05&quot;</span><br><span class="line">        ixy=&quot;-1.27636183461175E-23&quot;</span><br><span class="line">        ixz=&quot;8.08318211496588E-23&quot;</span><br><span class="line">        iyy=&quot;8.89898462049032E-05&quot;</span><br><span class="line">        iyz=&quot;2.18596653030412E-23&quot;</span><br><span class="line">        izz=&quot;0.000130905430632044&quot; /&gt;</span><br><span class="line">    &lt;/inertial&gt;</span><br><span class="line">    &lt;visual&gt;</span><br><span class="line">      &lt;origin</span><br><span class="line">        xyz=&quot;0 0 0&quot;</span><br><span class="line">        rpy=&quot;0 0 0&quot; /&gt;</span><br><span class="line">      &lt;geometry&gt;</span><br><span class="line">        &lt;mesh</span><br><span class="line">          filename=&quot;package://smartcar_description/meshes/right_front_wheel.STL&quot; /&gt;</span><br><span class="line">      &lt;/geometry&gt;</span><br><span class="line">      &lt;material</span><br><span class="line">        name=&quot;&quot;&gt;</span><br><span class="line">        &lt;color</span><br><span class="line">          rgba=&quot;1 1 0 1&quot; /&gt;</span><br><span class="line">      &lt;/material&gt;</span><br><span class="line">    &lt;/visual&gt;</span><br><span class="line">    &lt;collision&gt;</span><br><span class="line">      &lt;origin</span><br><span class="line">        xyz=&quot;0 0 0&quot;</span><br><span class="line">        rpy=&quot;0 0 0&quot; /&gt;</span><br><span class="line">      &lt;geometry&gt;</span><br><span class="line">        &lt;mesh</span><br><span class="line">          filename=&quot;package://smartcar_description/meshes/right_front_wheel.STL&quot; /&gt;</span><br><span class="line">      &lt;/geometry&gt;</span><br><span class="line">    &lt;/collision&gt;</span><br><span class="line">  &lt;/link&gt;</span><br><span class="line">  &lt;joint</span><br><span class="line">    name=&quot;right_front_wheel_joint&quot;</span><br><span class="line">    type=&quot;continuous&quot;&gt;</span><br><span class="line">    &lt;origin</span><br><span class="line">      xyz=&quot;0.12875 -0.1504 0.04&quot;</span><br><span class="line">      rpy=&quot;1.5708 0 0&quot; /&gt;</span><br><span class="line">    &lt;parent</span><br><span class="line">      link=&quot;base_link&quot; /&gt;</span><br><span class="line">    &lt;child</span><br><span class="line">      link=&quot;right_front_wheel&quot; /&gt;</span><br><span class="line">    &lt;axis</span><br><span class="line">      xyz=&quot;0 0 1&quot; /&gt;</span><br><span class="line">  &lt;/joint&gt;</span><br><span class="line">  &lt;link</span><br><span class="line">    name=&quot;left_back_wheel&quot;&gt;</span><br><span class="line">    &lt;inertial&gt;</span><br><span class="line">      &lt;origin</span><br><span class="line">        xyz=&quot;0 -1.98217916108356E-05 0&quot;</span><br><span class="line">        rpy=&quot;0 0 0&quot; /&gt;</span><br><span class="line">      &lt;mass</span><br><span class="line">        value=&quot;0.176438810476987&quot; /&gt;</span><br><span class="line">      &lt;inertia</span><br><span class="line">        ixx=&quot;8.8965933887671E-05&quot;</span><br><span class="line">        ixy=&quot;-1.27300145019925E-23&quot;</span><br><span class="line">        ixz=&quot;8.0831821149659E-23&quot;</span><br><span class="line">        iyy=&quot;8.89898462049032E-05&quot;</span><br><span class="line">        iyz=&quot;2.16519665002917E-23&quot;</span><br><span class="line">        izz=&quot;0.000130905430632044&quot; /&gt;</span><br><span class="line">    &lt;/inertial&gt;</span><br><span class="line">    &lt;visual&gt;</span><br><span class="line">      &lt;origin</span><br><span class="line">        xyz=&quot;0 0 0&quot;</span><br><span class="line">        rpy=&quot;0 0 0&quot; /&gt;</span><br><span class="line">      &lt;geometry&gt;</span><br><span class="line">        &lt;mesh</span><br><span class="line">          filename=&quot;package://smartcar_description/meshes/left_back_wheel.STL&quot; /&gt;</span><br><span class="line">      &lt;/geometry&gt;</span><br><span class="line">      &lt;material</span><br><span class="line">        name=&quot;&quot;&gt;</span><br><span class="line">        &lt;color</span><br><span class="line">          rgba=&quot;1 1 0 1&quot; /&gt;</span><br><span class="line">      &lt;/material&gt;</span><br><span class="line">    &lt;/visual&gt;</span><br><span class="line">    &lt;collision&gt;</span><br><span class="line">      &lt;origin</span><br><span class="line">        xyz=&quot;0 0 0&quot;</span><br><span class="line">        rpy=&quot;0 0 0&quot; /&gt;</span><br><span class="line">      &lt;geometry&gt;</span><br><span class="line">        &lt;mesh</span><br><span class="line">          filename=&quot;package://smartcar_description/meshes/left_back_wheel.STL&quot; /&gt;</span><br><span class="line">      &lt;/geometry&gt;</span><br><span class="line">    &lt;/collision&gt;</span><br><span class="line">  &lt;/link&gt;</span><br><span class="line">  &lt;joint</span><br><span class="line">    name=&quot;left_back_wheel_joint&quot;</span><br><span class="line">    type=&quot;continuous&quot;&gt;</span><br><span class="line">    &lt;origin</span><br><span class="line">      xyz=&quot;-0.12875 0.1504 0.04&quot;</span><br><span class="line">      rpy=&quot;1.5708 0 0&quot; /&gt;</span><br><span class="line">    &lt;parent</span><br><span class="line">      link=&quot;base_link&quot; /&gt;</span><br><span class="line">    &lt;child</span><br><span class="line">      link=&quot;left_back_wheel&quot; /&gt;</span><br><span class="line">    &lt;axis</span><br><span class="line">      xyz=&quot;0 0 1&quot; /&gt;</span><br><span class="line">  &lt;/joint&gt;</span><br><span class="line">  &lt;link</span><br><span class="line">    name=&quot;right_back_wheel&quot;&gt;</span><br><span class="line">    &lt;inertial&gt;</span><br><span class="line">      &lt;origin</span><br><span class="line">        xyz=&quot;2.77555756156289E-17 -1.98217916108079E-05 0&quot;</span><br><span class="line">        rpy=&quot;0 0 0&quot; /&gt;</span><br><span class="line">      &lt;mass</span><br><span class="line">        value=&quot;0.176438810476987&quot; /&gt;</span><br><span class="line">      &lt;inertia</span><br><span class="line">        ixx=&quot;8.8965933887671E-05&quot;</span><br><span class="line">        ixy=&quot;-4.17259369791981E-24&quot;</span><br><span class="line">        ixz=&quot;2.75455648073554E-21&quot;</span><br><span class="line">        iyy=&quot;8.89898462049032E-05&quot;</span><br><span class="line">        iyz=&quot;5.21854052435048E-20&quot;</span><br><span class="line">        izz=&quot;0.000130905430632044&quot; /&gt;</span><br><span class="line">    &lt;/inertial&gt;</span><br><span class="line">    &lt;visual&gt;</span><br><span class="line">      &lt;origin</span><br><span class="line">        xyz=&quot;0 0 0&quot;</span><br><span class="line">        rpy=&quot;0 0 0&quot; /&gt;</span><br><span class="line">      &lt;geometry&gt;</span><br><span class="line">        &lt;mesh</span><br><span class="line">          filename=&quot;package://smartcar_description/meshes/right_back_wheel.STL&quot; /&gt;</span><br><span class="line">      &lt;/geometry&gt;</span><br><span class="line">      &lt;material</span><br><span class="line">        name=&quot;&quot;&gt;</span><br><span class="line">        &lt;color</span><br><span class="line">          rgba=&quot;1 1 0 1&quot; /&gt;</span><br><span class="line">      &lt;/material&gt;</span><br><span class="line">    &lt;/visual&gt;</span><br><span class="line">    &lt;collision&gt;</span><br><span class="line">      &lt;origin</span><br><span class="line">        xyz=&quot;0 0 0&quot;</span><br><span class="line">        rpy=&quot;0 0 0&quot; /&gt;</span><br><span class="line">      &lt;geometry&gt;</span><br><span class="line">        &lt;mesh</span><br><span class="line">          filename=&quot;package://smartcar_description/meshes/right_back_wheel.STL&quot; /&gt;</span><br><span class="line">      &lt;/geometry&gt;</span><br><span class="line">    &lt;/collision&gt;</span><br><span class="line">  &lt;/link&gt;</span><br><span class="line">  &lt;joint</span><br><span class="line">    name=&quot;right_back_wheel_joint&quot;</span><br><span class="line">    type=&quot;continuous&quot;&gt;</span><br><span class="line">    &lt;origin</span><br><span class="line">      xyz=&quot;-0.12875 -0.1504 0.04&quot;</span><br><span class="line">      rpy=&quot;1.5708 0 3.1416&quot; /&gt;</span><br><span class="line">    &lt;parent</span><br><span class="line">      link=&quot;base_link&quot; /&gt;</span><br><span class="line">    &lt;child</span><br><span class="line">      link=&quot;right_back_wheel&quot; /&gt;</span><br><span class="line">    &lt;axis</span><br><span class="line">      xyz=&quot;0 0 1&quot; /&gt;</span><br><span class="line">  &lt;/joint&gt;</span><br><span class="line"></span><br><span class="line">  &lt;/xacro:macro&gt;  </span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">&lt;/robot&gt;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>gazebo.urdf.xacro</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;  </span><br><span class="line">&lt;robot xmlns:controller=&quot;http://playerstage.sourceforge.net/gazebo/xmlschema/#controller&quot;   </span><br><span class="line"></span><br><span class="line">    xmlns:interface=&quot;http://playerstage.sourceforge.net/gazebo/xmlschema/#interface&quot;   </span><br><span class="line"></span><br><span class="line">    xmlns:sensor=&quot;http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor&quot;   </span><br><span class="line"></span><br><span class="line">    xmlns:xacro=&quot;http://ros.org/wiki/xacro&quot;   </span><br><span class="line"></span><br><span class="line">    name=&quot;smartcar_gazebo&quot;&gt;  </span><br><span class="line"></span><br><span class="line"> &lt;!-- ASUS Xtion PRO camera for simulation --&gt;  </span><br><span class="line"></span><br><span class="line">&lt;!-- gazebo_ros_wge100 plugin is in kt2_gazebo_plugins package --&gt;  </span><br><span class="line"></span><br><span class="line">&lt;xacro:macro name=&quot;smartcar_sim&quot;&gt;  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &lt;gazebo reference=&quot;base_footprint&quot;&gt;</span><br><span class="line">       &lt;material&gt;Gazebo/Blue&lt;/material&gt;  </span><br><span class="line">       &lt;turnGravityOff&gt;false&lt;/turnGravityOff&gt;</span><br><span class="line">    &lt;/gazebo&gt;</span><br><span class="line"></span><br><span class="line">    &lt;gazebo reference=&quot;base_link&quot;&gt;  </span><br><span class="line"></span><br><span class="line">        &lt;material&gt;Gazebo/Blue&lt;/material&gt;  </span><br><span class="line"></span><br><span class="line">    &lt;/gazebo&gt;  </span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">    &lt;gazebo reference=&quot;right_front_wheel&quot;&gt;  </span><br><span class="line"></span><br><span class="line">        &lt;material&gt;Gazebo/FlatBlack&lt;/material&gt;  </span><br><span class="line"></span><br><span class="line">    &lt;/gazebo&gt;  </span><br><span class="line"></span><br><span class="line">    &lt;transmission name=&quot;right_front_wheel_joint_trans&quot;&gt;</span><br><span class="line">      &lt;type&gt;transmission_interface/SimpleTransmission&lt;/type&gt;</span><br><span class="line">      &lt;joint name=&quot;right_front_wheel_joint&quot; /&gt;</span><br><span class="line">      &lt;actuator name=&quot;right_front_wheel_joint_motor&quot;&gt;</span><br><span class="line">        &lt;hardwareInterface&gt;EffortJointInterface&lt;/hardwareInterface&gt;</span><br><span class="line">        &lt;mechanicalReduction&gt;1&lt;/mechanicalReduction&gt;</span><br><span class="line">      &lt;/actuator&gt;</span><br><span class="line">    &lt;/transmission&gt;</span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">    &lt;gazebo reference=&quot;right_back_wheel&quot;&gt;  </span><br><span class="line"></span><br><span class="line">        &lt;material&gt;Gazebo/FlatBlack&lt;/material&gt;  </span><br><span class="line"></span><br><span class="line">    &lt;/gazebo&gt;  </span><br><span class="line"></span><br><span class="line">   </span><br><span class="line">    &lt;transmission name=&quot;right_back_wheel_joint_trans&quot;&gt;</span><br><span class="line">      &lt;type&gt;transmission_interface/SimpleTransmission&lt;/type&gt;</span><br><span class="line">      &lt;joint name=&quot;right_back_wheel_joint&quot; /&gt;</span><br><span class="line">      &lt;actuator name=&quot;right_back_wheel_joint_motor&quot;&gt;</span><br><span class="line">        &lt;hardwareInterface&gt;EffortJointInterface&lt;/hardwareInterface&gt;</span><br><span class="line">        &lt;mechanicalReduction&gt;1&lt;/mechanicalReduction&gt;</span><br><span class="line">      &lt;/actuator&gt;</span><br><span class="line">    &lt;/transmission&gt;</span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">    &lt;gazebo reference=&quot;left_front_wheel&quot;&gt;  </span><br><span class="line"></span><br><span class="line">        &lt;material&gt;Gazebo/FlatBlack&lt;/material&gt;  </span><br><span class="line"></span><br><span class="line">    &lt;/gazebo&gt;  </span><br><span class="line">  </span><br><span class="line">    &lt;transmission name=&quot;left_front_wheel_joint_trans&quot;&gt;</span><br><span class="line">      &lt;type&gt;transmission_interface/SimpleTransmission&lt;/type&gt;</span><br><span class="line">      &lt;joint name=&quot;left_front_wheel_joint&quot; /&gt;</span><br><span class="line">      &lt;actuator name=&quot;left_front_wheel_joint_motor&quot;&gt;</span><br><span class="line">        &lt;hardwareInterface&gt;EffortJointInterface&lt;/hardwareInterface&gt;</span><br><span class="line">        &lt;mechanicalReduction&gt;1&lt;/mechanicalReduction&gt;</span><br><span class="line">      &lt;/actuator&gt;</span><br><span class="line">    &lt;/transmission&gt;</span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">    &lt;gazebo reference=&quot;left_back_wheel&quot;&gt;  </span><br><span class="line"></span><br><span class="line">        &lt;material&gt;Gazebo/FlatBlack&lt;/material&gt;  </span><br><span class="line"></span><br><span class="line">    &lt;/gazebo&gt; </span><br><span class="line"></span><br><span class="line">    &lt;transmission name=&quot;left_back_wheel_joint_trans&quot;&gt;</span><br><span class="line">      &lt;type&gt;transmission_interface/SimpleTransmission&lt;/type&gt;</span><br><span class="line">      &lt;joint name=&quot;left_back_wheel_joint&quot; /&gt;</span><br><span class="line">      &lt;actuator name=&quot;left_back_wheel_joint_motor&quot;&gt;</span><br><span class="line">        &lt;hardwareInterface&gt;EffortJointInterface&lt;/hardwareInterface&gt;</span><br><span class="line">        &lt;mechanicalReduction&gt;1&lt;/mechanicalReduction&gt;</span><br><span class="line">      &lt;/actuator&gt;</span><br><span class="line">    &lt;/transmission&gt;</span><br><span class="line"> </span><br><span class="line">    &lt;!-- position controller --&gt;</span><br><span class="line">    &lt;gazebo&gt;</span><br><span class="line">      &lt;plugin name=&quot;base_controller&quot; filename=&quot;libgazebo_ros_planar_move.so&quot;&gt;</span><br><span class="line">        &lt;commandTopic&gt;cmd_vel&lt;/commandTopic&gt;</span><br><span class="line">        &lt;odometryTopic&gt;odom&lt;/odometryTopic&gt;</span><br><span class="line">        &lt;odometryFrame&gt;odom&lt;/odometryFrame&gt;</span><br><span class="line">        &lt;odometryRate&gt;100.0&lt;/odometryRate&gt;</span><br><span class="line">        &lt;robotBaseFrame&gt;base_footprint&lt;/robotBaseFrame&gt;</span><br><span class="line">      &lt;/plugin&gt;</span><br><span class="line">    &lt;/gazebo&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;/xacro:macro&gt;  </span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">&lt;/robot&gt;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>smartcar.urdf.xacro</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;  </span><br><span class="line">&lt;robot name=&quot;smartcar&quot;    </span><br><span class="line"></span><br><span class="line">    xmlns:xi=&quot;http://www.w3.org/2001/XInclude&quot;  </span><br><span class="line"></span><br><span class="line">    xmlns:gazebo=&quot;http://playerstage.sourceforge.net/gazebo/xmlschema/#gz&quot;  </span><br><span class="line"></span><br><span class="line">    xmlns:model=&quot;http://playerstage.sourceforge.net/gazebo/xmlschema/#model&quot;  </span><br><span class="line"></span><br><span class="line">    xmlns:sensor=&quot;http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor&quot;  </span><br><span class="line"></span><br><span class="line">    xmlns:body=&quot;http://playerstage.sourceforge.net/gazebo/xmlschema/#body&quot;  </span><br><span class="line"></span><br><span class="line">    xmlns:geom=&quot;http://playerstage.sourceforge.net/gazebo/xmlschema/#geom&quot;  </span><br><span class="line"></span><br><span class="line">    xmlns:joint=&quot;http://playerstage.sourceforge.net/gazebo/xmlschema/#joint&quot;  </span><br><span class="line"></span><br><span class="line">    xmlns:controller=&quot;http://playerstage.sourceforge.net/gazebo/xmlschema/#controller&quot;  </span><br><span class="line"></span><br><span class="line">    xmlns:interface=&quot;http://playerstage.sourceforge.net/gazebo/xmlschema/#interface&quot;  </span><br><span class="line"></span><br><span class="line">    xmlns:rendering=&quot;http://playerstage.sourceforge.net/gazebo/xmlschema/#rendering&quot;  </span><br><span class="line"></span><br><span class="line">    xmlns:renderable=&quot;http://playerstage.sourceforge.net/gazebo/xmlschema/#renderable&quot;  </span><br><span class="line"></span><br><span class="line">    xmlns:physics=&quot;http://playerstage.sourceforge.net/gazebo/xmlschema/#physics&quot;  </span><br><span class="line"></span><br><span class="line">    xmlns:xacro=&quot;http://ros.org/wiki/xacro&quot;&gt;  </span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">  &lt;xacro:include filename=&quot;$(find smartcar_description)/urdf/smartcar_body.urdf.xacro&quot; /&gt;  </span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">  &lt;!-- Body of SmartCar, with plates, standoffs and Create (including sim sensors) --&gt;  </span><br><span class="line"></span><br><span class="line">  &lt;smartcar_body/&gt;  </span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">  &lt;smartcar_sim/&gt;  </span><br><span class="line">&lt;/robot&gt;</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<p>然后按照古月大神的方法启动并控制就可以了。下面我要说的就是我比较独特的部分了。<br>现在大部分的移动机器人主要差动轮进行运动，只有linear.x和angular.z两个值，但是我的模型是４个瑞典轮，能提供横向的移动速度，即linear.y。这里对diff_controller进行修改让他能够接受linear.y。<br>diff_controller.py在&#x2F;opt&#x2F;ros&#x2F;indigo&#x2F;lib&#x2F;python2.7&#x2F;dist-packages下。（可以用sudo vim进行修改），修改都已经注释过了（add by yang）。代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env python</span><br><span class="line"></span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">  diff_controller.py - controller for a differential drive</span><br><span class="line">  Copyright (c) 2010-2011 Vanadium Labs LLC.  All right reserved.</span><br><span class="line"></span><br><span class="line">  Redistribution and use in source and binary forms, with or without</span><br><span class="line">  modification, are permitted provided that the following conditions are met:</span><br><span class="line">      * Redistributions of source code must retain the above copyright</span><br><span class="line">        notice, this list of conditions and the following disclaimer.</span><br><span class="line">      * Redistributions in binary form must reproduce the above copyright</span><br><span class="line">        notice, this list of conditions and the following disclaimer in the</span><br><span class="line">        documentation and/or other materials provided with the distribution.</span><br><span class="line">      * Neither the name of Vanadium Labs LLC nor the names of its </span><br><span class="line">        contributors may be used to endorse or promote products derived </span><br><span class="line">        from this software without specific prior written permission.</span><br><span class="line">  </span><br><span class="line">  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot; AND</span><br><span class="line">  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED</span><br><span class="line">  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE</span><br><span class="line">  DISCLAIMED. IN NO EVENT SHALL VANADIUM LABS BE LIABLE FOR ANY DIRECT, INDIRECT,</span><br><span class="line">  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT</span><br><span class="line">  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,</span><br><span class="line">  OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF</span><br><span class="line">  LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE</span><br><span class="line">  OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF</span><br><span class="line">  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">import rospy</span><br><span class="line"></span><br><span class="line">from math import sin,cos,pi</span><br><span class="line"></span><br><span class="line">from geometry_msgs.msg import Quaternion</span><br><span class="line">from geometry_msgs.msg import Twist</span><br><span class="line">from nav_msgs.msg import Odometry</span><br><span class="line">from diagnostic_msgs.msg import *</span><br><span class="line">from tf.broadcaster import TransformBroadcaster</span><br><span class="line"></span><br><span class="line">from ax12 import *</span><br><span class="line">from controllers import *</span><br><span class="line">from struct import unpack</span><br><span class="line"></span><br><span class="line">class DiffController(Controller):</span><br><span class="line">    &quot;&quot;&quot; Controller to handle movement &amp; odometry feedback for a differential </span><br><span class="line">            drive mobile base. &quot;&quot;&quot;</span><br><span class="line">    def __init__(self, device, name):</span><br><span class="line">        Controller.__init__(self, device, name)</span><br><span class="line">        self.pause = True</span><br><span class="line">        self.last_cmd = rospy.Time.now()</span><br><span class="line"></span><br><span class="line">        # parameters: rates and geometry</span><br><span class="line">        self.rate = rospy.get_param(&#x27;~controllers/&#x27;+name+&#x27;/rate&#x27;,10.0)</span><br><span class="line">        self.timeout = rospy.get_param(&#x27;~controllers/&#x27;+name+&#x27;/timeout&#x27;,1.0)</span><br><span class="line">        self.t_delta = rospy.Duration(1.0/self.rate)</span><br><span class="line">        self.t_next = rospy.Time.now() + self.t_delta</span><br><span class="line">        self.ticks_meter = float(rospy.get_param(&#x27;~controllers/&#x27;+name+&#x27;/ticks_meter&#x27;))</span><br><span class="line">        self.base_width = float(rospy.get_param(&#x27;~controllers/&#x27;+name+&#x27;/base_width&#x27;))</span><br><span class="line"></span><br><span class="line">        self.base_frame_id = rospy.get_param(&#x27;~controllers/&#x27;+name+&#x27;/base_frame_id&#x27;, &#x27;base_link&#x27;)</span><br><span class="line">        self.odom_frame_id = rospy.get_param(&#x27;~controllers/&#x27;+name+&#x27;/odom_frame_id&#x27;, &#x27;odom&#x27;)</span><br><span class="line"></span><br><span class="line">        # parameters: PID</span><br><span class="line">        self.Kp = rospy.get_param(&#x27;~controllers/&#x27;+name+&#x27;/Kp&#x27;, 5)</span><br><span class="line">        self.Kd = rospy.get_param(&#x27;~controllers/&#x27;+name+&#x27;/Kd&#x27;, 1)</span><br><span class="line">        self.Ki = rospy.get_param(&#x27;~controllers/&#x27;+name+&#x27;/Ki&#x27;, 0)</span><br><span class="line">        self.Ko = rospy.get_param(&#x27;~controllers/&#x27;+name+&#x27;/Ko&#x27;, 50)</span><br><span class="line"></span><br><span class="line">        # parameters: acceleration</span><br><span class="line">        self.accel_limit = rospy.get_param(&#x27;~controllers/&#x27;+name+&#x27;/accel_limit&#x27;, 0.1)</span><br><span class="line">        self.max_accel = int(self.accel_limit*self.ticks_meter/self.rate)</span><br><span class="line"></span><br><span class="line">        # output for joint states publisher</span><br><span class="line">        self.joint_names = [&quot;base_l_wheel_joint&quot;,&quot;base_r_wheel_joint&quot;]</span><br><span class="line">        self.joint_positions = [0,0]</span><br><span class="line">        self.joint_velocities = [0,0]</span><br><span class="line"></span><br><span class="line">        # internal data            </span><br><span class="line">        self.v_left = 0                 # current setpoint velocity</span><br><span class="line">        self.v_right = 0</span><br><span class="line">        self.v_des_left = 0             # cmd_vel setpoint</span><br><span class="line">        self.v_des_right = 0</span><br><span class="line">        self.enc_left = None            # encoder readings</span><br><span class="line">        self.enc_right = None</span><br><span class="line">        self.x = 0                      # position in xy plane</span><br><span class="line">        self.y = 0</span><br><span class="line">        self.th = 0</span><br><span class="line">        self.dx = 0                     # speeds in x/rotation</span><br><span class="line">        self.dy = 0                     # add by yang</span><br><span class="line">  self.dr = 0</span><br><span class="line">        self.then = rospy.Time.now()    # time for determining dx/dy</span><br><span class="line"></span><br><span class="line">        # subscriptions</span><br><span class="line">        rospy.Subscriber(&quot;cmd_vel&quot;, Twist, self.cmdVelCb)</span><br><span class="line">        self.odomPub = rospy.Publisher(&quot;odom&quot;, Odometry, queue_size=5)</span><br><span class="line">        self.odomBroadcaster = TransformBroadcaster()</span><br><span class="line">    </span><br><span class="line">        rospy.loginfo(&quot;Started yang DiffController (&quot;+name+&quot;). Geometry: &quot; + str(self.base_width) + &quot;m wide, &quot; + str(self.ticks_meter) + &quot; ticks/m.&quot;)</span><br><span class="line"></span><br><span class="line">    def startup(self):</span><br><span class="line">        if not self.fake:</span><br><span class="line">            self.setup(self.Kp,self.Kd,self.Ki,self.Ko) </span><br><span class="line">    </span><br><span class="line">    def update(self):</span><br><span class="line">        now = rospy.Time.now()</span><br><span class="line">        if now &gt; self.t_next:</span><br><span class="line">            elapsed = now - self.then</span><br><span class="line">            self.then = now</span><br><span class="line">            elapsed = elapsed.to_sec()</span><br><span class="line"></span><br><span class="line">            if self.fake:</span><br><span class="line">                x = cos(self.th)*self.dx*elapsed</span><br><span class="line">                y = -sin(self.th)*self.dx*elapsed</span><br><span class="line">    #self.x and self.y has changed for the effort of dy</span><br><span class="line">                self.x += cos(self.th)*self.dx*elapsed + sin(self.th)*self.dy*elapsed</span><br><span class="line">                self.y += sin(self.th)*self.dx*elapsed + cos(self.th)*self.dy*elapsed</span><br><span class="line">                self.th += self.dr*elapsed</span><br><span class="line">            else:</span><br><span class="line">                # read encoders</span><br><span class="line">                try:</span><br><span class="line">                    left, right = self.status()</span><br><span class="line">                except Exception as e:</span><br><span class="line">                    rospy.logerr(&quot;Could not update encoders: &quot; + str(e))</span><br><span class="line">                    return</span><br><span class="line">                rospy.logdebug(&quot;Encoders: &quot; + str(left) +&quot;,&quot;+ str(right))</span><br><span class="line"></span><br><span class="line">                # calculate odometry</span><br><span class="line">                if self.enc_left == None:</span><br><span class="line">                    d_left = 0</span><br><span class="line">                    d_right = 0</span><br><span class="line">                else:</span><br><span class="line">                    d_left = (left - self.enc_left)/self.ticks_meter</span><br><span class="line">                    d_right = (right - self.enc_right)/self.ticks_meter</span><br><span class="line">                self.enc_left = left</span><br><span class="line">                self.enc_right = right</span><br><span class="line"></span><br><span class="line">                d = (d_left+d_right)/2</span><br><span class="line">                th = (d_right-d_left)/self.base_width</span><br><span class="line">                self.dx = d / elapsed</span><br><span class="line">                self.dr = th / elapsed</span><br><span class="line"></span><br><span class="line">                if (d != 0):</span><br><span class="line">                    x = cos(th)*d</span><br><span class="line">                    y = -sin(th)*d</span><br><span class="line">                    self.x = self.x + (cos(self.th)*x - sin(self.th)*y)</span><br><span class="line">                    self.y = self.y + (sin(self.th)*x + cos(self.th)*y)</span><br><span class="line">                if (th != 0):</span><br><span class="line">                    self.th = self.th + th</span><br><span class="line"></span><br><span class="line">            # publish or perish</span><br><span class="line">            quaternion = Quaternion()</span><br><span class="line">            quaternion.x = 0.0 </span><br><span class="line">            quaternion.y = 0.0</span><br><span class="line">            quaternion.z = sin(self.th/2)</span><br><span class="line">            quaternion.w = cos(self.th/2)</span><br><span class="line">            self.odomBroadcaster.sendTransform(</span><br><span class="line">                (self.x, self.y, 0), </span><br><span class="line">                (quaternion.x, quaternion.y, quaternion.z, quaternion.w),</span><br><span class="line">                rospy.Time.now(),</span><br><span class="line">                self.base_frame_id,</span><br><span class="line">                self.odom_frame_id</span><br><span class="line">                )</span><br><span class="line"></span><br><span class="line">            odom = Odometry()</span><br><span class="line">            odom.header.stamp = now</span><br><span class="line">            odom.header.frame_id = self.odom_frame_id</span><br><span class="line">            odom.pose.pose.position.x = self.x</span><br><span class="line">            odom.pose.pose.position.y = self.y</span><br><span class="line">            odom.pose.pose.position.z = 0</span><br><span class="line">            odom.pose.pose.orientation = quaternion</span><br><span class="line">            odom.child_frame_id = self.base_frame_id</span><br><span class="line">            odom.twist.twist.linear.x = self.dx</span><br><span class="line">            odom.twist.twist.linear.y = self.dy  #it was 0 before changed</span><br><span class="line">            odom.twist.twist.angular.z = self.dr</span><br><span class="line">            self.odomPub.publish(odom)</span><br><span class="line"></span><br><span class="line">            if now &gt; (self.last_cmd + rospy.Duration(self.timeout)):</span><br><span class="line">                self.v_des_left = 0</span><br><span class="line">                self.v_des_right = 0</span><br><span class="line"></span><br><span class="line">            # update motors</span><br><span class="line">            if not self.fake:</span><br><span class="line">                if self.v_left &lt; self.v_des_left:</span><br><span class="line">                    self.v_left += self.max_accel</span><br><span class="line">                    if self.v_left &gt; self.v_des_left:</span><br><span class="line">                        self.v_left = self.v_des_left</span><br><span class="line">                else:</span><br><span class="line">                    self.v_left -= self.max_accel</span><br><span class="line">                    if self.v_left &lt; self.v_des_left:</span><br><span class="line">                        self.v_left = self.v_des_left</span><br><span class="line">                </span><br><span class="line">                if self.v_right &lt; self.v_des_right:</span><br><span class="line">                    self.v_right += self.max_accel</span><br><span class="line">                    if self.v_right &gt; self.v_des_right:</span><br><span class="line">                        self.v_right = self.v_des_right</span><br><span class="line">                else:</span><br><span class="line">                    self.v_right -= self.max_accel</span><br><span class="line">                    if self.v_right &lt; self.v_des_right:</span><br><span class="line">                        self.v_right = self.v_des_right</span><br><span class="line">                self.write(self.v_left, self.v_right)</span><br><span class="line"></span><br><span class="line">            self.t_next = now + self.t_delta</span><br><span class="line"> </span><br><span class="line">    def shutdown(self):</span><br><span class="line">        if not self.fake:</span><br><span class="line">            self.write(0,0)</span><br><span class="line"></span><br><span class="line">    def cmdVelCb(self,req):</span><br><span class="line">        &quot;&quot;&quot; Handle movement requests. &quot;&quot;&quot;</span><br><span class="line">        self.last_cmd = rospy.Time.now()</span><br><span class="line">        if self.fake:</span><br><span class="line">            self.dx = req.linear.x        # m/s</span><br><span class="line">            self.dy = req.linear.y        # m/s add by yang</span><br><span class="line">            self.dr = req.angular.z       # rad/s</span><br><span class="line">        else:</span><br><span class="line">            # set motor speeds in ticks per 1/30s</span><br><span class="line">            self.v_des_left = int( ((req.linear.x - (req.angular.z * self.base_width/2.0)) * self.ticks_meter) / 30.0)</span><br><span class="line">            self.v_des_right = int( ((req.linear.x + (req.angular.z * self.base_width/2.0)) * self.ticks_meter) / 30.0)</span><br><span class="line"></span><br><span class="line">    def getDiagnostics(self):</span><br><span class="line">        &quot;&quot;&quot; Get a diagnostics status. &quot;&quot;&quot;</span><br><span class="line">        msg = DiagnosticStatus()</span><br><span class="line">        msg.name = self.name</span><br><span class="line">        msg.level = DiagnosticStatus.OK</span><br><span class="line">        msg.message = &quot;OK&quot;</span><br><span class="line">        if not self.fake:</span><br><span class="line">            msg.values.append(KeyValue(&quot;Left&quot;, str(self.enc_left)))</span><br><span class="line">            msg.values.append(KeyValue(&quot;Right&quot;, str(self.enc_right)))</span><br><span class="line">        msg.values.append(KeyValue(&quot;dX&quot;, str(self.dx)))</span><br><span class="line">        msg.values.append(KeyValue(&quot;dR&quot;, str(self.dr)))</span><br><span class="line">        return msg</span><br><span class="line"></span><br><span class="line">    ###</span><br><span class="line">    ### Controller Specification: </span><br><span class="line">    ###</span><br><span class="line">    ###  setup: Kp, Kd, Ki, Ko (all unsigned char)</span><br><span class="line">    ###</span><br><span class="line">    ###  write: left_speed, right_speed (2-byte signed, ticks per frame)</span><br><span class="line">    ###</span><br><span class="line">    ###  status: left_enc, right_enc (4-byte signed)</span><br><span class="line">    ### </span><br><span class="line">    </span><br><span class="line">    def setup(self, kp, kd, ki, ko):</span><br><span class="line">        success = self.device.execute(253, AX_CONTROL_SETUP, [10, kp, kd, ki, ko])</span><br><span class="line"></span><br><span class="line">    def write(self, left, right):</span><br><span class="line">        &quot;&quot;&quot; Send a closed-loop speed. Base PID loop runs at 30Hz, these values</span><br><span class="line">                are therefore in ticks per 1/30 second. &quot;&quot;&quot;</span><br><span class="line">        left = left&amp;0xffff</span><br><span class="line">        right = right&amp;0xffff</span><br><span class="line">        success = self.device.execute(253, AX_CONTROL_WRITE, [10, left%256, left&gt;&gt;8, right%256, right&gt;&gt;8])</span><br><span class="line"></span><br><span class="line">    def status(self):</span><br><span class="line">        &quot;&quot;&quot; read 32-bit (signed) encoder values. &quot;&quot;&quot;</span><br><span class="line">        values = self.device.execute(253, AX_CONTROL_STAT, [10])</span><br><span class="line">        left_values = &quot;&quot;.join([chr(k) for k in values[0:4] ])        </span><br><span class="line">        right_values = &quot;&quot;.join([chr(k) for k in values[4:] ])</span><br><span class="line">        try:</span><br><span class="line">            left = unpack(&#x27;=l&#x27;,left_values)[0]</span><br><span class="line">            right = unpack(&#x27;=l&#x27;,right_values)[0]</span><br><span class="line">            return [left, right]</span><br><span class="line">        except:</span><br><span class="line">            return None</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/ros/" rel="tag"># ros</a>
+              <a href="/tags/%E6%A8%AA%E5%90%91%E7%A7%BB%E5%8A%A8/" rel="tag"># 横向移动</a>
+              <a href="/tags/%E6%9C%BA%E5%99%A8%E4%BA%BA/" rel="tag"># 机器人</a>
+              <a href="/tags/rviz/" rel="tag"># rviz</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/10/09/%E5%8E%9F-%E7%A7%BB%E5%8A%A8%E6%9C%BA%E5%99%A8%E4%BA%BA%E4%B8%ADSW2URDF/" rel="prev" title="移动机器人中SW2URDF">
+      <i class="fa fa-chevron-left"></i> 移动机器人中SW2URDF
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/10/09/%E5%8E%9F-%E6%89%8B%E6%8C%81%E9%95%AD%E7%A5%9ELS01C%E4%BD%BF%E7%94%A8hector-mapping%E6%96%B9%E6%B3%95%E8%BF%9B%E8%A1%8C%E5%BB%BA%E5%9B%BE%E5%AE%9E%E9%AA%8C/" rel="next" title="SLAM with LS01C and hector">
+      SLAM with LS01C and hector <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E9%9D%A2%E6%88%91%E9%92%88%E5%AF%B9%E8%87%AA%E5%B7%B1%E7%9A%84%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%BC%96%E5%86%99%E7%9A%84%E4%BB%A3%E7%A0%81%E5%92%8C%E6%96%87%E4%BB%B6%E3%80%82"><span class="nav-number">1.</span> <span class="nav-text">下面我针对自己的机器人编写的代码和文件。</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ningbo Yang</p>
+  <div class="site-description" itemprop="description">A coder who want to be a programmer.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">61</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ningbo6" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ningbo6" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:365220121@qq.com" title="E-Mail → mailto:365220121@qq.com" rel="noopener" target="_blank"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ningbo Yang</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
