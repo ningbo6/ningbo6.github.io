@@ -323,7 +323,7 @@ td {
   text-decoration: none;
   transition-property: background-color;
   transition-delay: 0s;
-  transition-duration: 0.2s;
+  transition-duration: 0.1s;
   transition-timing-function: ease-in-out;
 }
 .btn:hover {
@@ -660,7 +660,7 @@ pre .javascript .function {
   padding: 0.25em 0.75em;
   text-align: center;
   transition-delay: 0s;
-  transition-duration: 0.2s;
+  transition-duration: 0.1s;
   transition-timing-function: ease-out;
 }
 .post-body .tabs ul.nav-tabs li.tab a i,
@@ -839,7 +839,7 @@ pre .javascript .function {
   border-top: 1px solid #eee;
   transition-property: border-color;
   transition-delay: 0s;
-  transition-duration: 0.2s;
+  transition-duration: 0.1s;
   transition-timing-function: ease-in-out;
 }
 .pagination .prev:hover,
@@ -1066,7 +1066,7 @@ pre .javascript .function {
   font-size: 0.8125em;
   transition-property: border-color;
   transition-delay: 0s;
-  transition-duration: 0.2s;
+  transition-duration: 0.1s;
   transition-timing-function: ease-in-out;
 }
 @media (hover: none) {
@@ -1168,7 +1168,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #98f4ff;
+  background: #88ffc7;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -1308,7 +1308,7 @@ pre .javascript .function {
 .post-toc ol a {
   transition-property: all;
   transition-delay: 0s;
-  transition-duration: 0.2s;
+  transition-duration: 0.1s;
   transition-timing-function: ease-in-out;
 }
 .post-toc .nav-item {
@@ -1479,7 +1479,7 @@ pre .javascript .function {
   font-size: 12px;
   text-align: center;
   transition-delay: 0s;
-  transition-duration: 0.2s;
+  transition-duration: 0.1s;
   transition-timing-function: ease-in-out;
 }
 .back-to-top {
@@ -1616,7 +1616,7 @@ pre .javascript .function {
   position: relative;
   transition-property: border;
   transition-delay: 0s;
-  transition-duration: 0.2s;
+  transition-duration: 0.1s;
   transition-timing-function: ease-in-out;
 }
 .posts-collapse .post-header::before {
@@ -1632,7 +1632,7 @@ pre .javascript .function {
   transition-property: background;
   width: 6px;
   transition-delay: 0s;
-  transition-duration: 0.2s;
+  transition-duration: 0.1s;
   transition-timing-function: ease-in-out;
 }
 .posts-collapse .post-header:hover {
@@ -1797,7 +1797,7 @@ pre .javascript .function {
   visibility: hidden;
   width: 100%;
   transition-delay: 0s;
-  transition-duration: 0.2s;
+  transition-duration: 0.1s;
   transition-timing-function: ease-in-out;
 }
 .posts-expand .post-title-link:hover::before {
