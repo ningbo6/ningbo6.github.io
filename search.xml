@@ -31,6 +31,43 @@ pip install shadowsocks时出现locale.Error: unsupported locale setting
       </tags>
   </entry>
   <entry>
+    <title>在markdown中引入图片的解决方案</title>
+    <url>/2018/01/20/20180119_markdown%E5%9B%BE%E7%89%87%E9%93%BE%E6%8E%A5/</url>
+    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io 未经允许请勿用于商业用途）#背景
+
+需要GitHub账号
+需要基本的git命令知识
+基本的计算机技能
+
+
+#方法说明：
+首先在github中新建一个repo，然后git clone下来，然后把你想要的图片放到这个文件夹中然后上传，然后到GitHub中找到这个图片查看地址，在markdown中引用就好了。
+
+#具体步骤
+
+新建一个repo
+
+打开终端,并到一个你的目录下面 git clone https://github.com/****/markdownImages.git ***为你的用户名
+
+把你要用的图片放进去,图片名要用英文
+ git add 图片名 git commit -m “图片名” git push origin master
+
+打开浏览器进入你的github,找到相应的图片打开,github能预览出图片就OK,然后右键图片复制图片的地址
+
+打开你的markdown编辑器,享受吧
+
+
+]]></content>
+      <categories>
+        <category>IT</category>
+      </categories>
+      <tags>
+        <tag>markdown</tag>
+        <tag>images</tag>
+        <tag>links，github</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>科学上网教学</title>
     <url>/2018/01/18/20180120_%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%E6%95%99%E5%AD%A6/</url>
     <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io 未经允许请勿用于商业用途）1.打开ishadowishadow的网址为(https://global.ishadowx.net/)
@@ -53,6 +90,137 @@ pip install shadowsocks时出现locale.Error: unsupported locale setting
       <tags>
         <tag>shadowsocks</tag>
         <tag>免费翻墙</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>NUC的Ubuntu无法上网的解决方案</title>
+    <url>/2018/03/28/20180328_NUC%E7%9A%84Ubuntu%E6%97%A0%E6%B3%95%E4%B8%8A%E7%BD%91%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
+    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）
+查询网卡型号lspci
+
+Ethernet controller是有线网卡Network controller是无线网卡
+#有线网卡具体步骤参考这个回答
+
+下载e1000e  下载地址
+把e1000e放到某个文件夹下，例如&#x2F;home&#x2F;hit&#x2F;
+解压缩 cd e1000e-&lt;x.x.x&gt;&#x2F;src&#x2F; tar zxf e1000e-&lt;x.x.x&gt;.tar.gz
+cd 到e1000e下的src目录下，进行编译安装 sudo make install
+模块装载 modprobe e1000e insmod e1000e
+测试是否成功
+
+无线网卡具体步骤参考这个回答
+1.下载http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.8.14/linux-headers-4.8.14-040814-generic_4.8.14-040814.201612101431_amd64.debhttp://kernel.ubuntu.com/~kernel-ppa/mainline/v4.8.14/linux-image-4.8.14-040814-generic_4.8.14-040814.201612101431_amd64.debhttp://kernel.ubuntu.com/~kernel-ppa/mainline/v4.8.14/linux-headers-4.8.14-040814_4.8.14-040814.201612101431_all.deb2. 安装   sudo dpkg -i *.deb3. 重启 好了4. 没好的话参考这个回答可以通过链接https://wireless.wiki.kernel.org/en/users/Drivers/iwlwifi下载相应的驱动。解压缩之后把文件
+]]></content>
+      <categories>
+        <category>tools</category>
+      </categories>
+      <tags>
+        <tag>NUC</tag>
+        <tag>Ubuntu</tag>
+        <tag>Network</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo安装使用和优化</title>
+    <url>/2018/01/20/20180202_hexo%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%E5%92%8C%E4%BC%98%E5%8C%96/</url>
+    <content><![CDATA[本文主要使用GitHub pages + hexo 来搭建个人博客，作日常学习使用。在这里只提主要步骤，不提具体过程，需要的话自行谷歌。
+
+（转载请注明作者和出处：https://ningbo6.github.io）安装与配置
+安装1.git2.Node.js进入官网[官网链接](https://nodejs.org/en/)
+下载安装包，直接点击安装就可以了 
+
+3.hexo这一步在命令行下做
+npm install -g hexo-cli
+cd *your direction*
+hexo init
+npm install
+hexo server
+- Hexo
+- Blogs
+- Github
+
+打开浏览器输入 http://0.0.0.0:4000/ 出现hexo说明成功接下来是修改主题，你也可以去下别的主题很多，自行谷歌
+cd themes
+git clone https://github.com/litten/hexo-theme-next.git
+
+然后打开Hexo文件夹下面的_config.yml文件，修改里面的theme为next重新打开server，浏览器输入http://0.0.0.0:4000/查看主题。
+GitHub配置1.仓库创建一个仓库名称为ningbo6.github.io这里要把ningbo6换成你自己的GitHub用户名
+2.配置SSH配置hexo1.配置hexo目录下的_config.yml文件# Deployment
+## Docs: http://hexo.io/docs/deployment.html
+deploy:
+  type: git
+  repository: https://github.com:ningbo6/ningbo6.github.io.git
+  branch: master
+name: Ningbo Yang
+emai: 365220121@qq.com
+
+2.测试cd到hexo的根目录下
+hexo clean
+hexo g
+hexo d
+
+
+优化
+1.git安装npm install hexo-deployer-git --save
+
+2.迁移支持很多种迁移方式，我采用的是RSS的，其他可以看官网hexo迁移官网
+npm install hexo-migrator-rss --save
+hexo migrate rss &lt;source&gt;
+
+3.图片插入npm install https://github.com/CodeFalling/hexo-asset-image --save
+
+然后把图片放入对应文章的配套文件夹下，比如1.png
+4.Google收录npm install hexo-generator-sitemap --save
+[Google站长收录网站](https://www.google.com/webmasters/tools/home?hl=zh-CN)
+
+5.文章访问量统计使用LeanCloud，评论也可以使用它，省心。参考博客
+6.local research本地搜索很好用。在主题配置文件中修改local research就好
+7.RSS使用 Hexo 生成的 Feed 链接。 你可以需要先安装 hexo-generator-feed 插件。
+8.阅读时长插件npm install  hexo-wordcount --save
+
+
+next官网 http://theme-next.iissnan.com/
+]]></content>
+      <categories>
+        <category>IT</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Blogs</tag>
+        <tag>Github</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>香港苹果官网教育优惠购买MacBookPro</title>
+    <url>/2018/08/20/20180820_%E9%A6%99%E6%B8%AF%E5%AE%98%E7%BD%91%E6%95%99%E8%82%B2%E4%BC%98%E6%83%A0%E8%B4%AD%E4%B9%B0MBP/</url>
+    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）
+概要记录一下：通过在香港官网下单，使用我的平安白金卡，无货币转换费，然后去香港苹果直营店取电脑的过程
+优点
+不需要香港的电话号
+不需要港币的信用卡
+可以预约取货，时间比较灵活
+享受教育优惠，我订了两台，并没有让我出示学生证，貌似是抽查，被要求验证学生证的时候就取消订单，换一个账号再下单。
+
+准备阶段
+一张visa或者MasterCard及其他香港苹果官网支持的信用卡。
+港澳通行证
+
+过程
+在官网上进入大大专院校师生选购的网站，进行下单
+下单后选择在苹果直营店取货，选取一个你想去的店
+付款方式选用一张官网支持的卡，我用的平安 的白金visa卡，这张卡的优势是不需要货币转换费，其他非港币的信用卡会产生货币转换费
+个人信息填入的时候，只好邮箱姓名填对了就可以了，电话不对也没关系
+去取货的时候要注意携带证件能证明自己身份，不需要学生证
+
+]]></content>
+      <categories>
+        <category>Life</category>
+      </categories>
+      <tags>
+        <tag>Apple</tag>
+        <tag>MacBookPro</tag>
+        <tag>香港</tag>
+        <tag>教育优惠</tag>
       </tags>
   </entry>
   <entry>
@@ -128,110 +296,43 @@ SHA-256计算原始信息得到256位的二进制哈希值
       </tags>
   </entry>
   <entry>
-    <title>hexo安装使用和优化</title>
-    <url>/2018/01/20/20180202_hexo%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%E5%92%8C%E4%BC%98%E5%8C%96/</url>
-    <content><![CDATA[本文主要使用GitHub pages + hexo 来搭建个人博客，作日常学习使用。在这里只提主要步骤，不提具体过程，需要的话自行谷歌。
+    <title>香港苹果官网教育优惠购买MacBookPro</title>
+    <url>/2018/05/30/20180901_%E9%87%8D%E8%A3%85Mac%E5%90%8E%E7%9A%84%E6%81%A2%E5%A4%8D%E6%B5%81%E7%A8%8B/</url>
+    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）
+homebrew
+改为zsh 
+在终端输入&#x2F;usr&#x2F;bin&#x2F;ruby -e “$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)”
 
-（转载请注明作者和出处：https://ningbo6.github.io）安装与配置
-安装1.git2.Node.js进入官网[官网链接](https://nodejs.org/en/)
-下载安装包，直接点击安装就可以了 
+iterm2 &amp; oh my zsh
+安装iterm2brew cask install iterm2
+安装 oh my zshsh -c “$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)”
 
-3.hexo这一步在命令行下做
-npm install -g hexo-cli
-cd *your direction*
-hexo init
-npm install
-hexo server
-- Hexo
-- Blogs
-- Github
+shadowsocksbrew cask install shadowsocksx-ng
+zsh 插件
+安装brew install autojump zsh-autosuggestions zsh-syntax-highlighting
+改写.zshrc.zshrc
 
-打开浏览器输入 http://0.0.0.0:4000/ 出现hexo说明成功接下来是修改主题，你也可以去下别的主题很多，自行谷歌
-cd themes
-git clone https://github.com/litten/hexo-theme-next.git
+#zsh plugins
+[ -f &#x2F;usr&#x2F;local&#x2F;etc&#x2F;profile.d&#x2F;autojump.sh ] &amp;&amp; . &#x2F;usr&#x2F;local&#x2F;etc&#x2F;profile.d&#x2F;autojump.shsource &#x2F;usr&#x2F;local&#x2F;share&#x2F;zsh-autosuggestions&#x2F;zsh-autosuggestions.zshsource &#x2F;usr&#x2F;local&#x2F;share&#x2F;zsh-syntax-highlighting&#x2F;zsh-syntax-highlighting.zsh
+#proxyexport all_proxy&#x3D;socks5:&#x2F;&#x2F;127.0.0.1:1086
+plugins&#x3D;(  git  autojump  zsh-suggestions  zsh-syntax-highlighting)
+brew安装软件
+brew install python git
+brew cask install aliwangwang google-hangouts appcleaner iina teamviewer aria2gui telegram caffeine microsoft-office nutstore github obs google-chrome transmission proxifier twitch pycharm visual-studio-code cheatsheet mactex qiyimedia  clion yakyak dash neteasemusic zotero
 
-然后打开Hexo文件夹下面的_config.yml文件，修改里面的theme为next重新打开server，浏览器输入http://0.0.0.0:4000/查看主题。
-GitHub配置1.仓库创建一个仓库名称为ningbo6.github.io这里要把ningbo6换成你自己的GitHub用户名
-2.配置SSH配置hexo1.配置hexo目录下的_config.yml文件# Deployment
-## Docs: http://hexo.io/docs/deployment.html
-deploy:
-  type: git
-  repository: https://github.com:ningbo6/ningbo6.github.io.git
-  branch: master
-name: Ningbo Yang
-emai: 365220121@qq.com
-
-2.测试cd到hexo的根目录下
-hexo clean
-hexo g
-hexo d
-
-
-优化
-1.git安装npm install hexo-deployer-git --save
-
-2.迁移支持很多种迁移方式，我采用的是RSS的，其他可以看官网hexo迁移官网
-npm install hexo-migrator-rss --save
-hexo migrate rss &lt;source&gt;
-
-3.图片插入npm install https://github.com/CodeFalling/hexo-asset-image --save
-
-然后把图片放入对应文章的配套文件夹下，比如1.png
-4.Google收录npm install hexo-generator-sitemap --save
-[Google站长收录网站](https://www.google.com/webmasters/tools/home?hl=zh-CN)
-
-5.文章访问量统计使用LeanCloud，评论也可以使用它，省心。参考博客
-6.local research本地搜索很好用。在主题配置文件中修改local research就好
-7.RSS使用 Hexo 生成的 Feed 链接。 你可以需要先安装 hexo-generator-feed 插件。
-8.阅读时长插件npm install  hexo-wordcount --save
-
-
-next官网 http://theme-next.iissnan.com/
-]]></content>
-      <categories>
-        <category>IT</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>Blogs</tag>
-        <tag>Github</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>在markdown中引入图片的解决方案</title>
-    <url>/2018/01/20/20180119_markdown%E5%9B%BE%E7%89%87%E9%93%BE%E6%8E%A5/</url>
-    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io 未经允许请勿用于商业用途）#背景
-
-需要GitHub账号
-需要基本的git命令知识
-基本的计算机技能
-
-
-#方法说明：
-首先在github中新建一个repo，然后git clone下来，然后把你想要的图片放到这个文件夹中然后上传，然后到GitHub中找到这个图片查看地址，在markdown中引用就好了。
-
-#具体步骤
-
-新建一个repo
-
-打开终端,并到一个你的目录下面 git clone https://github.com/****/markdownImages.git ***为你的用户名
-
-把你要用的图片放进去,图片名要用英文
- git add 图片名 git commit -m “图片名” git push origin master
-
-打开浏览器进入你的github,找到相应的图片打开,github能预览出图片就OK,然后右键图片复制图片的地址
-
-打开你的markdown编辑器,享受吧
-
+微信插件
+https://github.com/TKkk-iOSer/WeChatPlugin-MacOS
+安装Install.sh
 
 ]]></content>
       <categories>
-        <category>IT</category>
+        <category>Life</category>
       </categories>
       <tags>
-        <tag>markdown</tag>
-        <tag>images</tag>
-        <tag>links，github</tag>
+        <tag>Apple</tag>
+        <tag>MacBookPro</tag>
+        <tag>Reinstall</tag>
+        <tag>recovery</tag>
       </tags>
   </entry>
   <entry>
@@ -280,104 +381,165 @@ data = struct.unpack(&#39;&gt;BHB&#39;, data_temp)
       </tags>
   </entry>
   <entry>
-    <title>香港苹果官网教育优惠购买MacBookPro</title>
-    <url>/2018/08/20/20180820_%E9%A6%99%E6%B8%AF%E5%AE%98%E7%BD%91%E6%95%99%E8%82%B2%E4%BC%98%E6%83%A0%E8%B4%AD%E4%B9%B0MBP/</url>
-    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）
-概要记录一下：通过在香港官网下单，使用我的平安白金卡，无货币转换费，然后去香港苹果直营店取电脑的过程
-优点
-不需要香港的电话号
-不需要港币的信用卡
-可以预约取货，时间比较灵活
-享受教育优惠，我订了两台，并没有让我出示学生证，貌似是抽查，被要求验证学生证的时候就取消订单，换一个账号再下单。
+    <title>RAGFlow接入本地Ollama Embedding模型踩坑记录</title>
+    <url>/2026/07/11/RAGFlow%E6%8E%A5%E5%85%A5%E6%9C%AC%E5%9C%B0Ollama-Embedding%E6%A8%A1%E5%9E%8B%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/</url>
+    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io 未经允许请勿用于商业用途）
+背景在本地部署 RAGFlow 后，希望使用本地 embedding 模型替代云端 API，既节省成本又保护数据隐私。服务器配置为 16GB 内存，经过对比选择了 Ollama + bge-m3 方案。
+bge-m3 是 BAAI 推出的多语言 embedding 模型，中文效果优秀，内存占用约 2-3GB，完全适合 16GB 内存的服务器。
+安装 Ollamacurl -fsSL https://ollama.com/install.sh | sh
 
-准备阶段
-一张visa或者MasterCard及其他香港苹果官网支持的信用卡。
-港澳通行证
+拉取 bge-m3 模型：
+ollama pull bge-m3
 
-过程
-在官网上进入大大专院校师生选购的网站，进行下单
-下单后选择在苹果直营店取货，选取一个你想去的店
-付款方式选用一张官网支持的卡，我用的平安 的白金visa卡，这张卡的优势是不需要货币转换费，其他非港币的信用卡会产生货币转换费
-个人信息填入的时候，只好邮箱姓名填对了就可以了，电话不对也没关系
-去取货的时候要注意携带证件能证明自己身份，不需要学生证
+验证模型：
+curl http://localhost:11434/api/tags
 
-]]></content>
-      <categories>
-        <category>Life</category>
-      </categories>
-      <tags>
-        <tag>Apple</tag>
-        <tag>MacBookPro</tag>
-        <tag>香港</tag>
-        <tag>教育优惠</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>香港苹果官网教育优惠购买MacBookPro</title>
-    <url>/2018/05/30/20180901_%E9%87%8D%E8%A3%85Mac%E5%90%8E%E7%9A%84%E6%81%A2%E5%A4%8D%E6%B5%81%E7%A8%8B/</url>
-    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）
-homebrew
-改为zsh 
-在终端输入&#x2F;usr&#x2F;bin&#x2F;ruby -e “$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)”
+返回结果确认模型已就绪：
+&#123;  &quot;models&quot;: [&#123;    &quot;name&quot;: &quot;bge-m3:latest&quot;,    &quot;details&quot;: &#123;      &quot;family&quot;: &quot;bert&quot;,      &quot;parameter_size&quot;: &quot;566.70M&quot;,      &quot;context_length&quot;: 8192,      &quot;embedding_length&quot;: 1024    &#125;,    &quot;capabilities&quot;: [&quot;embedding&quot;]  &#125;]&#125;
 
-iterm2 &amp; oh my zsh
-安装iterm2brew cask install iterm2
-安装 oh my zshsh -c “$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)”
+问题：RAGFlow 无法连接 Ollama在 RAGFlow 中配置 Ollama embedding 模型后，报错：
+Fail to bind embedding model: Failed to connect to Ollama.Please check that Ollama is downloaded, running and accessible.
 
-shadowsocksbrew cask install shadowsocksx-ng
-zsh 插件
-安装brew install autojump zsh-autosuggestions zsh-syntax-highlighting
-改写.zshrc.zshrc
+排查过程第一步：确认 Ollama 运行状态ps aux | grep ollama
 
-#zsh plugins
-[ -f &#x2F;usr&#x2F;local&#x2F;etc&#x2F;profile.d&#x2F;autojump.sh ] &amp;&amp; . &#x2F;usr&#x2F;local&#x2F;etc&#x2F;profile.d&#x2F;autojump.shsource &#x2F;usr&#x2F;local&#x2F;share&#x2F;zsh-autosuggestions&#x2F;zsh-autosuggestions.zshsource &#x2F;usr&#x2F;local&#x2F;share&#x2F;zsh-syntax-highlighting&#x2F;zsh-syntax-highlighting.zsh
-#proxyexport all_proxy&#x3D;socks5:&#x2F;&#x2F;127.0.0.1:1086
-plugins&#x3D;(  git  autojump  zsh-suggestions  zsh-syntax-highlighting)
-brew安装软件
-brew install python git
-brew cask install aliwangwang google-hangouts appcleaner iina teamviewer aria2gui telegram caffeine microsoft-office nutstore github obs google-chrome transmission proxifier twitch pycharm visual-studio-code cheatsheet mactex qiyimedia  clion yakyak dash neteasemusic zotero
+Ollama 进程正常运行。
+第二步：从容器内测试连通性docker exec docker-ragflow-cpu-1 curl -s http://172.18.0.1:11434/api/tags
 
-微信插件
-https://github.com/TKkk-iOSer/WeChatPlugin-MacOS
-安装Install.sh
+连接失败，exit code 7（无法连接）。
+第三步：检查监听地址ss -tlnp | grep 11434
 
-]]></content>
-      <categories>
-        <category>Life</category>
-      </categories>
-      <tags>
-        <tag>Apple</tag>
-        <tag>MacBookPro</tag>
-        <tag>Reinstall</tag>
-        <tag>recovery</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>NUC的Ubuntu无法上网的解决方案</title>
-    <url>/2018/03/28/20180328_NUC%E7%9A%84Ubuntu%E6%97%A0%E6%B3%95%E4%B8%8A%E7%BD%91%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
-    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）
-查询网卡型号lspci
+发现问题：
+LISTEN  127.0.0.1:11434  0.0.0.0:*
 
-Ethernet controller是有线网卡Network controller是无线网卡
-#有线网卡具体步骤参考这个回答
+Ollama 默认只监听 127.0.0.1，Docker 容器无法访问。
+第四步：修改监听地址pkill -f &quot;ollama serve&quot;OLLAMA_HOST=0.0.0.0:11434 /usr/local/bin/ollama serve &amp;
 
-下载e1000e  下载地址
-把e1000e放到某个文件夹下，例如&#x2F;home&#x2F;hit&#x2F;
-解压缩 cd e1000e-&lt;x.x.x&gt;&#x2F;src&#x2F; tar zxf e1000e-&lt;x.x.x&gt;.tar.gz
-cd 到e1000e下的src目录下，进行编译安装 sudo make install
-模块装载 modprobe e1000e insmod e1000e
-测试是否成功
+再次检查：
+ss -tlnp | grep 11434# 输出：LISTEN  *:11434  *:*
 
-无线网卡具体步骤参考这个回答
-1.下载http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.8.14/linux-headers-4.8.14-040814-generic_4.8.14-040814.201612101431_amd64.debhttp://kernel.ubuntu.com/~kernel-ppa/mainline/v4.8.14/linux-image-4.8.14-040814-generic_4.8.14-040814.201612101431_amd64.debhttp://kernel.ubuntu.com/~kernel-ppa/mainline/v4.8.14/linux-headers-4.8.14-040814_4.8.14-040814.201612101431_all.deb2. 安装   sudo dpkg -i *.deb3. 重启 好了4. 没好的话参考这个回答可以通过链接https://wireless.wiki.kernel.org/en/users/Drivers/iwlwifi下载相应的驱动。解压缩之后把文件
+第五步：再次测试容器连通性docker exec docker-ragflow-cpu-1 curl -s http://172.18.0.1:11434/api/tags
+
+连接成功，但返回空模型列表：
+&#123;&quot;models&quot;: []&#125;
+
+第六步：检查模型路径查看 Ollama 日志：
+OLLAMA_MODELS:/home/a/.ollama/modelstotal blobs: 0
+
+Ollama 以 root 用户运行，默认查找 /home/a/.ollama/models，但模型实际存储在 /usr/share/ollama/.ollama/models/。
+第七步：权限问题尝试指定正确的模型路径：
+OLLAMA_MODELS=/usr/share/ollama/.ollama/models /usr/local/bin/ollama serve
+
+报错：
+Error: mkdir /usr/share/ollama/.ollama: permission denied
+
+目录权限为 750，仅 ollama 用户可访问。
+最终解决方案以 ollama 用户身份启动，并设置正确的环境变量：
+sudo -u ollama \  OLLAMA_HOST=0.0.0.0:11434 \  OLLAMA_MODELS=/usr/share/ollama/.ollama/models \  /usr/local/bin/ollama serve &amp;
+
+验证：
+curl http://localhost:11434/api/tags# 返回 bge-m3 模型docker exec docker-ragflow-cpu-1 curl -s http://172.18.0.1:11434/api/tags# 容器也能正常访问
+
+固化配置创建 systemd 服务，确保重启后自动生效：
+sudo tee /etc/systemd/system/ollama.service &lt;&lt; &#x27;EOF&#x27;[Unit]Description=Ollama ServiceAfter=network-online.target[Service]ExecStart=/usr/local/bin/ollama serveUser=ollamaGroup=ollamaRestart=alwaysRestartSec=3Environment=&quot;OLLAMA_HOST=0.0.0.0:11434&quot;Environment=&quot;OLLAMA_MODELS=/usr/share/ollama/.ollama/models&quot;[Install]WantedBy=default.targetEOFsudo systemctl daemon-reloadsudo systemctl enable ollamasudo systemctl start ollama
+
+RAGFlow 配置在 RAGFlow Web 界面中：
+
+进入 模型管理（Models）
+添加 Embedding 模型，配置如下：
+
+
+
+
+字段
+值
+
+
+
+Factory
+Ollama
+
+
+Base URL
+http://172.18.0.1:11434
+
+
+模型名称
+bge-m3
+
+
+API Key
+留空
+
+
+
+注意：172.18.0.1 是 Docker 网络 docker_ragflow 的网关地址，容器通过这个 IP 访问宿主机服务。可通过以下命令查看：
+
+docker network inspect docker_ragflow --format &#x27;&#123;&#123;range .IPAM.Config&#125;&#125;&#123;&#123;.Gateway&#125;&#125;&#123;&#123;end&#125;&#125;&#x27;
+
+踩坑总结
+
+
+问题
+原因
+解决
+
+
+
+容器无法连接 Ollama
+Ollama 默认监听 127.0.0.1
+设置 OLLAMA_HOST=0.0.0.0:11434
+
+
+模型列表为空
+模型路径不对
+设置 OLLAMA_MODELS=/usr/share/ollama/.ollama/models
+
+
+permission denied
+目录权限限制
+以 ollama 用户启动服务
+
+
+三个问题缺一不可，必须同时解决才能让 Docker 容器中的 RAGFlow 正常访问 Ollama。
+内存占用参考
+
+
+方案
+模型
+内存占用
+中文效果
+
+
+
+Ollama
+bge-m3
+~2-3GB
+⭐⭐⭐⭐⭐
+
+
+Ollama
+nomic-embed-text
+~1GB
+⭐⭐⭐⭐
+
+
+Ollama
+all-minilm
+~200MB
+⭐⭐
+
+
+16GB 内存服务器推荐使用 bge-m3，中文效果最好且内存充足。
 ]]></content>
       <categories>
         <category>tools</category>
       </categories>
       <tags>
-        <tag>NUC</tag>
-        <tag>Ubuntu</tag>
-        <tag>Network</tag>
+        <tag>RAGFlow</tag>
+        <tag>Ollama</tag>
+        <tag>bge-m3</tag>
+        <tag>Docker</tag>
+        <tag>embedding</tag>
       </tags>
   </entry>
   <entry>
@@ -433,52 +595,40 @@ More info: Deployment
       </tags>
   </entry>
   <entry>
-    <title>python连接gazebo/openAI的gym/erlerobot的gym-gazebo/google的tensorflow</title>
-    <url>/2018/01/10/%E5%8E%9F-python%E8%BF%9E%E6%8E%A5gazebo-openAI%E7%9A%84gym-erlerobot%E7%9A%84gym-gazebo-google%E7%9A%84tensorflow/</url>
-    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）笔记本型号：联想Y500CPU　:　Intel® Core™ i7-3630QM CPU @ 2.40GHz × 8内存：7.7 GiB显卡：GeForce GT 750M&#x2F;PCIe&#x2F;SSE2系统版本：ubuntu 14.04 LTS 64bitROS版本：indigogazebo版本：gazebo7tensorflow：1.4.1-gpupython：2.7
+    <title>Ubuntu中launchpad中图标显示异常</title>
+    <url>/2017/12/28/%E5%8E%9F-launchpad%E4%B8%AD%E5%9B%BE%E6%A0%87%E6%98%BE%E7%A4%BA%E5%BC%82%E5%B8%B8/</url>
+    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）
+系统:　Ubuntu14.04
+问题描述:Ubuntu的launchpad(开始菜单)中图标显示错误，不能正常显示图标。
+解决方案：
+打开终端
+cd &#x2F;usr&#x2F;share&#x2F;applications&#x2F;ls
+然后找到你的图标
+sudo vim *.desktop
+*为你的app的name
+[Desktop Entry]
+Name=Youdao Dict
+Name[zh_CN]=有道词典
+Name[zh_TW]=有道詞典
+Exec=youdao-dict %f
+Icon=/usr/share/youdao-dict/app/assets/youdao-dict.png
+Terminal=false
+X-MultipleArgs=false
+Type=Application
+Encoding=UTF-8
+Categories=Application;Utility;Dictionary;
+StartupNotify=false
 
-中间一些令我吐血的地方：1.必须python2.7，不然要解决的问题太多了，我尝试了好久，边擦干净屏幕上的血，边把所有的东西改为了python2.72.百度不是解决问题的方法，谷歌才是，科学上网才是第一生产力3.遇到无法import rospy等ros的包的问题，请移步我的另一篇博客。在sublime text3和pycharm无法import rospy等ros Python库4.中间用到的一些工具，请移步我的另一篇博客ubuntu上我的装机必备小工具
-
-#安装步骤##1.先安装gazebo7我用的是新立得软件包管理装的，很方便，当然你可以选择别的方式##2.安装ros请移步ROSwikiroswiki注意：这里必须安装ros-indigo-desktop版本 不要装full##3.安装gazebo7和ros的control package在新立得软件包管理一搜就有了，关键词为：ros-indigo-gazebo7-ros把其中的都装了就好了##4.安装gymopenAI-gym的github按照github中的步骤来就好首先装依赖
-apt-get install -y python-numpy python-dev cmake zlib1g-dev libjpeg-dev xvfb libav-tools xorg-dev python-opengl libboost-all-dev libsdl2-dev swig
-
-注意git clone之后要装all版本git clone https://github.com/openai/gym.git cd gym pip install -e &#39;.[all]&#39;在他的安装说明提到了Rendering on a server，这个是我之前一直在找的东西。可以在你不查屏幕的时候运行gazebo和rviz，这在我之前的博文中提到了Rendering on a serverIf you’re trying to render video on a server, you’ll need to connect a fake display. The easiest way to do this is by running under xvfb-run (on Ubuntu, install the xvfb package):
-xvfb-run -s &quot;-screen 0 1400x900x24&quot; bash
-##5.gym-gazebo这个很难装，很繁琐，现在我还是比较懵逼的。不过我总结了一下经。先去看一下他的安装文档，然后不要着急。我们之前的有些已经装过了，那我们采用step-by-step的方式，安装过程中要看着setup.bash来，把不用的步骤省去参照此人的博客：理解gym-gazebo注意：    1.安装过程中可以打开gazebo.repos把系统中已经有的可以屏蔽掉。    2.如果CPU性能不是特别好，不建议那么多线程，make -j 1就好，慢点就慢点吧，不然会编译冲突错误。    3.路径的设置要根据自己安装的路径来。##6.tensorflow因为ros不兼容python3，所以我只能把原来的Python3的tensorflow废弃掉了。我编译安装tensorflow没成功，这里，我用pip安装的。安装过程中，不知道是网还是我的电脑的问题很多包在pip的时候会下载不下来，导致安装失败，我的应对方法是：从python官网把需要安装的whl包最新版下载下来用pip安装。
-##pip安装whl的方法如下：1.cd到whl包所在的目录2.pip install xxxx.whl（也可以加sudo）
-]]></content>
-      <categories>
-        <category>reinforcement learning</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>ros</tag>
-        <tag>gazebo</tag>
-        <tag>gym</tag>
-        <tag>Tensorflow</tag>
-        <tag>ubuntu</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>setting-user of sublime</title>
-    <url>/2017/12/08/%E5%8E%9F-sublime%E7%9A%84setting-user/</url>
-    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）刚开始用sublime,因为感觉很好用，所以想折腾一下。 
-系统:ubuntu 14.04 
-sublime版本:3126
-作为一个渣渣，遇到的问题如下：
-
-注册的问题 百度一搜一大堆，关键词为：sublime3126注册码，举个栗子：用力戳这里
-配置文件不能修改的问题Perferences-setting打开之后，有两块左右各一，一开始很傻，一直在左边Default修改，发现怎么改也改不了，一度怀疑人生，后来才发现右边也有一个框，把你想要修改的部分复制到右边，然后再修改就好了，会优先加载user中的内容‘’’{“color_scheme”: “Packages&#x2F;Color Scheme - Default&#x2F;Monokai.tmTheme”,“font_face”: “Courier New”,“font_size”: 18,“ignored_packages”:[“Vintage”],“line_padding_bottom”: 1,“line_padding_top”: 1,“match_brackets”: true,“theme”: “Default.sublime-theme”,“tranlate_tabs_to_spaces”: true,“wrap_width”: 100}‘’’
-
-我的是这样的，我喜欢Courier New的字体，你也可以试试，看起来很舒服。因为想要用python，所以把tab转换为space，这样省了很多事情。
+把Icon后面的路径改为你的图片的路径
+sudo reboot
 ]]></content>
       <categories>
         <category>tools</category>
       </categories>
       <tags>
+        <tag>launchpad</tag>
+        <tag>图标异常</tag>
         <tag>ubuntu</tag>
-        <tag>sublime-text3</tag>
-        <tag>setting</tag>
       </tags>
   </entry>
   <entry>
@@ -524,40 +674,52 @@ odom和map坐标系在机器人运动开始是重合的。但是，随着时间�
       </tags>
   </entry>
   <entry>
-    <title>Ubuntu中launchpad中图标显示异常</title>
-    <url>/2017/12/28/%E5%8E%9F-launchpad%E4%B8%AD%E5%9B%BE%E6%A0%87%E6%98%BE%E7%A4%BA%E5%BC%82%E5%B8%B8/</url>
-    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）
-系统:　Ubuntu14.04
-问题描述:Ubuntu的launchpad(开始菜单)中图标显示错误，不能正常显示图标。
-解决方案：
-打开终端
-cd &#x2F;usr&#x2F;share&#x2F;applications&#x2F;ls
-然后找到你的图标
-sudo vim *.desktop
-*为你的app的name
-[Desktop Entry]
-Name=Youdao Dict
-Name[zh_CN]=有道词典
-Name[zh_TW]=有道詞典
-Exec=youdao-dict %f
-Icon=/usr/share/youdao-dict/app/assets/youdao-dict.png
-Terminal=false
-X-MultipleArgs=false
-Type=Application
-Encoding=UTF-8
-Categories=Application;Utility;Dictionary;
-StartupNotify=false
+    <title>python连接gazebo/openAI的gym/erlerobot的gym-gazebo/google的tensorflow</title>
+    <url>/2018/01/10/%E5%8E%9F-python%E8%BF%9E%E6%8E%A5gazebo-openAI%E7%9A%84gym-erlerobot%E7%9A%84gym-gazebo-google%E7%9A%84tensorflow/</url>
+    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）笔记本型号：联想Y500CPU　:　Intel® Core™ i7-3630QM CPU @ 2.40GHz × 8内存：7.7 GiB显卡：GeForce GT 750M&#x2F;PCIe&#x2F;SSE2系统版本：ubuntu 14.04 LTS 64bitROS版本：indigogazebo版本：gazebo7tensorflow：1.4.1-gpupython：2.7
 
-把Icon后面的路径改为你的图片的路径
-sudo reboot
+中间一些令我吐血的地方：1.必须python2.7，不然要解决的问题太多了，我尝试了好久，边擦干净屏幕上的血，边把所有的东西改为了python2.72.百度不是解决问题的方法，谷歌才是，科学上网才是第一生产力3.遇到无法import rospy等ros的包的问题，请移步我的另一篇博客。在sublime text3和pycharm无法import rospy等ros Python库4.中间用到的一些工具，请移步我的另一篇博客ubuntu上我的装机必备小工具
+
+#安装步骤##1.先安装gazebo7我用的是新立得软件包管理装的，很方便，当然你可以选择别的方式##2.安装ros请移步ROSwikiroswiki注意：这里必须安装ros-indigo-desktop版本 不要装full##3.安装gazebo7和ros的control package在新立得软件包管理一搜就有了，关键词为：ros-indigo-gazebo7-ros把其中的都装了就好了##4.安装gymopenAI-gym的github按照github中的步骤来就好首先装依赖
+apt-get install -y python-numpy python-dev cmake zlib1g-dev libjpeg-dev xvfb libav-tools xorg-dev python-opengl libboost-all-dev libsdl2-dev swig
+
+注意git clone之后要装all版本git clone https://github.com/openai/gym.git cd gym pip install -e &#39;.[all]&#39;在他的安装说明提到了Rendering on a server，这个是我之前一直在找的东西。可以在你不查屏幕的时候运行gazebo和rviz，这在我之前的博文中提到了Rendering on a serverIf you’re trying to render video on a server, you’ll need to connect a fake display. The easiest way to do this is by running under xvfb-run (on Ubuntu, install the xvfb package):
+xvfb-run -s &quot;-screen 0 1400x900x24&quot; bash
+##5.gym-gazebo这个很难装，很繁琐，现在我还是比较懵逼的。不过我总结了一下经。先去看一下他的安装文档，然后不要着急。我们之前的有些已经装过了，那我们采用step-by-step的方式，安装过程中要看着setup.bash来，把不用的步骤省去参照此人的博客：理解gym-gazebo注意：    1.安装过程中可以打开gazebo.repos把系统中已经有的可以屏蔽掉。    2.如果CPU性能不是特别好，不建议那么多线程，make -j 1就好，慢点就慢点吧，不然会编译冲突错误。    3.路径的设置要根据自己安装的路径来。##6.tensorflow因为ros不兼容python3，所以我只能把原来的Python3的tensorflow废弃掉了。我编译安装tensorflow没成功，这里，我用pip安装的。安装过程中，不知道是网还是我的电脑的问题很多包在pip的时候会下载不下来，导致安装失败，我的应对方法是：从python官网把需要安装的whl包最新版下载下来用pip安装。
+##pip安装whl的方法如下：1.cd到whl包所在的目录2.pip install xxxx.whl（也可以加sudo）
+]]></content>
+      <categories>
+        <category>reinforcement learning</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>ubuntu</tag>
+        <tag>ros</tag>
+        <tag>gazebo</tag>
+        <tag>gym</tag>
+        <tag>Tensorflow</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>setting-user of sublime</title>
+    <url>/2017/12/08/%E5%8E%9F-sublime%E7%9A%84setting-user/</url>
+    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）刚开始用sublime,因为感觉很好用，所以想折腾一下。 
+系统:ubuntu 14.04 
+sublime版本:3126
+作为一个渣渣，遇到的问题如下：
+
+注册的问题 百度一搜一大堆，关键词为：sublime3126注册码，举个栗子：用力戳这里
+配置文件不能修改的问题Perferences-setting打开之后，有两块左右各一，一开始很傻，一直在左边Default修改，发现怎么改也改不了，一度怀疑人生，后来才发现右边也有一个框，把你想要修改的部分复制到右边，然后再修改就好了，会优先加载user中的内容‘’’{“color_scheme”: “Packages&#x2F;Color Scheme - Default&#x2F;Monokai.tmTheme”,“font_face”: “Courier New”,“font_size”: 18,“ignored_packages”:[“Vintage”],“line_padding_bottom”: 1,“line_padding_top”: 1,“match_brackets”: true,“theme”: “Default.sublime-theme”,“tranlate_tabs_to_spaces”: true,“wrap_width”: 100}‘’’
+
+我的是这样的，我喜欢Courier New的字体，你也可以试试，看起来很舒服。因为想要用python，所以把tab转换为space，这样省了很多事情。
 ]]></content>
       <categories>
         <category>tools</category>
       </categories>
       <tags>
         <tag>ubuntu</tag>
-        <tag>launchpad</tag>
-        <tag>图标异常</tag>
+        <tag>sublime-text3</tag>
+        <tag>setting</tag>
       </tags>
   </entry>
   <entry>
@@ -604,6 +766,65 @@ Move the youbot using its wheels
       </tags>
   </entry>
   <entry>
+    <title>Ubuntu上装机必备小工具</title>
+    <url>/2018/01/10/%E5%8E%9F-ubuntu%E4%B8%8A%E6%88%91%E7%9A%84%E8%A3%85%E6%9C%BA%E5%BF%85%E5%A4%87%E5%B0%8F%E5%B7%A5%E5%85%B7/</url>
+    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）1.system monitor indicator
+系统监视软件
+sudo add-apt-repository ppa:fossfreedom&#x2F;indicator-sysmonitorsudo apt-get updatesudo apt-get install indicator-sysmonitorindicator-sysmonitor &amp;
+2.touchpad-indicator一个触摸板禁用软件，插入鼠标自动禁用touchpad
+3.y-ppa-manager一个可以管理ppa的软件，可以清理修复ppa
+4.Terminator
+一个好用的可以把一个终端分成多个终端的软件
+5.新立得
+这是一个Ubuntu软件包管理软件，谁用谁知道。
+]]></content>
+      <categories>
+        <category>tools</category>
+      </categories>
+      <tags>
+        <tag>ubuntu</tag>
+        <tag>tools</tag>
+        <tag>software</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在sublime-text3和pycharm无法import-rospy等ros-Python库</title>
+    <url>/2018/01/10/%E5%8E%9F-%E5%9C%A8sublime-text3%E5%92%8Cpycharm%E6%97%A0%E6%B3%95import-rospy%E7%AD%89ros-Python%E5%BA%93/</url>
+    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）
+背景笔记本型号：联想Y500  
+CPU　:　Intel® Core™ i7-3630QM CPU @ 2.40GHz × 8  
+内存：7.7 GiB  
+显卡：GeForce GT 750M&#x2F;PCIe&#x2F;SSE2  
+系统版本：ubuntu 14.04 LTS 64bit 
+软件：sublime text 3 ;pycharm
+#错误情况
+import rospyImportError: No module named rospy
+
+#问题描述在pycharm和sublime下无法import rospy等模块，但是在Terminal下用命令行就可以正常运行，经过分析，原因为　&#x2F;opt&#x2F;ros&#x2F;indigo&#x2F;lib&#x2F;python2.7&#x2F;dist-packages　下的路径没有被添加到环境中
+
+#解决方案##sublime text 31.Terminal下 cd &#x2F;opt&#x2F;sublime_text&#x2F;Packages2.sudo gedit Python.sublime-package3.粘贴
+&#123;    &quot;shell_cmd&quot;: &quot;python -u \&quot;$file\&quot;&quot;,    &quot;file_regex&quot;: &quot;^[ ]*File \&quot;(...*?)\&quot;, line ([0-9]*)&quot;,    &quot;selector&quot;: &quot;source.python&quot;,    &quot;env&quot;: &#123;&quot;PYTHONPATH&quot;:&quot;/opt/ros/indigo/lib/python2.7/dist-packages&quot;&#125;,    &quot;variants&quot;:    [        &#123;            &quot;name&quot;: &quot;Syntax Check&quot;,            &quot;shell_cmd&quot;: &quot;python -m py_compile \&quot;$&#123;file&#125;\&quot;&quot;,        &#125;    ]&#125;
+
+４．保存退出５．接下来，用zip命令删除C++.sublime-package中的Python.sublime-build文件：sudo zip -d Python.sublime-package Python.sublime-build6.最后将之前的Python.sublime-build添加到此时的Python.sublime-package中：sudo zip -g Python.sublime-package Python.sublime-build7. 重启sublime text，实验调用默认的Python build system，成功！
+#pycharm1.打开File–&gt;Settings–&gt;Project:XXXX–&gt;Project Interpreter2.在Project Interpreter : Python 2.7 &#x2F;usr&#x2F;bin&#x2F;python (顶部的位置)点击下拉箭头3.选择Show ALL…4.点击右侧第四个按钮：interpreter Paths5.点击右侧的第一个加号按钮，并在弹出的对话框中粘贴以下路径
+/opt/ros/indigo/lib/python2.7/dist-packages
+6.一路ok就可以了7.然后运行一下，成功!
+
+#sublime 和pycharm的使用感受sublime实在是太轻便快捷了，用户体验极好，但是功能不够强大pycharm使用起来功能很多，比如看库的这种操作。但是有时候卡卡的。
+]]></content>
+      <categories>
+        <category>tools</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>ubuntu</tag>
+        <tag>ros</tag>
+        <tag>gazebo</tag>
+        <tag>gym</tag>
+        <tag>Tensorflow</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>小谈安装固态硬盘后Windows及Ubuntu的安装</title>
     <url>/2018/02/02/%E5%8E%9F-%E5%AE%89%E8%A3%85%E5%9B%BA%E6%80%81%E7%A1%AC%E7%9B%98%E5%90%8EWindows%E5%8F%8AUbuntu%E7%9A%84%E5%AE%89%E8%A3%85/</url>
     <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）
@@ -637,97 +858,6 @@ Ubuntu的安装对于Ubuntu版本,我这次选择的是16.04,由于我用到的�
         <tag>Windows 10</tag>
         <tag>升级</tag>
         <tag>固态硬盘</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>在sublime-text3和pycharm无法import-rospy等ros-Python库</title>
-    <url>/2018/01/10/%E5%8E%9F-%E5%9C%A8sublime-text3%E5%92%8Cpycharm%E6%97%A0%E6%B3%95import-rospy%E7%AD%89ros-Python%E5%BA%93/</url>
-    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）
-背景笔记本型号：联想Y500  
-CPU　:　Intel® Core™ i7-3630QM CPU @ 2.40GHz × 8  
-内存：7.7 GiB  
-显卡：GeForce GT 750M&#x2F;PCIe&#x2F;SSE2  
-系统版本：ubuntu 14.04 LTS 64bit 
-软件：sublime text 3 ;pycharm
-#错误情况
-import rospyImportError: No module named rospy
-
-#问题描述在pycharm和sublime下无法import rospy等模块，但是在Terminal下用命令行就可以正常运行，经过分析，原因为　&#x2F;opt&#x2F;ros&#x2F;indigo&#x2F;lib&#x2F;python2.7&#x2F;dist-packages　下的路径没有被添加到环境中
-
-#解决方案##sublime text 31.Terminal下 cd &#x2F;opt&#x2F;sublime_text&#x2F;Packages2.sudo gedit Python.sublime-package3.粘贴
-&#123;    &quot;shell_cmd&quot;: &quot;python -u \&quot;$file\&quot;&quot;,    &quot;file_regex&quot;: &quot;^[ ]*File \&quot;(...*?)\&quot;, line ([0-9]*)&quot;,    &quot;selector&quot;: &quot;source.python&quot;,    &quot;env&quot;: &#123;&quot;PYTHONPATH&quot;:&quot;/opt/ros/indigo/lib/python2.7/dist-packages&quot;&#125;,    &quot;variants&quot;:    [        &#123;            &quot;name&quot;: &quot;Syntax Check&quot;,            &quot;shell_cmd&quot;: &quot;python -m py_compile \&quot;$&#123;file&#125;\&quot;&quot;,        &#125;    ]&#125;
-
-４．保存退出５．接下来，用zip命令删除C++.sublime-package中的Python.sublime-build文件：sudo zip -d Python.sublime-package Python.sublime-build6.最后将之前的Python.sublime-build添加到此时的Python.sublime-package中：sudo zip -g Python.sublime-package Python.sublime-build7. 重启sublime text，实验调用默认的Python build system，成功！
-#pycharm1.打开File–&gt;Settings–&gt;Project:XXXX–&gt;Project Interpreter2.在Project Interpreter : Python 2.7 &#x2F;usr&#x2F;bin&#x2F;python (顶部的位置)点击下拉箭头3.选择Show ALL…4.点击右侧第四个按钮：interpreter Paths5.点击右侧的第一个加号按钮，并在弹出的对话框中粘贴以下路径
-/opt/ros/indigo/lib/python2.7/dist-packages
-6.一路ok就可以了7.然后运行一下，成功!
-
-#sublime 和pycharm的使用感受sublime实在是太轻便快捷了，用户体验极好，但是功能不够强大pycharm使用起来功能很多，比如看库的这种操作。但是有时候卡卡的。
-]]></content>
-      <categories>
-        <category>tools</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>ros</tag>
-        <tag>gazebo</tag>
-        <tag>gym</tag>
-        <tag>Tensorflow</tag>
-        <tag>ubuntu</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SLAM with LS01C and hector</title>
-    <url>/2017/10/09/%E5%8E%9F-%E6%89%8B%E6%8C%81%E9%95%AD%E7%A5%9ELS01C%E4%BD%BF%E7%94%A8hector-mapping%E6%96%B9%E6%B3%95%E8%BF%9B%E8%A1%8C%E5%BB%BA%E5%9B%BE%E5%AE%9E%E9%AA%8C/</url>
-    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）我的代码在ls01c可以拿去下载。
-本博客只是个人学习记录使用，瞎写写，内容比较粗糙。
-
-从镭神客服那里拿到驱动
-对驱动进行阅读，并启动节点获取雷达数据实验在启动激光雷达的过程中可能遇到这样的问题：驱动没问题，launch文件也没问题，但是雷达不旋转，也得不到数据，这是因为激光雷达的端口ttyUSB0(也可能是别的名称，自己查一下吧)没有权限，需要在终端执行以下语句：
-
-cd &#x2F;devsudo chmod 777 ttyUSB
-
-下载hector源码并编译hector的github下载地址
-启动launch文件就可以建图了
-
-可能遇到的问题：
-
-手持时，可能因为移动的太快或者转动太快导致地图混乱
-当有物体靠近激光雷达或者雷达收到振动时，终端会出现SearchDir angle change too large
-
-
-后记：建图混乱的原因致使因为这个雷达的性能不满足这个算法。我回头试试用cartographer和这个雷达试试能否建出好图。
-]]></content>
-      <categories>
-        <category>ros</category>
-      </categories>
-      <tags>
-        <tag>ROS</tag>
-        <tag>robot</tag>
-        <tag>SLAM</tag>
-        <tag>hector</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Ubuntu上装机必备小工具</title>
-    <url>/2018/01/10/%E5%8E%9F-ubuntu%E4%B8%8A%E6%88%91%E7%9A%84%E8%A3%85%E6%9C%BA%E5%BF%85%E5%A4%87%E5%B0%8F%E5%B7%A5%E5%85%B7/</url>
-    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）1.system monitor indicator
-系统监视软件
-sudo add-apt-repository ppa:fossfreedom&#x2F;indicator-sysmonitorsudo apt-get updatesudo apt-get install indicator-sysmonitorindicator-sysmonitor &amp;
-2.touchpad-indicator一个触摸板禁用软件，插入鼠标自动禁用touchpad
-3.y-ppa-manager一个可以管理ppa的软件，可以清理修复ppa
-4.Terminator
-一个好用的可以把一个终端分成多个终端的软件
-5.新立得
-这是一个Ubuntu软件包管理软件，谁用谁知道。
-]]></content>
-      <categories>
-        <category>tools</category>
-      </categories>
-      <tags>
-        <tag>ubuntu</tag>
-        <tag>tools</tag>
-        <tag>software</tag>
       </tags>
   </entry>
   <entry>
@@ -774,6 +904,68 @@ sudo add-apt-repository ppa:fossfreedom&#x2F;indicator-sysmonitorsudo apt-get up
         <tag>ros</tag>
         <tag>robot</tag>
         <tag>sw2urdf</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>rviz闪退的解决方案</title>
+    <url>/2017/12/21/%E5%8E%9F-%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%9A%84%E6%9C%BA%E8%BD%BDPC%E7%9A%84rviz%E9%97%AA%E9%80%80%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
+    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）背景：项目用到自己做的机器人，在机器人上装上了一个miniPC，在上面装上了ros indigo版本，使用远程桌面连接miniPC，然后操作机器人进行建图实验。
+
+问题：在打开rviz后闪退
+
+原因：这是由于rviz在不接显示器的时候，是不能启动的
+
+解决方法： 
+
+使用zeroconf，通过ssh连接miniPC，进行控制，在自己的电脑上打开rviz，就能订阅miniPC上的topic 
+
+先插上显示器，打开rviz后，然后拔掉VGA或者HDMI.(这个方法是别人告诉我的不知道可不可行)
+
+Rendering on a server
+
+
+If you’re trying to render video on a server, you’ll need to connect a fake display. The easiest way to do this is by running under xvfb-run (on Ubuntu, install the xvfb package):
+xvfb-run -s &quot;-screen 0 1400x900x24&quot; bash]]></content>
+      <categories>
+        <category>ros</category>
+      </categories>
+      <tags>
+        <tag>ROS</tag>
+        <tag>robot</tag>
+        <tag>rviz</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>gazebo中机器人横向移动</title>
+    <url>/2017/01/10/%E5%9C%A8gazebo%E4%B8%AD%E5%90%AF%E5%8A%A8%E7%A7%BB%E5%8A%A8%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A8%A1%E5%9E%8B%EF%BC%8C%E5%B9%B6%E5%AE%9E%E7%8E%B0%E6%A8%AA%E5%90%91%E7%A7%BB%E5%8A%A8/</url>
+    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）本博客只是个人学习记录使用，瞎写写，内容比较粗糙。编写过程中，借鉴了yaked大神的实战youBot和ROS-WIKI以及其它一些大神的内容。现在大部分的移动机器人主要差动轮进行运动，只有linear.x和angular.z两个值，但是我的模型是４个瑞典轮，能提供横向的移动速度，即linear.y。在gazebo中的横向移动同样要修改控制方式，只不过在与rviz不同，不能直接修改，文件格式打不开，这里采用的方案是直接在xacro中加载一个平面移动的插件就可以了
+&lt;!-- position controller --&gt;
+&lt;gazebo&gt;
+  &lt;plugin name=&quot;base_controller&quot; filename=&quot;libgazebo_ros_planar_move.so&quot;&gt;
+    &lt;commandTopic&gt;cmd_vel&lt;/commandTopic&gt;
+    &lt;odometryTopic&gt;odom&lt;/odometryTopic&gt;
+    &lt;odometryFrame&gt;/odom&lt;/odometryFrame&gt;
+    &lt;odometryRate&gt;100.0&lt;/odometryRate&gt;
+    &lt;robotBaseFrame&gt;base_footprint&lt;/robotBaseFrame&gt;
+    &lt;broadcastTF&gt;true&lt;/broadcastTF&gt;
+  &lt;/plugin&gt;
+&lt;/gazebo&gt;`
+
+
+
+模型xacro加载到gazebo沿用yaked大神博客中的gazebo.launch进行修改，把自己的模型修改到他的launch文件中，就可以了。＇
+
+gazebo加入上面的代码
+
+
+]]></content>
+      <categories>
+        <category>ros</category>
+      </categories>
+      <tags>
+        <tag>ROS</tag>
+        <tag>横向移动</tag>
+        <tag>机器人</tag>
       </tags>
   </entry>
   <entry>
@@ -854,72 +1046,10 @@ sudo update-alternatives –config x86_64-linux-gnu_gl_conf
         <category>tools</category>
       </categories>
       <tags>
-        <tag>Tensorflow</tag>
         <tag>ubuntu</tag>
+        <tag>Tensorflow</tag>
         <tag>CUDA</tag>
         <tag>cuDDN</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>rviz闪退的解决方案</title>
-    <url>/2017/12/21/%E5%8E%9F-%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%9A%84%E6%9C%BA%E8%BD%BDPC%E7%9A%84rviz%E9%97%AA%E9%80%80%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
-    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）背景：项目用到自己做的机器人，在机器人上装上了一个miniPC，在上面装上了ros indigo版本，使用远程桌面连接miniPC，然后操作机器人进行建图实验。
-
-问题：在打开rviz后闪退
-
-原因：这是由于rviz在不接显示器的时候，是不能启动的
-
-解决方法： 
-
-使用zeroconf，通过ssh连接miniPC，进行控制，在自己的电脑上打开rviz，就能订阅miniPC上的topic 
-
-先插上显示器，打开rviz后，然后拔掉VGA或者HDMI.(这个方法是别人告诉我的不知道可不可行)
-
-Rendering on a server
-
-
-If you’re trying to render video on a server, you’ll need to connect a fake display. The easiest way to do this is by running under xvfb-run (on Ubuntu, install the xvfb package):
-xvfb-run -s &quot;-screen 0 1400x900x24&quot; bash]]></content>
-      <categories>
-        <category>ros</category>
-      </categories>
-      <tags>
-        <tag>ROS</tag>
-        <tag>robot</tag>
-        <tag>rviz</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>gazebo中机器人横向移动</title>
-    <url>/2017/01/10/%E5%9C%A8gazebo%E4%B8%AD%E5%90%AF%E5%8A%A8%E7%A7%BB%E5%8A%A8%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A8%A1%E5%9E%8B%EF%BC%8C%E5%B9%B6%E5%AE%9E%E7%8E%B0%E6%A8%AA%E5%90%91%E7%A7%BB%E5%8A%A8/</url>
-    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）本博客只是个人学习记录使用，瞎写写，内容比较粗糙。编写过程中，借鉴了yaked大神的实战youBot和ROS-WIKI以及其它一些大神的内容。现在大部分的移动机器人主要差动轮进行运动，只有linear.x和angular.z两个值，但是我的模型是４个瑞典轮，能提供横向的移动速度，即linear.y。在gazebo中的横向移动同样要修改控制方式，只不过在与rviz不同，不能直接修改，文件格式打不开，这里采用的方案是直接在xacro中加载一个平面移动的插件就可以了
-&lt;!-- position controller --&gt;
-&lt;gazebo&gt;
-  &lt;plugin name=&quot;base_controller&quot; filename=&quot;libgazebo_ros_planar_move.so&quot;&gt;
-    &lt;commandTopic&gt;cmd_vel&lt;/commandTopic&gt;
-    &lt;odometryTopic&gt;odom&lt;/odometryTopic&gt;
-    &lt;odometryFrame&gt;/odom&lt;/odometryFrame&gt;
-    &lt;odometryRate&gt;100.0&lt;/odometryRate&gt;
-    &lt;robotBaseFrame&gt;base_footprint&lt;/robotBaseFrame&gt;
-    &lt;broadcastTF&gt;true&lt;/broadcastTF&gt;
-  &lt;/plugin&gt;
-&lt;/gazebo&gt;`
-
-
-
-模型xacro加载到gazebo沿用yaked大神博客中的gazebo.launch进行修改，把自己的模型修改到他的launch文件中，就可以了。＇
-
-gazebo加入上面的代码
-
-
-]]></content>
-      <categories>
-        <category>ros</category>
-      </categories>
-      <tags>
-        <tag>ROS</tag>
-        <tag>横向移动</tag>
-        <tag>机器人</tag>
       </tags>
   </entry>
   <entry>
@@ -960,6 +1090,38 @@ smartcar.urdf.xacro
         <tag>横向移动</tag>
         <tag>机器人</tag>
         <tag>rviz</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SLAM with LS01C and hector</title>
+    <url>/2017/10/09/%E5%8E%9F-%E6%89%8B%E6%8C%81%E9%95%AD%E7%A5%9ELS01C%E4%BD%BF%E7%94%A8hector-mapping%E6%96%B9%E6%B3%95%E8%BF%9B%E8%A1%8C%E5%BB%BA%E5%9B%BE%E5%AE%9E%E9%AA%8C/</url>
+    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）我的代码在ls01c可以拿去下载。
+本博客只是个人学习记录使用，瞎写写，内容比较粗糙。
+
+从镭神客服那里拿到驱动
+对驱动进行阅读，并启动节点获取雷达数据实验在启动激光雷达的过程中可能遇到这样的问题：驱动没问题，launch文件也没问题，但是雷达不旋转，也得不到数据，这是因为激光雷达的端口ttyUSB0(也可能是别的名称，自己查一下吧)没有权限，需要在终端执行以下语句：
+
+cd &#x2F;devsudo chmod 777 ttyUSB
+
+下载hector源码并编译hector的github下载地址
+启动launch文件就可以建图了
+
+可能遇到的问题：
+
+手持时，可能因为移动的太快或者转动太快导致地图混乱
+当有物体靠近激光雷达或者雷达收到振动时，终端会出现SearchDir angle change too large
+
+
+后记：建图混乱的原因致使因为这个雷达的性能不满足这个算法。我回头试试用cartographer和这个雷达试试能否建出好图。
+]]></content>
+      <categories>
+        <category>ros</category>
+      </categories>
+      <tags>
+        <tag>ROS</tag>
+        <tag>robot</tag>
+        <tag>SLAM</tag>
+        <tag>hector</tag>
       </tags>
   </entry>
   <entry>

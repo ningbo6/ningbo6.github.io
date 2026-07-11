@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ningbo6.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"b2t":false,"scrollpercent":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="在16GB内存服务器上通过Ollama部署bge-m3 embedding模型，解决Docker容器内RAGFlow无法连接Ollama的三个关键问题：监听地址、模型路径、用户权限。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RAGFlow接入本地Ollama Embedding模型踩坑记录">
+<meta property="og:url" content="https://ningbo6.github.io/2026/07/11/RAGFlow%E6%8E%A5%E5%85%A5%E6%9C%AC%E5%9C%B0Ollama-Embedding%E6%A8%A1%E5%9E%8B%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:site_name" content="Ningbo&#39;s blogs">
+<meta property="og:description" content="在16GB内存服务器上通过Ollama部署bge-m3 embedding模型，解决Docker容器内RAGFlow无法连接Ollama的三个关键问题：监听地址、模型路径、用户权限。">
+<meta property="og:locale">
+<meta property="article:published_time" content="2026-07-11T11:00:00.000Z">
+<meta property="article:modified_time" content="2026-07-11T13:49:38.949Z">
+<meta property="article:author" content="Ningbo Yang">
+<meta property="article:tag" content="Docker">
+<meta property="article:tag" content="Ollama">
+<meta property="article:tag" content="RAGFlow">
+<meta property="article:tag" content="bge-m3">
+<meta property="article:tag" content="embedding">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://ningbo6.github.io/2026/07/11/RAGFlow%E6%8E%A5%E5%85%A5%E6%9C%AC%E5%9C%B0Ollama-Embedding%E6%A8%A1%E5%9E%8B%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>RAGFlow接入本地Ollama Embedding模型踩坑记录 | Ningbo's blogs</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Ningbo's blogs</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">just for fun</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="sitemap fa-fw"></i>Sitemap</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="user fa-fw"></i>About</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://ningbo6.github.io/2026/07/11/RAGFlow%E6%8E%A5%E5%85%A5%E6%9C%AC%E5%9C%B0Ollama-Embedding%E6%A8%A1%E5%9E%8B%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ningbo Yang">
+      <meta itemprop="description" content="A coder who want to be a programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ningbo's blogs">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          RAGFlow接入本地Ollama Embedding模型踩坑记录
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2026-07-11 19:00:00 / Modified: 21:49:38" itemprop="dateCreated datePublished" datetime="2026-07-11T19:00:00+08:00">2026-07-11</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/tools/" itemprop="url" rel="index"><span itemprop="name">tools</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">在16GB内存服务器上通过Ollama部署bge-m3 embedding模型，解决Docker容器内RAGFlow无法连接Ollama的三个关键问题：监听地址、模型路径、用户权限。</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>（转载请注明作者和出处：<a href="https://ningbo6.github.io/">https://ningbo6.github.io</a> 未经允许请勿用于商业用途）</p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>在本地部署 RAGFlow 后，希望使用本地 embedding 模型替代云端 API，既节省成本又保护数据隐私。服务器配置为 16GB 内存，经过对比选择了 <strong>Ollama + bge-m3</strong> 方案。</p>
+<p>bge-m3 是 BAAI 推出的多语言 embedding 模型，中文效果优秀，内存占用约 2-3GB，完全适合 16GB 内存的服务器。</p>
+<h2 id="安装-Ollama"><a href="#安装-Ollama" class="headerlink" title="安装 Ollama"></a>安装 Ollama</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -fsSL https://ollama.com/install.sh | sh</span><br></pre></td></tr></table></figure>
+
+<p>拉取 bge-m3 模型：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ollama pull bge-m3</span><br></pre></td></tr></table></figure>
+
+<p>验证模型：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl http://localhost:11434/api/tags</span><br></pre></td></tr></table></figure>
+
+<p>返回结果确认模型已就绪：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;models&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;bge-m3:latest&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;details&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;family&quot;</span><span class="punctuation">:</span> <span class="string">&quot;bert&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;parameter_size&quot;</span><span class="punctuation">:</span> <span class="string">&quot;566.70M&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;context_length&quot;</span><span class="punctuation">:</span> <span class="number">8192</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;embedding_length&quot;</span><span class="punctuation">:</span> <span class="number">1024</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;capabilities&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;embedding&quot;</span><span class="punctuation">]</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="问题：RAGFlow-无法连接-Ollama"><a href="#问题：RAGFlow-无法连接-Ollama" class="headerlink" title="问题：RAGFlow 无法连接 Ollama"></a>问题：RAGFlow 无法连接 Ollama</h2><p>在 RAGFlow 中配置 Ollama embedding 模型后，报错：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Fail to bind embedding model: Failed to connect to Ollama.</span><br><span class="line">Please check that Ollama is downloaded, running and accessible.</span><br></pre></td></tr></table></figure>
+
+<h2 id="排查过程"><a href="#排查过程" class="headerlink" title="排查过程"></a>排查过程</h2><h3 id="第一步：确认-Ollama-运行状态"><a href="#第一步：确认-Ollama-运行状态" class="headerlink" title="第一步：确认 Ollama 运行状态"></a>第一步：确认 Ollama 运行状态</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps aux | grep ollama</span><br></pre></td></tr></table></figure>
+
+<p>Ollama 进程正常运行。</p>
+<h3 id="第二步：从容器内测试连通性"><a href="#第二步：从容器内测试连通性" class="headerlink" title="第二步：从容器内测试连通性"></a>第二步：从容器内测试连通性</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> docker-ragflow-cpu-1 curl -s http://172.18.0.1:11434/api/tags</span><br></pre></td></tr></table></figure>
+
+<p>连接失败，exit code 7（无法连接）。</p>
+<h3 id="第三步：检查监听地址"><a href="#第三步：检查监听地址" class="headerlink" title="第三步：检查监听地址"></a>第三步：检查监听地址</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ss -tlnp | grep 11434</span><br></pre></td></tr></table></figure>
+
+<p>发现问题：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LISTEN  127.0.0.1:11434  0.0.0.0:*</span><br></pre></td></tr></table></figure>
+
+<p><strong>Ollama 默认只监听 <code>127.0.0.1</code>，Docker 容器无法访问。</strong></p>
+<h3 id="第四步：修改监听地址"><a href="#第四步：修改监听地址" class="headerlink" title="第四步：修改监听地址"></a>第四步：修改监听地址</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pkill -f <span class="string">&quot;ollama serve&quot;</span></span><br><span class="line">OLLAMA_HOST=0.0.0.0:11434 /usr/local/bin/ollama serve &amp;</span><br></pre></td></tr></table></figure>
+
+<p>再次检查：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ss -tlnp | grep 11434</span><br><span class="line"><span class="comment"># 输出：LISTEN  *:11434  *:*</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="第五步：再次测试容器连通性"><a href="#第五步：再次测试容器连通性" class="headerlink" title="第五步：再次测试容器连通性"></a>第五步：再次测试容器连通性</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> docker-ragflow-cpu-1 curl -s http://172.18.0.1:11434/api/tags</span><br></pre></td></tr></table></figure>
+
+<p>连接成功，但返回空模型列表：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span><span class="attr">&quot;models&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="第六步：检查模型路径"><a href="#第六步：检查模型路径" class="headerlink" title="第六步：检查模型路径"></a>第六步：检查模型路径</h3><p>查看 Ollama 日志：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">OLLAMA_MODELS:/home/a/.ollama/models</span><br><span class="line">total blobs: 0</span><br></pre></td></tr></table></figure>
+
+<p><strong>Ollama 以 root 用户运行，默认查找 <code>/home/a/.ollama/models</code>，但模型实际存储在 <code>/usr/share/ollama/.ollama/models/</code>。</strong></p>
+<h3 id="第七步：权限问题"><a href="#第七步：权限问题" class="headerlink" title="第七步：权限问题"></a>第七步：权限问题</h3><p>尝试指定正确的模型路径：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">OLLAMA_MODELS=/usr/share/ollama/.ollama/models /usr/local/bin/ollama serve</span><br></pre></td></tr></table></figure>
+
+<p>报错：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Error: mkdir /usr/share/ollama/.ollama: permission denied</span><br></pre></td></tr></table></figure>
+
+<p><strong>目录权限为 <code>750</code>，仅 <code>ollama</code> 用户可访问。</strong></p>
+<h2 id="最终解决方案"><a href="#最终解决方案" class="headerlink" title="最终解决方案"></a>最终解决方案</h2><p>以 <code>ollama</code> 用户身份启动，并设置正确的环境变量：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> -u ollama \</span><br><span class="line">  OLLAMA_HOST=0.0.0.0:11434 \</span><br><span class="line">  OLLAMA_MODELS=/usr/share/ollama/.ollama/models \</span><br><span class="line">  /usr/local/bin/ollama serve &amp;</span><br></pre></td></tr></table></figure>
+
+<p>验证：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">curl http://localhost:11434/api/tags</span><br><span class="line"><span class="comment"># 返回 bge-m3 模型</span></span><br><span class="line"></span><br><span class="line">docker <span class="built_in">exec</span> docker-ragflow-cpu-1 curl -s http://172.18.0.1:11434/api/tags</span><br><span class="line"><span class="comment"># 容器也能正常访问</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="固化配置"><a href="#固化配置" class="headerlink" title="固化配置"></a>固化配置</h2><p>创建 systemd 服务，确保重启后自动生效：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">tee</span> /etc/systemd/system/ollama.service &lt;&lt; <span class="string">&#x27;EOF&#x27;</span></span><br><span class="line">[Unit]</span><br><span class="line">Description=Ollama Service</span><br><span class="line">After=network-online.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">ExecStart=/usr/local/bin/ollama serve</span><br><span class="line">User=ollama</span><br><span class="line">Group=ollama</span><br><span class="line">Restart=always</span><br><span class="line">RestartSec=3</span><br><span class="line">Environment=<span class="string">&quot;OLLAMA_HOST=0.0.0.0:11434&quot;</span></span><br><span class="line">Environment=<span class="string">&quot;OLLAMA_MODELS=/usr/share/ollama/.ollama/models&quot;</span></span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=default.target</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line"><span class="built_in">sudo</span> systemctl daemon-reload</span><br><span class="line"><span class="built_in">sudo</span> systemctl <span class="built_in">enable</span> ollama</span><br><span class="line"><span class="built_in">sudo</span> systemctl start ollama</span><br></pre></td></tr></table></figure>
+
+<h2 id="RAGFlow-配置"><a href="#RAGFlow-配置" class="headerlink" title="RAGFlow 配置"></a>RAGFlow 配置</h2><p>在 RAGFlow Web 界面中：</p>
+<ol>
+<li>进入 <strong>模型管理</strong>（Models）</li>
+<li>添加 Embedding 模型，配置如下：</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Factory</td>
+<td><code>Ollama</code></td>
+</tr>
+<tr>
+<td>Base URL</td>
+<td><code>http://172.18.0.1:11434</code></td>
+</tr>
+<tr>
+<td>模型名称</td>
+<td><code>bge-m3</code></td>
+</tr>
+<tr>
+<td>API Key</td>
+<td>留空</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>注意</strong>：<code>172.18.0.1</code> 是 Docker 网络 <code>docker_ragflow</code> 的网关地址，容器通过这个 IP 访问宿主机服务。可通过以下命令查看：</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker network inspect docker_ragflow --format <span class="string">&#x27;&#123;&#123;range .IPAM.Config&#125;&#125;&#123;&#123;.Gateway&#125;&#125;&#123;&#123;end&#125;&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="踩坑总结"><a href="#踩坑总结" class="headerlink" title="踩坑总结"></a>踩坑总结</h2><table>
+<thead>
+<tr>
+<th>问题</th>
+<th>原因</th>
+<th>解决</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>容器无法连接 Ollama</td>
+<td>Ollama 默认监听 <code>127.0.0.1</code></td>
+<td>设置 <code>OLLAMA_HOST=0.0.0.0:11434</code></td>
+</tr>
+<tr>
+<td>模型列表为空</td>
+<td>模型路径不对</td>
+<td>设置 <code>OLLAMA_MODELS=/usr/share/ollama/.ollama/models</code></td>
+</tr>
+<tr>
+<td>permission denied</td>
+<td>目录权限限制</td>
+<td>以 <code>ollama</code> 用户启动服务</td>
+</tr>
+</tbody></table>
+<p>三个问题缺一不可，必须同时解决才能让 Docker 容器中的 RAGFlow 正常访问 Ollama。</p>
+<h2 id="内存占用参考"><a href="#内存占用参考" class="headerlink" title="内存占用参考"></a>内存占用参考</h2><table>
+<thead>
+<tr>
+<th>方案</th>
+<th>模型</th>
+<th>内存占用</th>
+<th>中文效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Ollama</td>
+<td>bge-m3</td>
+<td>~2-3GB</td>
+<td>⭐⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td>Ollama</td>
+<td>nomic-embed-text</td>
+<td>~1GB</td>
+<td>⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td>Ollama</td>
+<td>all-minilm</td>
+<td>~200MB</td>
+<td>⭐⭐</td>
+</tr>
+</tbody></table>
+<p>16GB 内存服务器推荐使用 bge-m3，中文效果最好且内存充足。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/RAGFlow/" rel="tag"># RAGFlow</a>
+              <a href="/tags/Ollama/" rel="tag"># Ollama</a>
+              <a href="/tags/bge-m3/" rel="tag"># bge-m3</a>
+              <a href="/tags/Docker/" rel="tag"># Docker</a>
+              <a href="/tags/embedding/" rel="tag"># embedding</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/08/20/20180820_%E9%A6%99%E6%B8%AF%E5%AE%98%E7%BD%91%E6%95%99%E8%82%B2%E4%BC%98%E6%83%A0%E8%B4%AD%E4%B9%B0MBP/" rel="prev" title="香港苹果官网教育优惠购买MacBookPro">
+      <i class="fa fa-chevron-left"></i> 香港苹果官网教育优惠购买MacBookPro
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-Ollama"><span class="nav-number">2.</span> <span class="nav-text">安装 Ollama</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%EF%BC%9ARAGFlow-%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5-Ollama"><span class="nav-number">3.</span> <span class="nav-text">问题：RAGFlow 无法连接 Ollama</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%92%E6%9F%A5%E8%BF%87%E7%A8%8B"><span class="nav-number">4.</span> <span class="nav-text">排查过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E7%A1%AE%E8%AE%A4-Ollama-%E8%BF%90%E8%A1%8C%E7%8A%B6%E6%80%81"><span class="nav-number">4.1.</span> <span class="nav-text">第一步：确认 Ollama 运行状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E4%BB%8E%E5%AE%B9%E5%99%A8%E5%86%85%E6%B5%8B%E8%AF%95%E8%BF%9E%E9%80%9A%E6%80%A7"><span class="nav-number">4.2.</span> <span class="nav-text">第二步：从容器内测试连通性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E6%A3%80%E6%9F%A5%E7%9B%91%E5%90%AC%E5%9C%B0%E5%9D%80"><span class="nav-number">4.3.</span> <span class="nav-text">第三步：检查监听地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5%EF%BC%9A%E4%BF%AE%E6%94%B9%E7%9B%91%E5%90%AC%E5%9C%B0%E5%9D%80"><span class="nav-number">4.4.</span> <span class="nav-text">第四步：修改监听地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%94%E6%AD%A5%EF%BC%9A%E5%86%8D%E6%AC%A1%E6%B5%8B%E8%AF%95%E5%AE%B9%E5%99%A8%E8%BF%9E%E9%80%9A%E6%80%A7"><span class="nav-number">4.5.</span> <span class="nav-text">第五步：再次测试容器连通性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%85%AD%E6%AD%A5%EF%BC%9A%E6%A3%80%E6%9F%A5%E6%A8%A1%E5%9E%8B%E8%B7%AF%E5%BE%84"><span class="nav-number">4.6.</span> <span class="nav-text">第六步：检查模型路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%83%E6%AD%A5%EF%BC%9A%E6%9D%83%E9%99%90%E9%97%AE%E9%A2%98"><span class="nav-number">4.7.</span> <span class="nav-text">第七步：权限问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E7%BB%88%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">5.</span> <span class="nav-text">最终解决方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BA%E5%8C%96%E9%85%8D%E7%BD%AE"><span class="nav-number">6.</span> <span class="nav-text">固化配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RAGFlow-%E9%85%8D%E7%BD%AE"><span class="nav-number">7.</span> <span class="nav-text">RAGFlow 配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B8%A9%E5%9D%91%E6%80%BB%E7%BB%93"><span class="nav-number">8.</span> <span class="nav-text">踩坑总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E5%AD%98%E5%8D%A0%E7%94%A8%E5%8F%82%E8%80%83"><span class="nav-number">9.</span> <span class="nav-text">内存占用参考</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ningbo Yang</p>
+  <div class="site-description" itemprop="description">A coder who want to be a programmer.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">66</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ningbo6" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ningbo6" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:365220121@qq.com" title="E-Mail → mailto:365220121@qq.com" rel="noopener" target="_blank"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ningbo Yang</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
