@@ -92,7 +92,7 @@
   </url>
   
   <url>
-    <loc>https://ningbo6.github.io/2018/01/10/%E5%8E%9F-python%E8%BF%9E%E6%8E%A5gazebo-openAI%E7%9A%84gym-erlerobot%E7%9A%84gym-gazebo-google%E7%9A%84tensorflow/</loc>
+    <loc>https://ningbo6.github.io/2017/12/08/%E5%8E%9F-sublime%E7%9A%84setting-user/</loc>
     
     <lastmod>2026-01-26</lastmod>
     
@@ -110,34 +110,7 @@
   </url>
   
   <url>
-    <loc>https://ningbo6.github.io/2017/12/08/%E5%8E%9F-sublime%E7%9A%84setting-user/</loc>
-    
-    <lastmod>2026-01-26</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://ningbo6.github.io/2018/01/10/%E5%8E%9F-%E5%9C%A8sublime-text3%E5%92%8Cpycharm%E6%97%A0%E6%B3%95import-rospy%E7%AD%89ros-Python%E5%BA%93/</loc>
-    
-    <lastmod>2026-01-26</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://ningbo6.github.io/2018/02/02/%E5%8E%9F-%E5%AE%89%E8%A3%85%E5%9B%BA%E6%80%81%E7%A1%AC%E7%9B%98%E5%90%8EWindows%E5%8F%8AUbuntu%E7%9A%84%E5%AE%89%E8%A3%85/</loc>
-    
-    <lastmod>2026-01-26</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://ningbo6.github.io/2017/12/21/%E5%8E%9F-%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%9A%84%E6%9C%BA%E8%BD%BDPC%E7%9A%84rviz%E9%97%AA%E9%80%80%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</loc>
+    <loc>https://ningbo6.github.io/2018/01/10/%E5%8E%9F-python%E8%BF%9E%E6%8E%A5gazebo-openAI%E7%9A%84gym-erlerobot%E7%9A%84gym-gazebo-google%E7%9A%84tensorflow/</loc>
     
     <lastmod>2026-01-26</lastmod>
     
@@ -155,7 +128,25 @@
   </url>
   
   <url>
-    <loc>https://ningbo6.github.io/2017/10/09/%E5%8E%9F-%E7%A7%BB%E5%8A%A8%E6%9C%BA%E5%99%A8%E4%BA%BA%E4%B8%ADSW2URDF/</loc>
+    <loc>https://ningbo6.github.io/2018/01/10/%E5%8E%9F-%E5%9C%A8sublime-text3%E5%92%8Cpycharm%E6%97%A0%E6%B3%95import-rospy%E7%AD%89ros-Python%E5%BA%93/</loc>
+    
+    <lastmod>2026-01-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://ningbo6.github.io/2017/12/21/%E5%8E%9F-%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%9A%84%E6%9C%BA%E8%BD%BDPC%E7%9A%84rviz%E9%97%AA%E9%80%80%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</loc>
+    
+    <lastmod>2026-01-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://ningbo6.github.io/2018/02/02/%E5%8E%9F-%E5%AE%89%E8%A3%85%E5%9B%BA%E6%80%81%E7%A1%AC%E7%9B%98%E5%90%8EWindows%E5%8F%8AUbuntu%E7%9A%84%E5%AE%89%E8%A3%85/</loc>
     
     <lastmod>2026-01-26</lastmod>
     
@@ -165,6 +156,15 @@
   
   <url>
     <loc>https://ningbo6.github.io/2017/12/22/%E5%8E%9F-%E7%AC%94%E8%AE%B0%E6%9C%AC-GT-750M-Ubuntu14-04%E5%AE%89%E8%A3%85-CUDA8-0-cuDDN5-1-Tensorflow/</loc>
+    
+    <lastmod>2026-01-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://ningbo6.github.io/2017/10/09/%E5%8E%9F-%E7%A7%BB%E5%8A%A8%E6%9C%BA%E5%99%A8%E4%BA%BA%E4%B8%ADSW2URDF/</loc>
     
     <lastmod>2026-01-26</lastmod>
     
@@ -191,15 +191,6 @@
   </url>
   
   <url>
-    <loc>https://ningbo6.github.io/2018/05/30/20180530_ROS%E7%94%A8python%E8%AF%BB%E5%86%99%E4%B8%B2%E5%8F%A3%E6%95%B0%E6%8D%AE/</loc>
-    
-    <lastmod>2026-01-26</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://ningbo6.github.io/2018/01/20/20180119_markdown%E5%9B%BE%E7%89%87%E9%93%BE%E6%8E%A5/</loc>
     
     <lastmod>2026-01-26</lastmod>
@@ -209,25 +200,25 @@
   </url>
   
   <url>
-    <loc>https://ningbo6.github.io/2018/03/28/20180328_NUC%E7%9A%84Ubuntu%E6%97%A0%E6%B3%95%E4%B8%8A%E7%BD%91%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</loc>
-    
-    <lastmod>2026-01-26</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://ningbo6.github.io/2018/01/20/20180202_hexo%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%E5%92%8C%E4%BC%98%E5%8C%96/</loc>
-    
-    <lastmod>2026-01-26</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://ningbo6.github.io/2018/01/18/20180120_%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%E6%95%99%E5%AD%A6/</loc>
+    
+    <lastmod>2026-01-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://ningbo6.github.io/2018/01/22/20180122_%E7%AE%80%E5%8D%95%E4%BA%86%E8%A7%A3%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF%E4%BB%A5%E5%8F%8A%E6%AF%94%E7%89%B9%E5%B8%81/</loc>
+    
+    <lastmod>2026-01-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://ningbo6.github.io/2018/05/30/20180530_ROS%E7%94%A8python%E8%AF%BB%E5%86%99%E4%B8%B2%E5%8F%A3%E6%95%B0%E6%8D%AE/</loc>
     
     <lastmod>2026-01-26</lastmod>
     
@@ -254,7 +245,7 @@
   </url>
   
   <url>
-    <loc>https://ningbo6.github.io/2017/12/28/%E5%8E%9F-TensorFlow-in-nvidia-docker-failed-call-to-cuInit-CUDA-ERROR-UNKNOWN/</loc>
+    <loc>https://ningbo6.github.io/2018/01/20/20180202_hexo%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%E5%92%8C%E4%BC%98%E5%8C%96/</loc>
     
     <lastmod>2026-01-26</lastmod>
     
@@ -263,7 +254,7 @@
   </url>
   
   <url>
-    <loc>https://ningbo6.github.io/2018/01/22/20180122_%E7%AE%80%E5%8D%95%E4%BA%86%E8%A7%A3%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF%E4%BB%A5%E5%8F%8A%E6%AF%94%E7%89%B9%E5%B8%81/</loc>
+    <loc>https://ningbo6.github.io/2017/01/01/example/</loc>
     
     <lastmod>2026-01-26</lastmod>
     
@@ -281,7 +272,16 @@
   </url>
   
   <url>
-    <loc>https://ningbo6.github.io/2017/01/01/example/</loc>
+    <loc>https://ningbo6.github.io/2017/12/28/%E5%8E%9F-TensorFlow-in-nvidia-docker-failed-call-to-cuInit-CUDA-ERROR-UNKNOWN/</loc>
+    
+    <lastmod>2026-01-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://ningbo6.github.io/2018/03/28/20180328_NUC%E7%9A%84Ubuntu%E6%97%A0%E6%B3%95%E4%B8%8A%E7%BD%91%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</loc>
     
     <lastmod>2026-01-26</lastmod>
     
@@ -327,6 +327,55 @@
   </url>
   
   <url>
+    <loc>https://ningbo6.github.io/tags/markdown/</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://ningbo6.github.io/tags/images/</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://ningbo6.github.io/tags/links%EF%BC%8Cgithub/</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://ningbo6.github.io/tags/%E5%85%8D%E8%B4%B9%E7%BF%BB%E5%A2%99/</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://ningbo6.github.io/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://ningbo6.github.io/tags/%E6%AF%94%E7%89%B9%E5%B8%81/</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://ningbo6.github.io/tags/%E6%8C%96%E7%9F%BF/</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://ningbo6.github.io/tags/ROS/</loc>
     <lastmod>2026-07-11</lastmod>
     <changefreq>weekly</changefreq>
@@ -349,76 +398,6 @@
   
   <url>
     <loc>https://ningbo6.github.io/tags/struct/</loc>
-    <lastmod>2026-07-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://ningbo6.github.io/tags/markdown/</loc>
-    <lastmod>2026-07-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://ningbo6.github.io/tags/images/</loc>
-    <lastmod>2026-07-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://ningbo6.github.io/tags/links%EF%BC%8Cgithub/</loc>
-    <lastmod>2026-07-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://ningbo6.github.io/tags/NUC/</loc>
-    <lastmod>2026-07-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://ningbo6.github.io/tags/Ubuntu/</loc>
-    <lastmod>2026-07-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://ningbo6.github.io/tags/Network/</loc>
-    <lastmod>2026-07-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://ningbo6.github.io/tags/Hexo/</loc>
-    <lastmod>2026-07-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://ningbo6.github.io/tags/Blogs/</loc>
-    <lastmod>2026-07-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://ningbo6.github.io/tags/Github/</loc>
-    <lastmod>2026-07-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://ningbo6.github.io/tags/%E5%85%8D%E8%B4%B9%E7%BF%BB%E5%A2%99/</loc>
     <lastmod>2026-07-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -467,48 +446,6 @@
   </url>
   
   <url>
-    <loc>https://ningbo6.github.io/tags/TensorFlow/</loc>
-    <lastmod>2026-07-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://ningbo6.github.io/tags/nvidia/</loc>
-    <lastmod>2026-07-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://ningbo6.github.io/tags/CUDA-ERROR-UNKNOWN/</loc>
-    <lastmod>2026-07-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://ningbo6.github.io/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/</loc>
-    <lastmod>2026-07-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://ningbo6.github.io/tags/%E6%AF%94%E7%89%B9%E5%B8%81/</loc>
-    <lastmod>2026-07-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://ningbo6.github.io/tags/%E6%8C%96%E7%9F%BF/</loc>
-    <lastmod>2026-07-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://ningbo6.github.io/tags/RAGFlow/</loc>
     <lastmod>2026-07-11</lastmod>
     <changefreq>weekly</changefreq>
@@ -544,6 +481,27 @@
   </url>
   
   <url>
+    <loc>https://ningbo6.github.io/tags/Hexo/</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://ningbo6.github.io/tags/Blogs/</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://ningbo6.github.io/tags/Github/</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://ningbo6.github.io/tags/ros/</loc>
     <lastmod>2026-07-11</lastmod>
     <changefreq>weekly</changefreq>
@@ -559,6 +517,76 @@
   
   <url>
     <loc>https://ningbo6.github.io/tags/links/</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://ningbo6.github.io/tags/ubuntu/</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://ningbo6.github.io/tags/sublime-text3/</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://ningbo6.github.io/tags/setting/</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://ningbo6.github.io/tags/launchpad/</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://ningbo6.github.io/tags/%E5%9B%BE%E6%A0%87%E5%BC%82%E5%B8%B8/</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://ningbo6.github.io/tags/tools/</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://ningbo6.github.io/tags/software/</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://ningbo6.github.io/tags/TensorFlow/</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://ningbo6.github.io/tags/nvidia/</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://ningbo6.github.io/tags/CUDA-ERROR-UNKNOWN/</loc>
     <lastmod>2026-07-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -586,70 +614,42 @@
   </url>
   
   <url>
-    <loc>https://ningbo6.github.io/tags/ubuntu/</loc>
+    <loc>https://ningbo6.github.io/tags/NUC/</loc>
     <lastmod>2026-07-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://ningbo6.github.io/tags/tools/</loc>
+    <loc>https://ningbo6.github.io/tags/Ubuntu/</loc>
     <lastmod>2026-07-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://ningbo6.github.io/tags/software/</loc>
+    <loc>https://ningbo6.github.io/tags/Network/</loc>
     <lastmod>2026-07-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://ningbo6.github.io/tags/sublime-text3/</loc>
+    <loc>https://ningbo6.github.io/tags/%E6%A8%AA%E5%90%91%E7%A7%BB%E5%8A%A8/</loc>
     <lastmod>2026-07-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://ningbo6.github.io/tags/setting/</loc>
+    <loc>https://ningbo6.github.io/tags/%E6%9C%BA%E5%99%A8%E4%BA%BA/</loc>
     <lastmod>2026-07-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://ningbo6.github.io/tags/Windows-10/</loc>
-    <lastmod>2026-07-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://ningbo6.github.io/tags/%E5%8D%87%E7%BA%A7/</loc>
-    <lastmod>2026-07-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://ningbo6.github.io/tags/%E5%9B%BA%E6%80%81%E7%A1%AC%E7%9B%98/</loc>
-    <lastmod>2026-07-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://ningbo6.github.io/tags/launchpad/</loc>
-    <lastmod>2026-07-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://ningbo6.github.io/tags/%E5%9B%BE%E6%A0%87%E5%BC%82%E5%B8%B8/</loc>
+    <loc>https://ningbo6.github.io/tags/youbot/</loc>
     <lastmod>2026-07-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -684,28 +684,21 @@
   </url>
   
   <url>
-    <loc>https://ningbo6.github.io/tags/%E6%A8%AA%E5%90%91%E7%A7%BB%E5%8A%A8/</loc>
+    <loc>https://ningbo6.github.io/tags/Windows-10/</loc>
     <lastmod>2026-07-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://ningbo6.github.io/tags/%E6%9C%BA%E5%99%A8%E4%BA%BA/</loc>
+    <loc>https://ningbo6.github.io/tags/%E5%8D%87%E7%BA%A7/</loc>
     <lastmod>2026-07-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://ningbo6.github.io/tags/youbot/</loc>
-    <lastmod>2026-07-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://ningbo6.github.io/tags/sw2urdf/</loc>
+    <loc>https://ningbo6.github.io/tags/%E5%9B%BA%E6%80%81%E7%A1%AC%E7%9B%98/</loc>
     <lastmod>2026-07-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -747,6 +740,13 @@
   </url>
   
   <url>
+    <loc>https://ningbo6.github.io/tags/sw2urdf/</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://ningbo6.github.io/tags/navigation/</loc>
     <lastmod>2026-07-11</lastmod>
     <changefreq>weekly</changefreq>
@@ -770,14 +770,14 @@
   </url>
   
   <url>
-    <loc>https://ningbo6.github.io/categories/ROS/</loc>
+    <loc>https://ningbo6.github.io/categories/IT/</loc>
     <lastmod>2026-07-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://ningbo6.github.io/categories/IT/</loc>
+    <loc>https://ningbo6.github.io/categories/ROS/</loc>
     <lastmod>2026-07-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -791,7 +791,7 @@
   </url>
   
   <url>
-    <loc>https://ningbo6.github.io/categories/reinforcement-learning/</loc>
+    <loc>https://ningbo6.github.io/categories/examples/</loc>
     <lastmod>2026-07-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -805,7 +805,7 @@
   </url>
   
   <url>
-    <loc>https://ningbo6.github.io/categories/examples/</loc>
+    <loc>https://ningbo6.github.io/categories/reinforcement-learning/</loc>
     <lastmod>2026-07-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
