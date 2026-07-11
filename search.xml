@@ -31,43 +31,6 @@ pip install shadowsocks时出现locale.Error: unsupported locale setting
       </tags>
   </entry>
   <entry>
-    <title>在markdown中引入图片的解决方案</title>
-    <url>/2018/01/20/20180119_markdown%E5%9B%BE%E7%89%87%E9%93%BE%E6%8E%A5/</url>
-    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io 未经允许请勿用于商业用途）#背景
-
-需要GitHub账号
-需要基本的git命令知识
-基本的计算机技能
-
-
-#方法说明：
-首先在github中新建一个repo，然后git clone下来，然后把你想要的图片放到这个文件夹中然后上传，然后到GitHub中找到这个图片查看地址，在markdown中引用就好了。
-
-#具体步骤
-
-新建一个repo
-
-打开终端,并到一个你的目录下面 git clone https://github.com/****/markdownImages.git ***为你的用户名
-
-把你要用的图片放进去,图片名要用英文
- git add 图片名 git commit -m “图片名” git push origin master
-
-打开浏览器进入你的github,找到相应的图片打开,github能预览出图片就OK,然后右键图片复制图片的地址
-
-打开你的markdown编辑器,享受吧
-
-
-]]></content>
-      <categories>
-        <category>IT</category>
-      </categories>
-      <tags>
-        <tag>markdown</tag>
-        <tag>images</tag>
-        <tag>links，github</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>科学上网教学</title>
     <url>/2018/01/18/20180120_%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%E6%95%99%E5%AD%A6/</url>
     <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io 未经允许请勿用于商业用途）1.打开ishadowishadow的网址为(https://global.ishadowx.net/)
@@ -90,137 +53,6 @@ pip install shadowsocks时出现locale.Error: unsupported locale setting
       <tags>
         <tag>shadowsocks</tag>
         <tag>免费翻墙</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>NUC的Ubuntu无法上网的解决方案</title>
-    <url>/2018/03/28/20180328_NUC%E7%9A%84Ubuntu%E6%97%A0%E6%B3%95%E4%B8%8A%E7%BD%91%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
-    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）
-查询网卡型号lspci
-
-Ethernet controller是有线网卡Network controller是无线网卡
-#有线网卡具体步骤参考这个回答
-
-下载e1000e  下载地址
-把e1000e放到某个文件夹下，例如&#x2F;home&#x2F;hit&#x2F;
-解压缩 cd e1000e-&lt;x.x.x&gt;&#x2F;src&#x2F; tar zxf e1000e-&lt;x.x.x&gt;.tar.gz
-cd 到e1000e下的src目录下，进行编译安装 sudo make install
-模块装载 modprobe e1000e insmod e1000e
-测试是否成功
-
-无线网卡具体步骤参考这个回答
-1.下载http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.8.14/linux-headers-4.8.14-040814-generic_4.8.14-040814.201612101431_amd64.debhttp://kernel.ubuntu.com/~kernel-ppa/mainline/v4.8.14/linux-image-4.8.14-040814-generic_4.8.14-040814.201612101431_amd64.debhttp://kernel.ubuntu.com/~kernel-ppa/mainline/v4.8.14/linux-headers-4.8.14-040814_4.8.14-040814.201612101431_all.deb2. 安装   sudo dpkg -i *.deb3. 重启 好了4. 没好的话参考这个回答可以通过链接https://wireless.wiki.kernel.org/en/users/Drivers/iwlwifi下载相应的驱动。解压缩之后把文件
-]]></content>
-      <categories>
-        <category>tools</category>
-      </categories>
-      <tags>
-        <tag>NUC</tag>
-        <tag>Ubuntu</tag>
-        <tag>Network</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>hexo安装使用和优化</title>
-    <url>/2018/01/20/20180202_hexo%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%E5%92%8C%E4%BC%98%E5%8C%96/</url>
-    <content><![CDATA[本文主要使用GitHub pages + hexo 来搭建个人博客，作日常学习使用。在这里只提主要步骤，不提具体过程，需要的话自行谷歌。
-
-（转载请注明作者和出处：https://ningbo6.github.io）安装与配置
-安装1.git2.Node.js进入官网[官网链接](https://nodejs.org/en/)
-下载安装包，直接点击安装就可以了 
-
-3.hexo这一步在命令行下做
-npm install -g hexo-cli
-cd *your direction*
-hexo init
-npm install
-hexo server
-- Hexo
-- Blogs
-- Github
-
-打开浏览器输入 http://0.0.0.0:4000/ 出现hexo说明成功接下来是修改主题，你也可以去下别的主题很多，自行谷歌
-cd themes
-git clone https://github.com/litten/hexo-theme-next.git
-
-然后打开Hexo文件夹下面的_config.yml文件，修改里面的theme为next重新打开server，浏览器输入http://0.0.0.0:4000/查看主题。
-GitHub配置1.仓库创建一个仓库名称为ningbo6.github.io这里要把ningbo6换成你自己的GitHub用户名
-2.配置SSH配置hexo1.配置hexo目录下的_config.yml文件# Deployment
-## Docs: http://hexo.io/docs/deployment.html
-deploy:
-  type: git
-  repository: https://github.com:ningbo6/ningbo6.github.io.git
-  branch: master
-name: Ningbo Yang
-emai: 365220121@qq.com
-
-2.测试cd到hexo的根目录下
-hexo clean
-hexo g
-hexo d
-
-
-优化
-1.git安装npm install hexo-deployer-git --save
-
-2.迁移支持很多种迁移方式，我采用的是RSS的，其他可以看官网hexo迁移官网
-npm install hexo-migrator-rss --save
-hexo migrate rss &lt;source&gt;
-
-3.图片插入npm install https://github.com/CodeFalling/hexo-asset-image --save
-
-然后把图片放入对应文章的配套文件夹下，比如1.png
-4.Google收录npm install hexo-generator-sitemap --save
-[Google站长收录网站](https://www.google.com/webmasters/tools/home?hl=zh-CN)
-
-5.文章访问量统计使用LeanCloud，评论也可以使用它，省心。参考博客
-6.local research本地搜索很好用。在主题配置文件中修改local research就好
-7.RSS使用 Hexo 生成的 Feed 链接。 你可以需要先安装 hexo-generator-feed 插件。
-8.阅读时长插件npm install  hexo-wordcount --save
-
-
-next官网 http://theme-next.iissnan.com/
-]]></content>
-      <categories>
-        <category>IT</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>Blogs</tag>
-        <tag>Github</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>香港苹果官网教育优惠购买MacBookPro</title>
-    <url>/2018/08/20/20180820_%E9%A6%99%E6%B8%AF%E5%AE%98%E7%BD%91%E6%95%99%E8%82%B2%E4%BC%98%E6%83%A0%E8%B4%AD%E4%B9%B0MBP/</url>
-    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）
-概要记录一下：通过在香港官网下单，使用我的平安白金卡，无货币转换费，然后去香港苹果直营店取电脑的过程
-优点
-不需要香港的电话号
-不需要港币的信用卡
-可以预约取货，时间比较灵活
-享受教育优惠，我订了两台，并没有让我出示学生证，貌似是抽查，被要求验证学生证的时候就取消订单，换一个账号再下单。
-
-准备阶段
-一张visa或者MasterCard及其他香港苹果官网支持的信用卡。
-港澳通行证
-
-过程
-在官网上进入大大专院校师生选购的网站，进行下单
-下单后选择在苹果直营店取货，选取一个你想去的店
-付款方式选用一张官网支持的卡，我用的平安 的白金visa卡，这张卡的优势是不需要货币转换费，其他非港币的信用卡会产生货币转换费
-个人信息填入的时候，只好邮箱姓名填对了就可以了，电话不对也没关系
-去取货的时候要注意携带证件能证明自己身份，不需要学生证
-
-]]></content>
-      <categories>
-        <category>Life</category>
-      </categories>
-      <tags>
-        <tag>Apple</tag>
-        <tag>MacBookPro</tag>
-        <tag>香港</tag>
-        <tag>教育优惠</tag>
       </tags>
   </entry>
   <entry>
@@ -296,6 +128,76 @@ SHA-256计算原始信息得到256位的二进制哈希值
       </tags>
   </entry>
   <entry>
+    <title>hexo安装使用和优化</title>
+    <url>/2018/01/20/20180202_hexo%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%E5%92%8C%E4%BC%98%E5%8C%96/</url>
+    <content><![CDATA[本文主要使用GitHub pages + hexo 来搭建个人博客，作日常学习使用。在这里只提主要步骤，不提具体过程，需要的话自行谷歌。
+
+（转载请注明作者和出处：https://ningbo6.github.io）安装与配置
+安装1.git2.Node.js进入官网[官网链接](https://nodejs.org/en/)
+下载安装包，直接点击安装就可以了 
+
+3.hexo这一步在命令行下做
+npm install -g hexo-cli
+cd *your direction*
+hexo init
+npm install
+hexo server
+- Hexo
+- Blogs
+- Github
+
+打开浏览器输入 http://0.0.0.0:4000/ 出现hexo说明成功接下来是修改主题，你也可以去下别的主题很多，自行谷歌
+cd themes
+git clone https://github.com/litten/hexo-theme-next.git
+
+然后打开Hexo文件夹下面的_config.yml文件，修改里面的theme为next重新打开server，浏览器输入http://0.0.0.0:4000/查看主题。
+GitHub配置1.仓库创建一个仓库名称为ningbo6.github.io这里要把ningbo6换成你自己的GitHub用户名
+2.配置SSH配置hexo1.配置hexo目录下的_config.yml文件# Deployment
+## Docs: http://hexo.io/docs/deployment.html
+deploy:
+  type: git
+  repository: https://github.com:ningbo6/ningbo6.github.io.git
+  branch: master
+name: Ningbo Yang
+emai: 365220121@qq.com
+
+2.测试cd到hexo的根目录下
+hexo clean
+hexo g
+hexo d
+
+
+优化
+1.git安装npm install hexo-deployer-git --save
+
+2.迁移支持很多种迁移方式，我采用的是RSS的，其他可以看官网hexo迁移官网
+npm install hexo-migrator-rss --save
+hexo migrate rss &lt;source&gt;
+
+3.图片插入npm install https://github.com/CodeFalling/hexo-asset-image --save
+
+然后把图片放入对应文章的配套文件夹下，比如1.png
+4.Google收录npm install hexo-generator-sitemap --save
+[Google站长收录网站](https://www.google.com/webmasters/tools/home?hl=zh-CN)
+
+5.文章访问量统计使用LeanCloud，评论也可以使用它，省心。参考博客
+6.local research本地搜索很好用。在主题配置文件中修改local research就好
+7.RSS使用 Hexo 生成的 Feed 链接。 你可以需要先安装 hexo-generator-feed 插件。
+8.阅读时长插件npm install  hexo-wordcount --save
+
+
+next官网 http://theme-next.iissnan.com/
+]]></content>
+      <categories>
+        <category>IT</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Blogs</tag>
+        <tag>Github</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>香港苹果官网教育优惠购买MacBookPro</title>
     <url>/2018/05/30/20180901_%E9%87%8D%E8%A3%85Mac%E5%90%8E%E7%9A%84%E6%81%A2%E5%A4%8D%E6%B5%81%E7%A8%8B/</url>
     <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）
@@ -333,51 +235,6 @@ https://github.com/TKkk-iOSer/WeChatPlugin-MacOS
         <tag>MacBookPro</tag>
         <tag>Reinstall</tag>
         <tag>recovery</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ROS用python读写串口数据</title>
-    <url>/2018/05/30/20180530_ROS%E7%94%A8python%E8%AF%BB%E5%86%99%E4%B8%B2%E5%8F%A3%E6%95%B0%E6%8D%AE/</url>
-    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）##程序：
-import serial
-import struct
-
-ser = serial.Serial(&#39;/dev/ttyUSB0&#39;,&#39;115200&#39;)
-#write
-data1 = 1
-data2 = 2
-data3 = 3
-data = struct.pack(&#39;&gt;BHB&#39;, data1, data2, data3)
-ser.write(data)
-#read
-data = &#39;&#39;
-data_temp = ser.read(4)
-data = struct.unpack(&#39;&gt;BHB&#39;, data_temp)
-
-##流程：###首先在Ubuntu下安装pyserial
-   pip install serial
-
-###查看串口名称，并给予权限
-   demsg | grep ttyUSB
-   sudo chmod a+x ttyUSBn(n为你看到的数)
-
-###进行读写实验
-
-在读写使用中用struct中的pack对数据进行转换再发送到串口，才能被STM32正常识别。同时，再读取时进行读取也能读出正常格式的数据。其中B代表无符号的字节占一位，H占两位。
-读取数据时，单片机发送多少位，读取多少位，可以完整的读取数据。
-
-##读与写的内容
-###读读出来的是16位byte类型的数据，先unpack之后，然后处理，前6位分别对应roll pitch yaw，第7、8位对应angular_z，第9到16位读出来是每个轮的转速。奇数位是方向位，偶数位是速度位。
-###写先把255 254 mode v_x v_y a_z flag(方向标志位)按照BBBHHHB的顺序pack，然后再写到串口
-]]></content>
-      <categories>
-        <category>ROS</category>
-      </categories>
-      <tags>
-        <tag>ROS</tag>
-        <tag>python</tag>
-        <tag>serial</tag>
-        <tag>struct</tag>
       </tags>
   </entry>
   <entry>
@@ -543,55 +400,146 @@ all-minilm
       </tags>
   </entry>
   <entry>
-    <title>TensorFlow in nvidia-docker: failed call to cuInit: CUDA_ERROR_UNKNOWN</title>
-    <url>/2017/12/28/%E5%8E%9F-TensorFlow-in-nvidia-docker-failed-call-to-cuInit-CUDA-ERROR-UNKNOWN/</url>
-    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）
-背景：UbuntuTensorFlow
+    <title>ROS用python读写串口数据</title>
+    <url>/2018/05/30/20180530_ROS%E7%94%A8python%E8%AF%BB%E5%86%99%E4%B8%B2%E5%8F%A3%E6%95%B0%E6%8D%AE/</url>
+    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）##程序：
+import serial
+import struct
 
-问题描述：出现错误：E TensorFlow in nvidia-docker: failed call to cuInit: CUDA_ERROR_UNKNOWN然后就用CPU在跑
+ser = serial.Serial(&#39;/dev/ttyUSB0&#39;,&#39;115200&#39;)
+#write
+data1 = 1
+data2 = 2
+data3 = 3
+data = struct.pack(&#39;&gt;BHB&#39;, data1, data2, data3)
+ser.write(data)
+#read
+data = &#39;&#39;
+data_temp = ser.read(4)
+data = struct.unpack(&#39;&gt;BHB&#39;, data_temp)
 
-解决方法：
-sudo update-alternatives --config x86_64-linux-gnu_gl_conf
+##流程：###首先在Ubuntu下安装pyserial
+   pip install serial
 
+###查看串口名称，并给予权限
+   demsg | grep ttyUSB
+   sudo chmod a+x ttyUSBn(n为你看到的数)
 
-选择 &#x2F;usr&#x2F;lib&#x2F;x86_64-linux-gnu&#x2F;mesa&#x2F;ld.so.conf就好了作为一个强迫症，你以为这样就完了吗，不！我要把其他三个删掉这个命令是用管理员的权限打开文件浏览器，然后删除那些不用的三个选项。这三个选项是我之前安装NVIDIA驱动后并卸载的残留
-sudo nautilus 
+###进行读写实验
 
-在&#x2F;usr&#x2F;lib&#x2F;下　ctrl+f 输入nvidia　然后就能找到那些不用的选项删除就OK了。
+在读写使用中用struct中的pack对数据进行转换再发送到串口，才能被STM32正常识别。同时，再读取时进行读取也能读出正常格式的数据。其中B代表无符号的字节占一位，H占两位。
+读取数据时，单片机发送多少位，读取多少位，可以完整的读取数据。
+
+##读与写的内容
+###读读出来的是16位byte类型的数据，先unpack之后，然后处理，前6位分别对应roll pitch yaw，第7、8位对应angular_z，第9到16位读出来是每个轮的转速。奇数位是方向位，偶数位是速度位。
+###写先把255 254 mode v_x v_y a_z flag(方向标志位)按照BBBHHHB的顺序pack，然后再写到串口
 ]]></content>
       <categories>
-        <category>reinforcement learning</category>
+        <category>ROS</category>
       </categories>
       <tags>
-        <tag>TensorFlow</tag>
-        <tag>nvidia</tag>
-        <tag>CUDA_ERROR_UNKNOWN</tag>
+        <tag>ROS</tag>
+        <tag>python</tag>
+        <tag>serial</tag>
+        <tag>struct</tag>
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2017/01/01/example/</url>
-    <content><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick StartCreate a new post$ hexo new &quot;My New Post&quot;
+    <title>香港苹果官网教育优惠购买MacBookPro</title>
+    <url>/2018/08/20/20180820_%E9%A6%99%E6%B8%AF%E5%AE%98%E7%BD%91%E6%95%99%E8%82%B2%E4%BC%98%E6%83%A0%E8%B4%AD%E4%B9%B0MBP/</url>
+    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）
+概要记录一下：通过在香港官网下单，使用我的平安白金卡，无货币转换费，然后去香港苹果直营店取电脑的过程
+优点
+不需要香港的电话号
+不需要港币的信用卡
+可以预约取货，时间比较灵活
+享受教育优惠，我订了两台，并没有让我出示学生证，貌似是抽查，被要求验证学生证的时候就取消订单，换一个账号再下单。
 
-More info: Writing
-Run server$ hexo server
+准备阶段
+一张visa或者MasterCard及其他香港苹果官网支持的信用卡。
+港澳通行证
 
-More info: Server
-Generate static files$ hexo generate
+过程
+在官网上进入大大专院校师生选购的网站，进行下单
+下单后选择在苹果直营店取货，选取一个你想去的店
+付款方式选用一张官网支持的卡，我用的平安 的白金visa卡，这张卡的优势是不需要货币转换费，其他非港币的信用卡会产生货币转换费
+个人信息填入的时候，只好邮箱姓名填对了就可以了，电话不对也没关系
+去取货的时候要注意携带证件能证明自己身份，不需要学生证
 
-More info: Generating
-Deploy to remote sites$ hexo deploy
-
-More info: Deployment
 ]]></content>
       <categories>
-        <category>examples</category>
+        <category>Life</category>
       </categories>
       <tags>
-        <tag>Hexo</tag>
-        <tag>Blogs</tag>
-        <tag>Github</tag>
+        <tag>Apple</tag>
+        <tag>MacBookPro</tag>
+        <tag>香港</tag>
+        <tag>教育优惠</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>NUC的Ubuntu无法上网的解决方案</title>
+    <url>/2018/03/28/20180328_NUC%E7%9A%84Ubuntu%E6%97%A0%E6%B3%95%E4%B8%8A%E7%BD%91%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
+    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）
+查询网卡型号lspci
+
+Ethernet controller是有线网卡Network controller是无线网卡
+#有线网卡具体步骤参考这个回答
+
+下载e1000e  下载地址
+把e1000e放到某个文件夹下，例如&#x2F;home&#x2F;hit&#x2F;
+解压缩 cd e1000e-&lt;x.x.x&gt;&#x2F;src&#x2F; tar zxf e1000e-&lt;x.x.x&gt;.tar.gz
+cd 到e1000e下的src目录下，进行编译安装 sudo make install
+模块装载 modprobe e1000e insmod e1000e
+测试是否成功
+
+无线网卡具体步骤参考这个回答
+1.下载http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.8.14/linux-headers-4.8.14-040814-generic_4.8.14-040814.201612101431_amd64.debhttp://kernel.ubuntu.com/~kernel-ppa/mainline/v4.8.14/linux-image-4.8.14-040814-generic_4.8.14-040814.201612101431_amd64.debhttp://kernel.ubuntu.com/~kernel-ppa/mainline/v4.8.14/linux-headers-4.8.14-040814_4.8.14-040814.201612101431_all.deb2. 安装   sudo dpkg -i *.deb3. 重启 好了4. 没好的话参考这个回答可以通过链接https://wireless.wiki.kernel.org/en/users/Drivers/iwlwifi下载相应的驱动。解压缩之后把文件
+]]></content>
+      <categories>
+        <category>tools</category>
+      </categories>
+      <tags>
+        <tag>NUC</tag>
+        <tag>Ubuntu</tag>
+        <tag>Network</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在markdown中引入图片的解决方案</title>
+    <url>/2018/01/20/20180119_markdown%E5%9B%BE%E7%89%87%E9%93%BE%E6%8E%A5/</url>
+    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io 未经允许请勿用于商业用途）#背景
+
+需要GitHub账号
+需要基本的git命令知识
+基本的计算机技能
+
+
+#方法说明：
+首先在github中新建一个repo，然后git clone下来，然后把你想要的图片放到这个文件夹中然后上传，然后到GitHub中找到这个图片查看地址，在markdown中引用就好了。
+
+#具体步骤
+
+新建一个repo
+
+打开终端,并到一个你的目录下面 git clone https://github.com/****/markdownImages.git ***为你的用户名
+
+把你要用的图片放进去,图片名要用英文
+ git add 图片名 git commit -m “图片名” git push origin master
+
+打开浏览器进入你的github,找到相应的图片打开,github能预览出图片就OK,然后右键图片复制图片的地址
+
+打开你的markdown编辑器,享受吧
+
+
+]]></content>
+      <categories>
+        <category>IT</category>
+      </categories>
+      <tags>
+        <tag>markdown</tag>
+        <tag>images</tag>
+        <tag>links，github</tag>
       </tags>
   </entry>
   <entry>
@@ -723,6 +671,54 @@ sublime版本:3126
       </tags>
   </entry>
   <entry>
+    <title>Ubuntu上装机必备小工具</title>
+    <url>/2018/01/10/%E5%8E%9F-ubuntu%E4%B8%8A%E6%88%91%E7%9A%84%E8%A3%85%E6%9C%BA%E5%BF%85%E5%A4%87%E5%B0%8F%E5%B7%A5%E5%85%B7/</url>
+    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）1.system monitor indicator
+系统监视软件
+sudo add-apt-repository ppa:fossfreedom&#x2F;indicator-sysmonitorsudo apt-get updatesudo apt-get install indicator-sysmonitorindicator-sysmonitor &amp;
+2.touchpad-indicator一个触摸板禁用软件，插入鼠标自动禁用touchpad
+3.y-ppa-manager一个可以管理ppa的软件，可以清理修复ppa
+4.Terminator
+一个好用的可以把一个终端分成多个终端的软件
+5.新立得
+这是一个Ubuntu软件包管理软件，谁用谁知道。
+]]></content>
+      <categories>
+        <category>tools</category>
+      </categories>
+      <tags>
+        <tag>ubuntu</tag>
+        <tag>tools</tag>
+        <tag>software</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2017/01/01/example/</url>
+    <content><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
+Quick StartCreate a new post$ hexo new &quot;My New Post&quot;
+
+More info: Writing
+Run server$ hexo server
+
+More info: Server
+Generate static files$ hexo generate
+
+More info: Generating
+Deploy to remote sites$ hexo deploy
+
+More info: Deployment
+]]></content>
+      <categories>
+        <category>examples</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Blogs</tag>
+        <tag>Github</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>关于瑞典轮机器人——youbot的讨论</title>
     <url>/2017/10/17/%E5%8E%9F-%E5%85%B3%E4%BA%8E%E7%91%9E%E5%85%B8%E8%BD%AE%E6%9C%BA%E5%99%A8%E4%BA%BA%E2%80%94%E2%80%94youbot%E7%9A%84%E8%AE%A8%E8%AE%BA/</url>
     <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）一个老外给出了一个观点：把他当做平面移动处理，比较贴合我的想法，整体的运动与轮无关，这样复杂的问题简单化。 
@@ -766,25 +762,69 @@ Move the youbot using its wheels
       </tags>
   </entry>
   <entry>
-    <title>Ubuntu上装机必备小工具</title>
-    <url>/2018/01/10/%E5%8E%9F-ubuntu%E4%B8%8A%E6%88%91%E7%9A%84%E8%A3%85%E6%9C%BA%E5%BF%85%E5%A4%87%E5%B0%8F%E5%B7%A5%E5%85%B7/</url>
-    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）1.system monitor indicator
-系统监视软件
-sudo add-apt-repository ppa:fossfreedom&#x2F;indicator-sysmonitorsudo apt-get updatesudo apt-get install indicator-sysmonitorindicator-sysmonitor &amp;
-2.touchpad-indicator一个触摸板禁用软件，插入鼠标自动禁用touchpad
-3.y-ppa-manager一个可以管理ppa的软件，可以清理修复ppa
-4.Terminator
-一个好用的可以把一个终端分成多个终端的软件
-5.新立得
-这是一个Ubuntu软件包管理软件，谁用谁知道。
-]]></content>
+    <title>在RVIZ中启动移动机器人模型，并实现横向移动</title>
+    <url>/2017/10/09/%E5%8E%9F-%E5%9C%A8RVIZ%E4%B8%AD%E5%90%AF%E5%8A%A8%E7%A7%BB%E5%8A%A8%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A8%A1%E5%9E%8B%EF%BC%8C%E5%B9%B6%E5%AE%9E%E7%8E%B0%E6%A8%AA%E5%90%91%E7%A7%BB%E5%8A%A8/</url>
+    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）本博客只是个人学习记录使用，瞎写写，内容比较粗糙。编写过程中，借鉴了古月居大神的smartcar和ROS-WIKI以及其它一些大神的内容。  
+引入古月居大神的链接使用smartcar进行仿真和smartcar源码上传
+下面我针对自己的机器人编写的代码和文件。launch文件
+&lt;launch&gt;      &lt;param name=&quot;/use_sim_time&quot; value=&quot;false&quot; /&gt;       &lt;!-- Load the URDF/Xacro model of our robot --&gt;      &lt;arg name=&quot;urdf_file&quot; default=&quot;$(find xacro)/xacro.py &#x27;$(find smartcar_description)/urdf/smartcar.urdf.xacro&#x27;&quot; /&gt;      &lt;arg name=&quot;gui&quot; default=&quot;true&quot; /&gt;      &lt;param name=&quot;robot_description&quot; command=&quot;$(arg urdf_file)&quot; /&gt;      &lt;param name=&quot;use_gui&quot; value=&quot;$(arg gui)&quot;/&gt;      &lt;node name=&quot;arbotix&quot; pkg=&quot;arbotix_python&quot; type=&quot;arbotix_driver&quot; output=&quot;screen&quot;&gt;          &lt;rosparam file=&quot;$(find smartcar_description)/config/smartcar_arbotix.yaml&quot; command=&quot;load&quot; /&gt;         &lt;param name=&quot;sim&quot; value=&quot;true&quot;/&gt;      &lt;/node&gt;      &lt;node name=&quot;joint_state_publisher&quot; pkg=&quot;joint_state_publisher&quot; type=&quot;joint_state_publisher&quot; &gt;      &lt;/node&gt;      &lt;node name=&quot;robot_state_publisher&quot; pkg=&quot;robot_state_publisher&quot; type=&quot;state_publisher&quot;&gt;          &lt;param name=&quot;publish_frequency&quot; type=&quot;double&quot; value=&quot;20.0&quot; /&gt;      &lt;/node&gt;        &lt;!-- We need a static transforms for the wheels --&gt;       &lt;node pkg=&quot;tf&quot; type=&quot;static_transform_publisher&quot; name=&quot;odom_left_wheel_broadcaster&quot; args=&quot;0 0 0 0 0 0 /base_link /left_front_link 100&quot; /&gt;       &lt;node pkg=&quot;tf&quot; type=&quot;static_transform_publisher&quot; name=&quot;odom_right_wheel_broadcaster&quot; args=&quot;0 0 0 0 0 0 /base_link /right_front_link 100&quot; /&gt;       &lt;node name=&quot;rviz&quot; pkg=&quot;rviz&quot; type=&quot;rviz&quot; args=&quot;-d $(find smartcar_description)/urdf.rviz&quot; /&gt;  &lt;/launch&gt;
+
+
+
+xacro文件包括三部分：
+
+smartcar_body
+
+&lt;?xml version=&quot;1.0&quot;?&gt;  &lt;robot name=&quot;smartcar&quot; xmlns:xacro=&quot;http://ros.org/wiki/xacro&quot;&gt;    &lt;xacro:property name=&quot;M_PI&quot; value=&quot;3.14159&quot;/&gt;      &lt;!-- Macro for SmartCar body. Including Gazebo extensions, but does not include Kinect --&gt;    &lt;xacro:include filename=&quot;$(find smartcar_description)/urdf/gazebo.urdf.xacro&quot;/&gt;    &lt;xacro:property name=&quot;base_x&quot; value=&quot;0.33&quot; /&gt;    &lt;xacro:property name=&quot;base_y&quot; value=&quot;0.33&quot; /&gt;    &lt;xacro:macro name=&quot;smartcar_body&quot;&gt;      &lt;link name=&quot;base_footprint&quot;&gt;      &lt;inertial&gt;        &lt;mass value=&quot;0.0001&quot; /&gt;        &lt;origin xyz=&quot;0 0 0&quot; /&gt;        &lt;inertia ixx=&quot;0.0001&quot; ixy=&quot;0.0&quot; ixz=&quot;0.0&quot;            iyy=&quot;0.0001&quot; iyz=&quot;0.0&quot;             izz=&quot;0.0001&quot; /&gt;      &lt;/inertial&gt;      &lt;visual&gt;          &lt;origin xyz=&quot;0 0 0&quot; rpy=&quot;0 0 0&quot; /&gt;          &lt;geometry&gt;              &lt;box size=&quot;0.001 0.001 0.001&quot; /&gt;          &lt;/geometry&gt;      &lt;/visual&gt;    &lt;/link&gt;    &lt;joint name=&quot;base_footprint_joint&quot; type=&quot;fixed&quot;&gt;      &lt;origin xyz=&quot;0 0 0&quot; rpy=&quot;0 0 0&quot; /&gt;      &lt;parent link=&quot;base_footprint&quot;/&gt;      &lt;child link=&quot;base_link&quot; /&gt;    &lt;/joint&gt;    &lt;link    name=&quot;base_link&quot;&gt;    &lt;inertial&gt;      &lt;origin        xyz=&quot;0.0032273 -0.060593 1.3595E-05&quot;        rpy=&quot;0 0 0&quot; /&gt;      &lt;mass        value=&quot;4.2623&quot; /&gt;      &lt;inertia        ixx=&quot;0.04568&quot;        ixy=&quot;-0.00094545&quot;        ixz=&quot;-8.9814E-06&quot;        iyy=&quot;0.11402&quot;        iyz=&quot;5.3399E-06&quot;        izz=&quot;0.11035&quot; /&gt;    &lt;/inertial&gt;    &lt;visual&gt;      &lt;origin        xyz=&quot;0 0 0.23&quot;        rpy=&quot;0 0 0&quot; /&gt;      &lt;geometry&gt;        &lt;mesh          filename=&quot;package://smartcar_description/meshes/base_link.STL&quot; /&gt;      &lt;/geometry&gt;      &lt;material        name=&quot;&quot;&gt;        &lt;color          rgba=&quot;1 1 1 1&quot; /&gt;      &lt;/material&gt;    &lt;/visual&gt;    &lt;collision&gt;      &lt;origin        xyz=&quot;0 0 0.23&quot;        rpy=&quot;0 0 0&quot; /&gt;      &lt;geometry&gt;        &lt;mesh          filename=&quot;package://smartcar_description/meshes/base_link.STL&quot; /&gt;      &lt;/geometry&gt;    &lt;/collision&gt;  &lt;/link&gt;  &lt;link    name=&quot;left_front_wheel&quot;&gt;    &lt;inertial&gt;      &lt;origin        xyz=&quot;0 -1.98217916108356E-05 0&quot;        rpy=&quot;0 0 0&quot; /&gt;      &lt;mass        value=&quot;0.176438810476987&quot; /&gt;      &lt;inertia        ixx=&quot;8.8965933887671E-05&quot;        ixy=&quot;-1.27636183461175E-23&quot;        ixz=&quot;8.0831821149659E-23&quot;        iyy=&quot;8.89898462049031E-05&quot;        iyz=&quot;2.16519665002917E-23&quot;        izz=&quot;0.000130905430632044&quot; /&gt;    &lt;/inertial&gt;    &lt;visual&gt;      &lt;origin        xyz=&quot;0 0 0&quot;        rpy=&quot;0 0 0&quot; /&gt;      &lt;geometry&gt;        &lt;mesh          filename=&quot;package://smartcar_description/meshes/left_front_wheel.STL&quot; /&gt;      &lt;/geometry&gt;      &lt;material        name=&quot;&quot;&gt;        &lt;color          rgba=&quot;1 1 0 1&quot; /&gt;      &lt;/material&gt;    &lt;/visual&gt;    &lt;collision&gt;      &lt;origin        xyz=&quot;0 0 0&quot;        rpy=&quot;0 0 0&quot; /&gt;      &lt;geometry&gt;        &lt;mesh          filename=&quot;package://smartcar_description/meshes/left_front_wheel.STL&quot; /&gt;      &lt;/geometry&gt;    &lt;/collision&gt;  &lt;/link&gt;  &lt;joint    name=&quot;left_front_wheel_joint&quot;    type=&quot;continuous&quot;&gt;    &lt;origin      xyz=&quot;0.12875 0.1504 0.04&quot;      rpy=&quot;1.5708 0 0&quot; /&gt;    &lt;parent      link=&quot;base_link&quot; /&gt;    &lt;child      link=&quot;left_front_wheel&quot; /&gt;    &lt;axis      xyz=&quot;0 0 1&quot; /&gt;  &lt;/joint&gt;  &lt;link    name=&quot;right_front_wheel&quot;&gt;    &lt;inertial&gt;      &lt;origin        xyz=&quot;0 -1.98217916108079E-05 0&quot;        rpy=&quot;0 0 0&quot; /&gt;      &lt;mass        value=&quot;0.176438810476987&quot; /&gt;      &lt;inertia        ixx=&quot;8.8965933887671E-05&quot;        ixy=&quot;-1.27636183461175E-23&quot;        ixz=&quot;8.08318211496588E-23&quot;        iyy=&quot;8.89898462049032E-05&quot;        iyz=&quot;2.18596653030412E-23&quot;        izz=&quot;0.000130905430632044&quot; /&gt;    &lt;/inertial&gt;    &lt;visual&gt;      &lt;origin        xyz=&quot;0 0 0&quot;        rpy=&quot;0 0 0&quot; /&gt;      &lt;geometry&gt;        &lt;mesh          filename=&quot;package://smartcar_description/meshes/right_front_wheel.STL&quot; /&gt;      &lt;/geometry&gt;      &lt;material        name=&quot;&quot;&gt;        &lt;color          rgba=&quot;1 1 0 1&quot; /&gt;      &lt;/material&gt;    &lt;/visual&gt;    &lt;collision&gt;      &lt;origin        xyz=&quot;0 0 0&quot;        rpy=&quot;0 0 0&quot; /&gt;      &lt;geometry&gt;        &lt;mesh          filename=&quot;package://smartcar_description/meshes/right_front_wheel.STL&quot; /&gt;      &lt;/geometry&gt;    &lt;/collision&gt;  &lt;/link&gt;  &lt;joint    name=&quot;right_front_wheel_joint&quot;    type=&quot;continuous&quot;&gt;    &lt;origin      xyz=&quot;0.12875 -0.1504 0.04&quot;      rpy=&quot;1.5708 0 0&quot; /&gt;    &lt;parent      link=&quot;base_link&quot; /&gt;    &lt;child      link=&quot;right_front_wheel&quot; /&gt;    &lt;axis      xyz=&quot;0 0 1&quot; /&gt;  &lt;/joint&gt;  &lt;link    name=&quot;left_back_wheel&quot;&gt;    &lt;inertial&gt;      &lt;origin        xyz=&quot;0 -1.98217916108356E-05 0&quot;        rpy=&quot;0 0 0&quot; /&gt;      &lt;mass        value=&quot;0.176438810476987&quot; /&gt;      &lt;inertia        ixx=&quot;8.8965933887671E-05&quot;        ixy=&quot;-1.27300145019925E-23&quot;        ixz=&quot;8.0831821149659E-23&quot;        iyy=&quot;8.89898462049032E-05&quot;        iyz=&quot;2.16519665002917E-23&quot;        izz=&quot;0.000130905430632044&quot; /&gt;    &lt;/inertial&gt;    &lt;visual&gt;      &lt;origin        xyz=&quot;0 0 0&quot;        rpy=&quot;0 0 0&quot; /&gt;      &lt;geometry&gt;        &lt;mesh          filename=&quot;package://smartcar_description/meshes/left_back_wheel.STL&quot; /&gt;      &lt;/geometry&gt;      &lt;material        name=&quot;&quot;&gt;        &lt;color          rgba=&quot;1 1 0 1&quot; /&gt;      &lt;/material&gt;    &lt;/visual&gt;    &lt;collision&gt;      &lt;origin        xyz=&quot;0 0 0&quot;        rpy=&quot;0 0 0&quot; /&gt;      &lt;geometry&gt;        &lt;mesh          filename=&quot;package://smartcar_description/meshes/left_back_wheel.STL&quot; /&gt;      &lt;/geometry&gt;    &lt;/collision&gt;  &lt;/link&gt;  &lt;joint    name=&quot;left_back_wheel_joint&quot;    type=&quot;continuous&quot;&gt;    &lt;origin      xyz=&quot;-0.12875 0.1504 0.04&quot;      rpy=&quot;1.5708 0 0&quot; /&gt;    &lt;parent      link=&quot;base_link&quot; /&gt;    &lt;child      link=&quot;left_back_wheel&quot; /&gt;    &lt;axis      xyz=&quot;0 0 1&quot; /&gt;  &lt;/joint&gt;  &lt;link    name=&quot;right_back_wheel&quot;&gt;    &lt;inertial&gt;      &lt;origin        xyz=&quot;2.77555756156289E-17 -1.98217916108079E-05 0&quot;        rpy=&quot;0 0 0&quot; /&gt;      &lt;mass        value=&quot;0.176438810476987&quot; /&gt;      &lt;inertia        ixx=&quot;8.8965933887671E-05&quot;        ixy=&quot;-4.17259369791981E-24&quot;        ixz=&quot;2.75455648073554E-21&quot;        iyy=&quot;8.89898462049032E-05&quot;        iyz=&quot;5.21854052435048E-20&quot;        izz=&quot;0.000130905430632044&quot; /&gt;    &lt;/inertial&gt;    &lt;visual&gt;      &lt;origin        xyz=&quot;0 0 0&quot;        rpy=&quot;0 0 0&quot; /&gt;      &lt;geometry&gt;        &lt;mesh          filename=&quot;package://smartcar_description/meshes/right_back_wheel.STL&quot; /&gt;      &lt;/geometry&gt;      &lt;material        name=&quot;&quot;&gt;        &lt;color          rgba=&quot;1 1 0 1&quot; /&gt;      &lt;/material&gt;    &lt;/visual&gt;    &lt;collision&gt;      &lt;origin        xyz=&quot;0 0 0&quot;        rpy=&quot;0 0 0&quot; /&gt;      &lt;geometry&gt;        &lt;mesh          filename=&quot;package://smartcar_description/meshes/right_back_wheel.STL&quot; /&gt;      &lt;/geometry&gt;    &lt;/collision&gt;  &lt;/link&gt;  &lt;joint    name=&quot;right_back_wheel_joint&quot;    type=&quot;continuous&quot;&gt;    &lt;origin      xyz=&quot;-0.12875 -0.1504 0.04&quot;      rpy=&quot;1.5708 0 3.1416&quot; /&gt;    &lt;parent      link=&quot;base_link&quot; /&gt;    &lt;child      link=&quot;right_back_wheel&quot; /&gt;    &lt;axis      xyz=&quot;0 0 1&quot; /&gt;  &lt;/joint&gt;  &lt;/xacro:macro&gt;   &lt;/robot&gt;
+
+
+gazebo.urdf.xacro
+
+&lt;?xml version=&quot;1.0&quot;?&gt;  &lt;robot xmlns:controller=&quot;http://playerstage.sourceforge.net/gazebo/xmlschema/#controller&quot;       xmlns:interface=&quot;http://playerstage.sourceforge.net/gazebo/xmlschema/#interface&quot;       xmlns:sensor=&quot;http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor&quot;       xmlns:xacro=&quot;http://ros.org/wiki/xacro&quot;       name=&quot;smartcar_gazebo&quot;&gt;   &lt;!-- ASUS Xtion PRO camera for simulation --&gt;  &lt;!-- gazebo_ros_wge100 plugin is in kt2_gazebo_plugins package --&gt;  &lt;xacro:macro name=&quot;smartcar_sim&quot;&gt;      &lt;gazebo reference=&quot;base_footprint&quot;&gt;       &lt;material&gt;Gazebo/Blue&lt;/material&gt;         &lt;turnGravityOff&gt;false&lt;/turnGravityOff&gt;    &lt;/gazebo&gt;    &lt;gazebo reference=&quot;base_link&quot;&gt;          &lt;material&gt;Gazebo/Blue&lt;/material&gt;      &lt;/gazebo&gt;       &lt;gazebo reference=&quot;right_front_wheel&quot;&gt;          &lt;material&gt;Gazebo/FlatBlack&lt;/material&gt;      &lt;/gazebo&gt;      &lt;transmission name=&quot;right_front_wheel_joint_trans&quot;&gt;      &lt;type&gt;transmission_interface/SimpleTransmission&lt;/type&gt;      &lt;joint name=&quot;right_front_wheel_joint&quot; /&gt;      &lt;actuator name=&quot;right_front_wheel_joint_motor&quot;&gt;        &lt;hardwareInterface&gt;EffortJointInterface&lt;/hardwareInterface&gt;        &lt;mechanicalReduction&gt;1&lt;/mechanicalReduction&gt;      &lt;/actuator&gt;    &lt;/transmission&gt;     &lt;gazebo reference=&quot;right_back_wheel&quot;&gt;          &lt;material&gt;Gazebo/FlatBlack&lt;/material&gt;      &lt;/gazebo&gt;         &lt;transmission name=&quot;right_back_wheel_joint_trans&quot;&gt;      &lt;type&gt;transmission_interface/SimpleTransmission&lt;/type&gt;      &lt;joint name=&quot;right_back_wheel_joint&quot; /&gt;      &lt;actuator name=&quot;right_back_wheel_joint_motor&quot;&gt;        &lt;hardwareInterface&gt;EffortJointInterface&lt;/hardwareInterface&gt;        &lt;mechanicalReduction&gt;1&lt;/mechanicalReduction&gt;      &lt;/actuator&gt;    &lt;/transmission&gt;     &lt;gazebo reference=&quot;left_front_wheel&quot;&gt;          &lt;material&gt;Gazebo/FlatBlack&lt;/material&gt;      &lt;/gazebo&gt;        &lt;transmission name=&quot;left_front_wheel_joint_trans&quot;&gt;      &lt;type&gt;transmission_interface/SimpleTransmission&lt;/type&gt;      &lt;joint name=&quot;left_front_wheel_joint&quot; /&gt;      &lt;actuator name=&quot;left_front_wheel_joint_motor&quot;&gt;        &lt;hardwareInterface&gt;EffortJointInterface&lt;/hardwareInterface&gt;        &lt;mechanicalReduction&gt;1&lt;/mechanicalReduction&gt;      &lt;/actuator&gt;    &lt;/transmission&gt;     &lt;gazebo reference=&quot;left_back_wheel&quot;&gt;          &lt;material&gt;Gazebo/FlatBlack&lt;/material&gt;      &lt;/gazebo&gt;     &lt;transmission name=&quot;left_back_wheel_joint_trans&quot;&gt;      &lt;type&gt;transmission_interface/SimpleTransmission&lt;/type&gt;      &lt;joint name=&quot;left_back_wheel_joint&quot; /&gt;      &lt;actuator name=&quot;left_back_wheel_joint_motor&quot;&gt;        &lt;hardwareInterface&gt;EffortJointInterface&lt;/hardwareInterface&gt;        &lt;mechanicalReduction&gt;1&lt;/mechanicalReduction&gt;      &lt;/actuator&gt;    &lt;/transmission&gt;     &lt;!-- position controller --&gt;    &lt;gazebo&gt;      &lt;plugin name=&quot;base_controller&quot; filename=&quot;libgazebo_ros_planar_move.so&quot;&gt;        &lt;commandTopic&gt;cmd_vel&lt;/commandTopic&gt;        &lt;odometryTopic&gt;odom&lt;/odometryTopic&gt;        &lt;odometryFrame&gt;odom&lt;/odometryFrame&gt;        &lt;odometryRate&gt;100.0&lt;/odometryRate&gt;        &lt;robotBaseFrame&gt;base_footprint&lt;/robotBaseFrame&gt;      &lt;/plugin&gt;    &lt;/gazebo&gt;&lt;/xacro:macro&gt;   &lt;/robot&gt;
+
+
+smartcar.urdf.xacro
+
+&lt;?xml version=&quot;1.0&quot;?&gt;  &lt;robot name=&quot;smartcar&quot;        xmlns:xi=&quot;http://www.w3.org/2001/XInclude&quot;      xmlns:gazebo=&quot;http://playerstage.sourceforge.net/gazebo/xmlschema/#gz&quot;      xmlns:model=&quot;http://playerstage.sourceforge.net/gazebo/xmlschema/#model&quot;      xmlns:sensor=&quot;http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor&quot;      xmlns:body=&quot;http://playerstage.sourceforge.net/gazebo/xmlschema/#body&quot;      xmlns:geom=&quot;http://playerstage.sourceforge.net/gazebo/xmlschema/#geom&quot;      xmlns:joint=&quot;http://playerstage.sourceforge.net/gazebo/xmlschema/#joint&quot;      xmlns:controller=&quot;http://playerstage.sourceforge.net/gazebo/xmlschema/#controller&quot;      xmlns:interface=&quot;http://playerstage.sourceforge.net/gazebo/xmlschema/#interface&quot;      xmlns:rendering=&quot;http://playerstage.sourceforge.net/gazebo/xmlschema/#rendering&quot;      xmlns:renderable=&quot;http://playerstage.sourceforge.net/gazebo/xmlschema/#renderable&quot;      xmlns:physics=&quot;http://playerstage.sourceforge.net/gazebo/xmlschema/#physics&quot;      xmlns:xacro=&quot;http://ros.org/wiki/xacro&quot;&gt;     &lt;xacro:include filename=&quot;$(find smartcar_description)/urdf/smartcar_body.urdf.xacro&quot; /&gt;     &lt;!-- Body of SmartCar, with plates, standoffs and Create (including sim sensors) --&gt;    &lt;smartcar_body/&gt;     &lt;smartcar_sim/&gt;  &lt;/robot&gt;
+
+
+
+然后按照古月大神的方法启动并控制就可以了。下面我要说的就是我比较独特的部分了。现在大部分的移动机器人主要差动轮进行运动，只有linear.x和angular.z两个值，但是我的模型是４个瑞典轮，能提供横向的移动速度，即linear.y。这里对diff_controller进行修改让他能够接受linear.y。diff_controller.py在&#x2F;opt&#x2F;ros&#x2F;indigo&#x2F;lib&#x2F;python2.7&#x2F;dist-packages下。（可以用sudo vim进行修改），修改都已经注释过了（add by yang）。代码如下：
+#!/usr/bin/env python&quot;&quot;&quot;  diff_controller.py - controller for a differential drive  Copyright (c) 2010-2011 Vanadium Labs LLC.  All right reserved.  Redistribution and use in source and binary forms, with or without  modification, are permitted provided that the following conditions are met:      * Redistributions of source code must retain the above copyright        notice, this list of conditions and the following disclaimer.      * Redistributions in binary form must reproduce the above copyright        notice, this list of conditions and the following disclaimer in the        documentation and/or other materials provided with the distribution.      * Neither the name of Vanadium Labs LLC nor the names of its         contributors may be used to endorse or promote products derived         from this software without specific prior written permission.    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot; AND  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE  DISCLAIMED. IN NO EVENT SHALL VANADIUM LABS BE LIABLE FOR ANY DIRECT, INDIRECT,  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,  OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF  LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE  OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&quot;&quot;&quot;import rospyfrom math import sin,cos,pifrom geometry_msgs.msg import Quaternionfrom geometry_msgs.msg import Twistfrom nav_msgs.msg import Odometryfrom diagnostic_msgs.msg import *from tf.broadcaster import TransformBroadcasterfrom ax12 import *from controllers import *from struct import unpackclass DiffController(Controller):    &quot;&quot;&quot; Controller to handle movement &amp; odometry feedback for a differential             drive mobile base. &quot;&quot;&quot;    def __init__(self, device, name):        Controller.__init__(self, device, name)        self.pause = True        self.last_cmd = rospy.Time.now()        # parameters: rates and geometry        self.rate = rospy.get_param(&#x27;~controllers/&#x27;+name+&#x27;/rate&#x27;,10.0)        self.timeout = rospy.get_param(&#x27;~controllers/&#x27;+name+&#x27;/timeout&#x27;,1.0)        self.t_delta = rospy.Duration(1.0/self.rate)        self.t_next = rospy.Time.now() + self.t_delta        self.ticks_meter = float(rospy.get_param(&#x27;~controllers/&#x27;+name+&#x27;/ticks_meter&#x27;))        self.base_width = float(rospy.get_param(&#x27;~controllers/&#x27;+name+&#x27;/base_width&#x27;))        self.base_frame_id = rospy.get_param(&#x27;~controllers/&#x27;+name+&#x27;/base_frame_id&#x27;, &#x27;base_link&#x27;)        self.odom_frame_id = rospy.get_param(&#x27;~controllers/&#x27;+name+&#x27;/odom_frame_id&#x27;, &#x27;odom&#x27;)        # parameters: PID        self.Kp = rospy.get_param(&#x27;~controllers/&#x27;+name+&#x27;/Kp&#x27;, 5)        self.Kd = rospy.get_param(&#x27;~controllers/&#x27;+name+&#x27;/Kd&#x27;, 1)        self.Ki = rospy.get_param(&#x27;~controllers/&#x27;+name+&#x27;/Ki&#x27;, 0)        self.Ko = rospy.get_param(&#x27;~controllers/&#x27;+name+&#x27;/Ko&#x27;, 50)        # parameters: acceleration        self.accel_limit = rospy.get_param(&#x27;~controllers/&#x27;+name+&#x27;/accel_limit&#x27;, 0.1)        self.max_accel = int(self.accel_limit*self.ticks_meter/self.rate)        # output for joint states publisher        self.joint_names = [&quot;base_l_wheel_joint&quot;,&quot;base_r_wheel_joint&quot;]        self.joint_positions = [0,0]        self.joint_velocities = [0,0]        # internal data                    self.v_left = 0                 # current setpoint velocity        self.v_right = 0        self.v_des_left = 0             # cmd_vel setpoint        self.v_des_right = 0        self.enc_left = None            # encoder readings        self.enc_right = None        self.x = 0                      # position in xy plane        self.y = 0        self.th = 0        self.dx = 0                     # speeds in x/rotation        self.dy = 0                     # add by yang  self.dr = 0        self.then = rospy.Time.now()    # time for determining dx/dy        # subscriptions        rospy.Subscriber(&quot;cmd_vel&quot;, Twist, self.cmdVelCb)        self.odomPub = rospy.Publisher(&quot;odom&quot;, Odometry, queue_size=5)        self.odomBroadcaster = TransformBroadcaster()            rospy.loginfo(&quot;Started yang DiffController (&quot;+name+&quot;). Geometry: &quot; + str(self.base_width) + &quot;m wide, &quot; + str(self.ticks_meter) + &quot; ticks/m.&quot;)    def startup(self):        if not self.fake:            self.setup(self.Kp,self.Kd,self.Ki,self.Ko)         def update(self):        now = rospy.Time.now()        if now &gt; self.t_next:            elapsed = now - self.then            self.then = now            elapsed = elapsed.to_sec()            if self.fake:                x = cos(self.th)*self.dx*elapsed                y = -sin(self.th)*self.dx*elapsed    #self.x and self.y has changed for the effort of dy                self.x += cos(self.th)*self.dx*elapsed + sin(self.th)*self.dy*elapsed                self.y += sin(self.th)*self.dx*elapsed + cos(self.th)*self.dy*elapsed                self.th += self.dr*elapsed            else:                # read encoders                try:                    left, right = self.status()                except Exception as e:                    rospy.logerr(&quot;Could not update encoders: &quot; + str(e))                    return                rospy.logdebug(&quot;Encoders: &quot; + str(left) +&quot;,&quot;+ str(right))                # calculate odometry                if self.enc_left == None:                    d_left = 0                    d_right = 0                else:                    d_left = (left - self.enc_left)/self.ticks_meter                    d_right = (right - self.enc_right)/self.ticks_meter                self.enc_left = left                self.enc_right = right                d = (d_left+d_right)/2                th = (d_right-d_left)/self.base_width                self.dx = d / elapsed                self.dr = th / elapsed                if (d != 0):                    x = cos(th)*d                    y = -sin(th)*d                    self.x = self.x + (cos(self.th)*x - sin(self.th)*y)                    self.y = self.y + (sin(self.th)*x + cos(self.th)*y)                if (th != 0):                    self.th = self.th + th            # publish or perish            quaternion = Quaternion()            quaternion.x = 0.0             quaternion.y = 0.0            quaternion.z = sin(self.th/2)            quaternion.w = cos(self.th/2)            self.odomBroadcaster.sendTransform(                (self.x, self.y, 0),                 (quaternion.x, quaternion.y, quaternion.z, quaternion.w),                rospy.Time.now(),                self.base_frame_id,                self.odom_frame_id                )            odom = Odometry()            odom.header.stamp = now            odom.header.frame_id = self.odom_frame_id            odom.pose.pose.position.x = self.x            odom.pose.pose.position.y = self.y            odom.pose.pose.position.z = 0            odom.pose.pose.orientation = quaternion            odom.child_frame_id = self.base_frame_id            odom.twist.twist.linear.x = self.dx            odom.twist.twist.linear.y = self.dy  #it was 0 before changed            odom.twist.twist.angular.z = self.dr            self.odomPub.publish(odom)            if now &gt; (self.last_cmd + rospy.Duration(self.timeout)):                self.v_des_left = 0                self.v_des_right = 0            # update motors            if not self.fake:                if self.v_left &lt; self.v_des_left:                    self.v_left += self.max_accel                    if self.v_left &gt; self.v_des_left:                        self.v_left = self.v_des_left                else:                    self.v_left -= self.max_accel                    if self.v_left &lt; self.v_des_left:                        self.v_left = self.v_des_left                                if self.v_right &lt; self.v_des_right:                    self.v_right += self.max_accel                    if self.v_right &gt; self.v_des_right:                        self.v_right = self.v_des_right                else:                    self.v_right -= self.max_accel                    if self.v_right &lt; self.v_des_right:                        self.v_right = self.v_des_right                self.write(self.v_left, self.v_right)            self.t_next = now + self.t_delta     def shutdown(self):        if not self.fake:            self.write(0,0)    def cmdVelCb(self,req):        &quot;&quot;&quot; Handle movement requests. &quot;&quot;&quot;        self.last_cmd = rospy.Time.now()        if self.fake:            self.dx = req.linear.x        # m/s            self.dy = req.linear.y        # m/s add by yang            self.dr = req.angular.z       # rad/s        else:            # set motor speeds in ticks per 1/30s            self.v_des_left = int( ((req.linear.x - (req.angular.z * self.base_width/2.0)) * self.ticks_meter) / 30.0)            self.v_des_right = int( ((req.linear.x + (req.angular.z * self.base_width/2.0)) * self.ticks_meter) / 30.0)    def getDiagnostics(self):        &quot;&quot;&quot; Get a diagnostics status. &quot;&quot;&quot;        msg = DiagnosticStatus()        msg.name = self.name        msg.level = DiagnosticStatus.OK        msg.message = &quot;OK&quot;        if not self.fake:            msg.values.append(KeyValue(&quot;Left&quot;, str(self.enc_left)))            msg.values.append(KeyValue(&quot;Right&quot;, str(self.enc_right)))        msg.values.append(KeyValue(&quot;dX&quot;, str(self.dx)))        msg.values.append(KeyValue(&quot;dR&quot;, str(self.dr)))        return msg    ###    ### Controller Specification:     ###    ###  setup: Kp, Kd, Ki, Ko (all unsigned char)    ###    ###  write: left_speed, right_speed (2-byte signed, ticks per frame)    ###    ###  status: left_enc, right_enc (4-byte signed)    ###         def setup(self, kp, kd, ki, ko):        success = self.device.execute(253, AX_CONTROL_SETUP, [10, kp, kd, ki, ko])    def write(self, left, right):        &quot;&quot;&quot; Send a closed-loop speed. Base PID loop runs at 30Hz, these values                are therefore in ticks per 1/30 second. &quot;&quot;&quot;        left = left&amp;0xffff        right = right&amp;0xffff        success = self.device.execute(253, AX_CONTROL_WRITE, [10, left%256, left&gt;&gt;8, right%256, right&gt;&gt;8])    def status(self):        &quot;&quot;&quot; read 32-bit (signed) encoder values. &quot;&quot;&quot;        values = self.device.execute(253, AX_CONTROL_STAT, [10])        left_values = &quot;&quot;.join([chr(k) for k in values[0:4] ])                right_values = &quot;&quot;.join([chr(k) for k in values[4:] ])        try:            left = unpack(&#x27;=l&#x27;,left_values)[0]            right = unpack(&#x27;=l&#x27;,right_values)[0]            return [left, right]        except:            return None]]></content>
       <categories>
-        <category>tools</category>
+        <category>ros</category>
       </categories>
       <tags>
-        <tag>ubuntu</tag>
-        <tag>tools</tag>
-        <tag>software</tag>
+        <tag>ros</tag>
+        <tag>横向移动</tag>
+        <tag>机器人</tag>
+        <tag>rviz</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>TensorFlow in nvidia-docker: failed call to cuInit: CUDA_ERROR_UNKNOWN</title>
+    <url>/2017/12/28/%E5%8E%9F-TensorFlow-in-nvidia-docker-failed-call-to-cuInit-CUDA-ERROR-UNKNOWN/</url>
+    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）
+背景：UbuntuTensorFlow
+
+问题描述：出现错误：E TensorFlow in nvidia-docker: failed call to cuInit: CUDA_ERROR_UNKNOWN然后就用CPU在跑
+
+解决方法：
+sudo update-alternatives --config x86_64-linux-gnu_gl_conf
+
+
+选择 &#x2F;usr&#x2F;lib&#x2F;x86_64-linux-gnu&#x2F;mesa&#x2F;ld.so.conf就好了作为一个强迫症，你以为这样就完了吗，不！我要把其他三个删掉这个命令是用管理员的权限打开文件浏览器，然后删除那些不用的三个选项。这三个选项是我之前安装NVIDIA驱动后并卸载的残留
+sudo nautilus 
+
+在&#x2F;usr&#x2F;lib&#x2F;下　ctrl+f 输入nvidia　然后就能找到那些不用的选项删除就OK了。
+]]></content>
+      <categories>
+        <category>reinforcement learning</category>
+      </categories>
+      <tags>
+        <tag>TensorFlow</tag>
+        <tag>nvidia</tag>
+        <tag>CUDA_ERROR_UNKNOWN</tag>
       </tags>
   </entry>
   <entry>
@@ -907,65 +947,35 @@ Ubuntu的安装对于Ubuntu版本,我这次选择的是16.04,由于我用到的�
       </tags>
   </entry>
   <entry>
-    <title>rviz闪退的解决方案</title>
-    <url>/2017/12/21/%E5%8E%9F-%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%9A%84%E6%9C%BA%E8%BD%BDPC%E7%9A%84rviz%E9%97%AA%E9%80%80%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
-    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）背景：项目用到自己做的机器人，在机器人上装上了一个miniPC，在上面装上了ros indigo版本，使用远程桌面连接miniPC，然后操作机器人进行建图实验。
+    <title>SLAM with LS01C and hector</title>
+    <url>/2017/10/09/%E5%8E%9F-%E6%89%8B%E6%8C%81%E9%95%AD%E7%A5%9ELS01C%E4%BD%BF%E7%94%A8hector-mapping%E6%96%B9%E6%B3%95%E8%BF%9B%E8%A1%8C%E5%BB%BA%E5%9B%BE%E5%AE%9E%E9%AA%8C/</url>
+    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）我的代码在ls01c可以拿去下载。
+本博客只是个人学习记录使用，瞎写写，内容比较粗糙。
 
-问题：在打开rviz后闪退
+从镭神客服那里拿到驱动
+对驱动进行阅读，并启动节点获取雷达数据实验在启动激光雷达的过程中可能遇到这样的问题：驱动没问题，launch文件也没问题，但是雷达不旋转，也得不到数据，这是因为激光雷达的端口ttyUSB0(也可能是别的名称，自己查一下吧)没有权限，需要在终端执行以下语句：
 
-原因：这是由于rviz在不接显示器的时候，是不能启动的
+cd &#x2F;devsudo chmod 777 ttyUSB
 
-解决方法： 
+下载hector源码并编译hector的github下载地址
+启动launch文件就可以建图了
 
-使用zeroconf，通过ssh连接miniPC，进行控制，在自己的电脑上打开rviz，就能订阅miniPC上的topic 
+可能遇到的问题：
 
-先插上显示器，打开rviz后，然后拔掉VGA或者HDMI.(这个方法是别人告诉我的不知道可不可行)
-
-Rendering on a server
-
-
-If you’re trying to render video on a server, you’ll need to connect a fake display. The easiest way to do this is by running under xvfb-run (on Ubuntu, install the xvfb package):
-xvfb-run -s &quot;-screen 0 1400x900x24&quot; bash]]></content>
-      <categories>
-        <category>ros</category>
-      </categories>
-      <tags>
-        <tag>ROS</tag>
-        <tag>robot</tag>
-        <tag>rviz</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>gazebo中机器人横向移动</title>
-    <url>/2017/01/10/%E5%9C%A8gazebo%E4%B8%AD%E5%90%AF%E5%8A%A8%E7%A7%BB%E5%8A%A8%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A8%A1%E5%9E%8B%EF%BC%8C%E5%B9%B6%E5%AE%9E%E7%8E%B0%E6%A8%AA%E5%90%91%E7%A7%BB%E5%8A%A8/</url>
-    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）本博客只是个人学习记录使用，瞎写写，内容比较粗糙。编写过程中，借鉴了yaked大神的实战youBot和ROS-WIKI以及其它一些大神的内容。现在大部分的移动机器人主要差动轮进行运动，只有linear.x和angular.z两个值，但是我的模型是４个瑞典轮，能提供横向的移动速度，即linear.y。在gazebo中的横向移动同样要修改控制方式，只不过在与rviz不同，不能直接修改，文件格式打不开，这里采用的方案是直接在xacro中加载一个平面移动的插件就可以了
-&lt;!-- position controller --&gt;
-&lt;gazebo&gt;
-  &lt;plugin name=&quot;base_controller&quot; filename=&quot;libgazebo_ros_planar_move.so&quot;&gt;
-    &lt;commandTopic&gt;cmd_vel&lt;/commandTopic&gt;
-    &lt;odometryTopic&gt;odom&lt;/odometryTopic&gt;
-    &lt;odometryFrame&gt;/odom&lt;/odometryFrame&gt;
-    &lt;odometryRate&gt;100.0&lt;/odometryRate&gt;
-    &lt;robotBaseFrame&gt;base_footprint&lt;/robotBaseFrame&gt;
-    &lt;broadcastTF&gt;true&lt;/broadcastTF&gt;
-  &lt;/plugin&gt;
-&lt;/gazebo&gt;`
+手持时，可能因为移动的太快或者转动太快导致地图混乱
+当有物体靠近激光雷达或者雷达收到振动时，终端会出现SearchDir angle change too large
 
 
-
-模型xacro加载到gazebo沿用yaked大神博客中的gazebo.launch进行修改，把自己的模型修改到他的launch文件中，就可以了。＇
-
-gazebo加入上面的代码
-
-
+后记：建图混乱的原因致使因为这个雷达的性能不满足这个算法。我回头试试用cartographer和这个雷达试试能否建出好图。
 ]]></content>
       <categories>
         <category>ros</category>
       </categories>
       <tags>
         <tag>ROS</tag>
-        <tag>横向移动</tag>
-        <tag>机器人</tag>
+        <tag>robot</tag>
+        <tag>SLAM</tag>
+        <tag>hector</tag>
       </tags>
   </entry>
   <entry>
@@ -1053,75 +1063,32 @@ sudo update-alternatives –config x86_64-linux-gnu_gl_conf
       </tags>
   </entry>
   <entry>
-    <title>在RVIZ中启动移动机器人模型，并实现横向移动</title>
-    <url>/2017/10/09/%E5%8E%9F-%E5%9C%A8RVIZ%E4%B8%AD%E5%90%AF%E5%8A%A8%E7%A7%BB%E5%8A%A8%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A8%A1%E5%9E%8B%EF%BC%8C%E5%B9%B6%E5%AE%9E%E7%8E%B0%E6%A8%AA%E5%90%91%E7%A7%BB%E5%8A%A8/</url>
-    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）本博客只是个人学习记录使用，瞎写写，内容比较粗糙。编写过程中，借鉴了古月居大神的smartcar和ROS-WIKI以及其它一些大神的内容。  
-引入古月居大神的链接使用smartcar进行仿真和smartcar源码上传
-下面我针对自己的机器人编写的代码和文件。launch文件
-&lt;launch&gt;      &lt;param name=&quot;/use_sim_time&quot; value=&quot;false&quot; /&gt;       &lt;!-- Load the URDF/Xacro model of our robot --&gt;      &lt;arg name=&quot;urdf_file&quot; default=&quot;$(find xacro)/xacro.py &#x27;$(find smartcar_description)/urdf/smartcar.urdf.xacro&#x27;&quot; /&gt;      &lt;arg name=&quot;gui&quot; default=&quot;true&quot; /&gt;      &lt;param name=&quot;robot_description&quot; command=&quot;$(arg urdf_file)&quot; /&gt;      &lt;param name=&quot;use_gui&quot; value=&quot;$(arg gui)&quot;/&gt;      &lt;node name=&quot;arbotix&quot; pkg=&quot;arbotix_python&quot; type=&quot;arbotix_driver&quot; output=&quot;screen&quot;&gt;          &lt;rosparam file=&quot;$(find smartcar_description)/config/smartcar_arbotix.yaml&quot; command=&quot;load&quot; /&gt;         &lt;param name=&quot;sim&quot; value=&quot;true&quot;/&gt;      &lt;/node&gt;      &lt;node name=&quot;joint_state_publisher&quot; pkg=&quot;joint_state_publisher&quot; type=&quot;joint_state_publisher&quot; &gt;      &lt;/node&gt;      &lt;node name=&quot;robot_state_publisher&quot; pkg=&quot;robot_state_publisher&quot; type=&quot;state_publisher&quot;&gt;          &lt;param name=&quot;publish_frequency&quot; type=&quot;double&quot; value=&quot;20.0&quot; /&gt;      &lt;/node&gt;        &lt;!-- We need a static transforms for the wheels --&gt;       &lt;node pkg=&quot;tf&quot; type=&quot;static_transform_publisher&quot; name=&quot;odom_left_wheel_broadcaster&quot; args=&quot;0 0 0 0 0 0 /base_link /left_front_link 100&quot; /&gt;       &lt;node pkg=&quot;tf&quot; type=&quot;static_transform_publisher&quot; name=&quot;odom_right_wheel_broadcaster&quot; args=&quot;0 0 0 0 0 0 /base_link /right_front_link 100&quot; /&gt;       &lt;node name=&quot;rviz&quot; pkg=&quot;rviz&quot; type=&quot;rviz&quot; args=&quot;-d $(find smartcar_description)/urdf.rviz&quot; /&gt;  &lt;/launch&gt;
+    <title>rviz闪退的解决方案</title>
+    <url>/2017/12/21/%E5%8E%9F-%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%9A%84%E6%9C%BA%E8%BD%BDPC%E7%9A%84rviz%E9%97%AA%E9%80%80%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
+    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）背景：项目用到自己做的机器人，在机器人上装上了一个miniPC，在上面装上了ros indigo版本，使用远程桌面连接miniPC，然后操作机器人进行建图实验。
+
+问题：在打开rviz后闪退
+
+原因：这是由于rviz在不接显示器的时候，是不能启动的
+
+解决方法： 
+
+使用zeroconf，通过ssh连接miniPC，进行控制，在自己的电脑上打开rviz，就能订阅miniPC上的topic 
+
+先插上显示器，打开rviz后，然后拔掉VGA或者HDMI.(这个方法是别人告诉我的不知道可不可行)
+
+Rendering on a server
 
 
-
-xacro文件包括三部分：
-
-smartcar_body
-
-&lt;?xml version=&quot;1.0&quot;?&gt;  &lt;robot name=&quot;smartcar&quot; xmlns:xacro=&quot;http://ros.org/wiki/xacro&quot;&gt;    &lt;xacro:property name=&quot;M_PI&quot; value=&quot;3.14159&quot;/&gt;      &lt;!-- Macro for SmartCar body. Including Gazebo extensions, but does not include Kinect --&gt;    &lt;xacro:include filename=&quot;$(find smartcar_description)/urdf/gazebo.urdf.xacro&quot;/&gt;    &lt;xacro:property name=&quot;base_x&quot; value=&quot;0.33&quot; /&gt;    &lt;xacro:property name=&quot;base_y&quot; value=&quot;0.33&quot; /&gt;    &lt;xacro:macro name=&quot;smartcar_body&quot;&gt;      &lt;link name=&quot;base_footprint&quot;&gt;      &lt;inertial&gt;        &lt;mass value=&quot;0.0001&quot; /&gt;        &lt;origin xyz=&quot;0 0 0&quot; /&gt;        &lt;inertia ixx=&quot;0.0001&quot; ixy=&quot;0.0&quot; ixz=&quot;0.0&quot;            iyy=&quot;0.0001&quot; iyz=&quot;0.0&quot;             izz=&quot;0.0001&quot; /&gt;      &lt;/inertial&gt;      &lt;visual&gt;          &lt;origin xyz=&quot;0 0 0&quot; rpy=&quot;0 0 0&quot; /&gt;          &lt;geometry&gt;              &lt;box size=&quot;0.001 0.001 0.001&quot; /&gt;          &lt;/geometry&gt;      &lt;/visual&gt;    &lt;/link&gt;    &lt;joint name=&quot;base_footprint_joint&quot; type=&quot;fixed&quot;&gt;      &lt;origin xyz=&quot;0 0 0&quot; rpy=&quot;0 0 0&quot; /&gt;      &lt;parent link=&quot;base_footprint&quot;/&gt;      &lt;child link=&quot;base_link&quot; /&gt;    &lt;/joint&gt;    &lt;link    name=&quot;base_link&quot;&gt;    &lt;inertial&gt;      &lt;origin        xyz=&quot;0.0032273 -0.060593 1.3595E-05&quot;        rpy=&quot;0 0 0&quot; /&gt;      &lt;mass        value=&quot;4.2623&quot; /&gt;      &lt;inertia        ixx=&quot;0.04568&quot;        ixy=&quot;-0.00094545&quot;        ixz=&quot;-8.9814E-06&quot;        iyy=&quot;0.11402&quot;        iyz=&quot;5.3399E-06&quot;        izz=&quot;0.11035&quot; /&gt;    &lt;/inertial&gt;    &lt;visual&gt;      &lt;origin        xyz=&quot;0 0 0.23&quot;        rpy=&quot;0 0 0&quot; /&gt;      &lt;geometry&gt;        &lt;mesh          filename=&quot;package://smartcar_description/meshes/base_link.STL&quot; /&gt;      &lt;/geometry&gt;      &lt;material        name=&quot;&quot;&gt;        &lt;color          rgba=&quot;1 1 1 1&quot; /&gt;      &lt;/material&gt;    &lt;/visual&gt;    &lt;collision&gt;      &lt;origin        xyz=&quot;0 0 0.23&quot;        rpy=&quot;0 0 0&quot; /&gt;      &lt;geometry&gt;        &lt;mesh          filename=&quot;package://smartcar_description/meshes/base_link.STL&quot; /&gt;      &lt;/geometry&gt;    &lt;/collision&gt;  &lt;/link&gt;  &lt;link    name=&quot;left_front_wheel&quot;&gt;    &lt;inertial&gt;      &lt;origin        xyz=&quot;0 -1.98217916108356E-05 0&quot;        rpy=&quot;0 0 0&quot; /&gt;      &lt;mass        value=&quot;0.176438810476987&quot; /&gt;      &lt;inertia        ixx=&quot;8.8965933887671E-05&quot;        ixy=&quot;-1.27636183461175E-23&quot;        ixz=&quot;8.0831821149659E-23&quot;        iyy=&quot;8.89898462049031E-05&quot;        iyz=&quot;2.16519665002917E-23&quot;        izz=&quot;0.000130905430632044&quot; /&gt;    &lt;/inertial&gt;    &lt;visual&gt;      &lt;origin        xyz=&quot;0 0 0&quot;        rpy=&quot;0 0 0&quot; /&gt;      &lt;geometry&gt;        &lt;mesh          filename=&quot;package://smartcar_description/meshes/left_front_wheel.STL&quot; /&gt;      &lt;/geometry&gt;      &lt;material        name=&quot;&quot;&gt;        &lt;color          rgba=&quot;1 1 0 1&quot; /&gt;      &lt;/material&gt;    &lt;/visual&gt;    &lt;collision&gt;      &lt;origin        xyz=&quot;0 0 0&quot;        rpy=&quot;0 0 0&quot; /&gt;      &lt;geometry&gt;        &lt;mesh          filename=&quot;package://smartcar_description/meshes/left_front_wheel.STL&quot; /&gt;      &lt;/geometry&gt;    &lt;/collision&gt;  &lt;/link&gt;  &lt;joint    name=&quot;left_front_wheel_joint&quot;    type=&quot;continuous&quot;&gt;    &lt;origin      xyz=&quot;0.12875 0.1504 0.04&quot;      rpy=&quot;1.5708 0 0&quot; /&gt;    &lt;parent      link=&quot;base_link&quot; /&gt;    &lt;child      link=&quot;left_front_wheel&quot; /&gt;    &lt;axis      xyz=&quot;0 0 1&quot; /&gt;  &lt;/joint&gt;  &lt;link    name=&quot;right_front_wheel&quot;&gt;    &lt;inertial&gt;      &lt;origin        xyz=&quot;0 -1.98217916108079E-05 0&quot;        rpy=&quot;0 0 0&quot; /&gt;      &lt;mass        value=&quot;0.176438810476987&quot; /&gt;      &lt;inertia        ixx=&quot;8.8965933887671E-05&quot;        ixy=&quot;-1.27636183461175E-23&quot;        ixz=&quot;8.08318211496588E-23&quot;        iyy=&quot;8.89898462049032E-05&quot;        iyz=&quot;2.18596653030412E-23&quot;        izz=&quot;0.000130905430632044&quot; /&gt;    &lt;/inertial&gt;    &lt;visual&gt;      &lt;origin        xyz=&quot;0 0 0&quot;        rpy=&quot;0 0 0&quot; /&gt;      &lt;geometry&gt;        &lt;mesh          filename=&quot;package://smartcar_description/meshes/right_front_wheel.STL&quot; /&gt;      &lt;/geometry&gt;      &lt;material        name=&quot;&quot;&gt;        &lt;color          rgba=&quot;1 1 0 1&quot; /&gt;      &lt;/material&gt;    &lt;/visual&gt;    &lt;collision&gt;      &lt;origin        xyz=&quot;0 0 0&quot;        rpy=&quot;0 0 0&quot; /&gt;      &lt;geometry&gt;        &lt;mesh          filename=&quot;package://smartcar_description/meshes/right_front_wheel.STL&quot; /&gt;      &lt;/geometry&gt;    &lt;/collision&gt;  &lt;/link&gt;  &lt;joint    name=&quot;right_front_wheel_joint&quot;    type=&quot;continuous&quot;&gt;    &lt;origin      xyz=&quot;0.12875 -0.1504 0.04&quot;      rpy=&quot;1.5708 0 0&quot; /&gt;    &lt;parent      link=&quot;base_link&quot; /&gt;    &lt;child      link=&quot;right_front_wheel&quot; /&gt;    &lt;axis      xyz=&quot;0 0 1&quot; /&gt;  &lt;/joint&gt;  &lt;link    name=&quot;left_back_wheel&quot;&gt;    &lt;inertial&gt;      &lt;origin        xyz=&quot;0 -1.98217916108356E-05 0&quot;        rpy=&quot;0 0 0&quot; /&gt;      &lt;mass        value=&quot;0.176438810476987&quot; /&gt;      &lt;inertia        ixx=&quot;8.8965933887671E-05&quot;        ixy=&quot;-1.27300145019925E-23&quot;        ixz=&quot;8.0831821149659E-23&quot;        iyy=&quot;8.89898462049032E-05&quot;        iyz=&quot;2.16519665002917E-23&quot;        izz=&quot;0.000130905430632044&quot; /&gt;    &lt;/inertial&gt;    &lt;visual&gt;      &lt;origin        xyz=&quot;0 0 0&quot;        rpy=&quot;0 0 0&quot; /&gt;      &lt;geometry&gt;        &lt;mesh          filename=&quot;package://smartcar_description/meshes/left_back_wheel.STL&quot; /&gt;      &lt;/geometry&gt;      &lt;material        name=&quot;&quot;&gt;        &lt;color          rgba=&quot;1 1 0 1&quot; /&gt;      &lt;/material&gt;    &lt;/visual&gt;    &lt;collision&gt;      &lt;origin        xyz=&quot;0 0 0&quot;        rpy=&quot;0 0 0&quot; /&gt;      &lt;geometry&gt;        &lt;mesh          filename=&quot;package://smartcar_description/meshes/left_back_wheel.STL&quot; /&gt;      &lt;/geometry&gt;    &lt;/collision&gt;  &lt;/link&gt;  &lt;joint    name=&quot;left_back_wheel_joint&quot;    type=&quot;continuous&quot;&gt;    &lt;origin      xyz=&quot;-0.12875 0.1504 0.04&quot;      rpy=&quot;1.5708 0 0&quot; /&gt;    &lt;parent      link=&quot;base_link&quot; /&gt;    &lt;child      link=&quot;left_back_wheel&quot; /&gt;    &lt;axis      xyz=&quot;0 0 1&quot; /&gt;  &lt;/joint&gt;  &lt;link    name=&quot;right_back_wheel&quot;&gt;    &lt;inertial&gt;      &lt;origin        xyz=&quot;2.77555756156289E-17 -1.98217916108079E-05 0&quot;        rpy=&quot;0 0 0&quot; /&gt;      &lt;mass        value=&quot;0.176438810476987&quot; /&gt;      &lt;inertia        ixx=&quot;8.8965933887671E-05&quot;        ixy=&quot;-4.17259369791981E-24&quot;        ixz=&quot;2.75455648073554E-21&quot;        iyy=&quot;8.89898462049032E-05&quot;        iyz=&quot;5.21854052435048E-20&quot;        izz=&quot;0.000130905430632044&quot; /&gt;    &lt;/inertial&gt;    &lt;visual&gt;      &lt;origin        xyz=&quot;0 0 0&quot;        rpy=&quot;0 0 0&quot; /&gt;      &lt;geometry&gt;        &lt;mesh          filename=&quot;package://smartcar_description/meshes/right_back_wheel.STL&quot; /&gt;      &lt;/geometry&gt;      &lt;material        name=&quot;&quot;&gt;        &lt;color          rgba=&quot;1 1 0 1&quot; /&gt;      &lt;/material&gt;    &lt;/visual&gt;    &lt;collision&gt;      &lt;origin        xyz=&quot;0 0 0&quot;        rpy=&quot;0 0 0&quot; /&gt;      &lt;geometry&gt;        &lt;mesh          filename=&quot;package://smartcar_description/meshes/right_back_wheel.STL&quot; /&gt;      &lt;/geometry&gt;    &lt;/collision&gt;  &lt;/link&gt;  &lt;joint    name=&quot;right_back_wheel_joint&quot;    type=&quot;continuous&quot;&gt;    &lt;origin      xyz=&quot;-0.12875 -0.1504 0.04&quot;      rpy=&quot;1.5708 0 3.1416&quot; /&gt;    &lt;parent      link=&quot;base_link&quot; /&gt;    &lt;child      link=&quot;right_back_wheel&quot; /&gt;    &lt;axis      xyz=&quot;0 0 1&quot; /&gt;  &lt;/joint&gt;  &lt;/xacro:macro&gt;   &lt;/robot&gt;
-
-
-gazebo.urdf.xacro
-
-&lt;?xml version=&quot;1.0&quot;?&gt;  &lt;robot xmlns:controller=&quot;http://playerstage.sourceforge.net/gazebo/xmlschema/#controller&quot;       xmlns:interface=&quot;http://playerstage.sourceforge.net/gazebo/xmlschema/#interface&quot;       xmlns:sensor=&quot;http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor&quot;       xmlns:xacro=&quot;http://ros.org/wiki/xacro&quot;       name=&quot;smartcar_gazebo&quot;&gt;   &lt;!-- ASUS Xtion PRO camera for simulation --&gt;  &lt;!-- gazebo_ros_wge100 plugin is in kt2_gazebo_plugins package --&gt;  &lt;xacro:macro name=&quot;smartcar_sim&quot;&gt;      &lt;gazebo reference=&quot;base_footprint&quot;&gt;       &lt;material&gt;Gazebo/Blue&lt;/material&gt;         &lt;turnGravityOff&gt;false&lt;/turnGravityOff&gt;    &lt;/gazebo&gt;    &lt;gazebo reference=&quot;base_link&quot;&gt;          &lt;material&gt;Gazebo/Blue&lt;/material&gt;      &lt;/gazebo&gt;       &lt;gazebo reference=&quot;right_front_wheel&quot;&gt;          &lt;material&gt;Gazebo/FlatBlack&lt;/material&gt;      &lt;/gazebo&gt;      &lt;transmission name=&quot;right_front_wheel_joint_trans&quot;&gt;      &lt;type&gt;transmission_interface/SimpleTransmission&lt;/type&gt;      &lt;joint name=&quot;right_front_wheel_joint&quot; /&gt;      &lt;actuator name=&quot;right_front_wheel_joint_motor&quot;&gt;        &lt;hardwareInterface&gt;EffortJointInterface&lt;/hardwareInterface&gt;        &lt;mechanicalReduction&gt;1&lt;/mechanicalReduction&gt;      &lt;/actuator&gt;    &lt;/transmission&gt;     &lt;gazebo reference=&quot;right_back_wheel&quot;&gt;          &lt;material&gt;Gazebo/FlatBlack&lt;/material&gt;      &lt;/gazebo&gt;         &lt;transmission name=&quot;right_back_wheel_joint_trans&quot;&gt;      &lt;type&gt;transmission_interface/SimpleTransmission&lt;/type&gt;      &lt;joint name=&quot;right_back_wheel_joint&quot; /&gt;      &lt;actuator name=&quot;right_back_wheel_joint_motor&quot;&gt;        &lt;hardwareInterface&gt;EffortJointInterface&lt;/hardwareInterface&gt;        &lt;mechanicalReduction&gt;1&lt;/mechanicalReduction&gt;      &lt;/actuator&gt;    &lt;/transmission&gt;     &lt;gazebo reference=&quot;left_front_wheel&quot;&gt;          &lt;material&gt;Gazebo/FlatBlack&lt;/material&gt;      &lt;/gazebo&gt;        &lt;transmission name=&quot;left_front_wheel_joint_trans&quot;&gt;      &lt;type&gt;transmission_interface/SimpleTransmission&lt;/type&gt;      &lt;joint name=&quot;left_front_wheel_joint&quot; /&gt;      &lt;actuator name=&quot;left_front_wheel_joint_motor&quot;&gt;        &lt;hardwareInterface&gt;EffortJointInterface&lt;/hardwareInterface&gt;        &lt;mechanicalReduction&gt;1&lt;/mechanicalReduction&gt;      &lt;/actuator&gt;    &lt;/transmission&gt;     &lt;gazebo reference=&quot;left_back_wheel&quot;&gt;          &lt;material&gt;Gazebo/FlatBlack&lt;/material&gt;      &lt;/gazebo&gt;     &lt;transmission name=&quot;left_back_wheel_joint_trans&quot;&gt;      &lt;type&gt;transmission_interface/SimpleTransmission&lt;/type&gt;      &lt;joint name=&quot;left_back_wheel_joint&quot; /&gt;      &lt;actuator name=&quot;left_back_wheel_joint_motor&quot;&gt;        &lt;hardwareInterface&gt;EffortJointInterface&lt;/hardwareInterface&gt;        &lt;mechanicalReduction&gt;1&lt;/mechanicalReduction&gt;      &lt;/actuator&gt;    &lt;/transmission&gt;     &lt;!-- position controller --&gt;    &lt;gazebo&gt;      &lt;plugin name=&quot;base_controller&quot; filename=&quot;libgazebo_ros_planar_move.so&quot;&gt;        &lt;commandTopic&gt;cmd_vel&lt;/commandTopic&gt;        &lt;odometryTopic&gt;odom&lt;/odometryTopic&gt;        &lt;odometryFrame&gt;odom&lt;/odometryFrame&gt;        &lt;odometryRate&gt;100.0&lt;/odometryRate&gt;        &lt;robotBaseFrame&gt;base_footprint&lt;/robotBaseFrame&gt;      &lt;/plugin&gt;    &lt;/gazebo&gt;&lt;/xacro:macro&gt;   &lt;/robot&gt;
-
-
-smartcar.urdf.xacro
-
-&lt;?xml version=&quot;1.0&quot;?&gt;  &lt;robot name=&quot;smartcar&quot;        xmlns:xi=&quot;http://www.w3.org/2001/XInclude&quot;      xmlns:gazebo=&quot;http://playerstage.sourceforge.net/gazebo/xmlschema/#gz&quot;      xmlns:model=&quot;http://playerstage.sourceforge.net/gazebo/xmlschema/#model&quot;      xmlns:sensor=&quot;http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor&quot;      xmlns:body=&quot;http://playerstage.sourceforge.net/gazebo/xmlschema/#body&quot;      xmlns:geom=&quot;http://playerstage.sourceforge.net/gazebo/xmlschema/#geom&quot;      xmlns:joint=&quot;http://playerstage.sourceforge.net/gazebo/xmlschema/#joint&quot;      xmlns:controller=&quot;http://playerstage.sourceforge.net/gazebo/xmlschema/#controller&quot;      xmlns:interface=&quot;http://playerstage.sourceforge.net/gazebo/xmlschema/#interface&quot;      xmlns:rendering=&quot;http://playerstage.sourceforge.net/gazebo/xmlschema/#rendering&quot;      xmlns:renderable=&quot;http://playerstage.sourceforge.net/gazebo/xmlschema/#renderable&quot;      xmlns:physics=&quot;http://playerstage.sourceforge.net/gazebo/xmlschema/#physics&quot;      xmlns:xacro=&quot;http://ros.org/wiki/xacro&quot;&gt;     &lt;xacro:include filename=&quot;$(find smartcar_description)/urdf/smartcar_body.urdf.xacro&quot; /&gt;     &lt;!-- Body of SmartCar, with plates, standoffs and Create (including sim sensors) --&gt;    &lt;smartcar_body/&gt;     &lt;smartcar_sim/&gt;  &lt;/robot&gt;
-
-
-
-然后按照古月大神的方法启动并控制就可以了。下面我要说的就是我比较独特的部分了。现在大部分的移动机器人主要差动轮进行运动，只有linear.x和angular.z两个值，但是我的模型是４个瑞典轮，能提供横向的移动速度，即linear.y。这里对diff_controller进行修改让他能够接受linear.y。diff_controller.py在&#x2F;opt&#x2F;ros&#x2F;indigo&#x2F;lib&#x2F;python2.7&#x2F;dist-packages下。（可以用sudo vim进行修改），修改都已经注释过了（add by yang）。代码如下：
-#!/usr/bin/env python&quot;&quot;&quot;  diff_controller.py - controller for a differential drive  Copyright (c) 2010-2011 Vanadium Labs LLC.  All right reserved.  Redistribution and use in source and binary forms, with or without  modification, are permitted provided that the following conditions are met:      * Redistributions of source code must retain the above copyright        notice, this list of conditions and the following disclaimer.      * Redistributions in binary form must reproduce the above copyright        notice, this list of conditions and the following disclaimer in the        documentation and/or other materials provided with the distribution.      * Neither the name of Vanadium Labs LLC nor the names of its         contributors may be used to endorse or promote products derived         from this software without specific prior written permission.    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot; AND  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE  DISCLAIMED. IN NO EVENT SHALL VANADIUM LABS BE LIABLE FOR ANY DIRECT, INDIRECT,  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,  OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF  LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE  OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&quot;&quot;&quot;import rospyfrom math import sin,cos,pifrom geometry_msgs.msg import Quaternionfrom geometry_msgs.msg import Twistfrom nav_msgs.msg import Odometryfrom diagnostic_msgs.msg import *from tf.broadcaster import TransformBroadcasterfrom ax12 import *from controllers import *from struct import unpackclass DiffController(Controller):    &quot;&quot;&quot; Controller to handle movement &amp; odometry feedback for a differential             drive mobile base. &quot;&quot;&quot;    def __init__(self, device, name):        Controller.__init__(self, device, name)        self.pause = True        self.last_cmd = rospy.Time.now()        # parameters: rates and geometry        self.rate = rospy.get_param(&#x27;~controllers/&#x27;+name+&#x27;/rate&#x27;,10.0)        self.timeout = rospy.get_param(&#x27;~controllers/&#x27;+name+&#x27;/timeout&#x27;,1.0)        self.t_delta = rospy.Duration(1.0/self.rate)        self.t_next = rospy.Time.now() + self.t_delta        self.ticks_meter = float(rospy.get_param(&#x27;~controllers/&#x27;+name+&#x27;/ticks_meter&#x27;))        self.base_width = float(rospy.get_param(&#x27;~controllers/&#x27;+name+&#x27;/base_width&#x27;))        self.base_frame_id = rospy.get_param(&#x27;~controllers/&#x27;+name+&#x27;/base_frame_id&#x27;, &#x27;base_link&#x27;)        self.odom_frame_id = rospy.get_param(&#x27;~controllers/&#x27;+name+&#x27;/odom_frame_id&#x27;, &#x27;odom&#x27;)        # parameters: PID        self.Kp = rospy.get_param(&#x27;~controllers/&#x27;+name+&#x27;/Kp&#x27;, 5)        self.Kd = rospy.get_param(&#x27;~controllers/&#x27;+name+&#x27;/Kd&#x27;, 1)        self.Ki = rospy.get_param(&#x27;~controllers/&#x27;+name+&#x27;/Ki&#x27;, 0)        self.Ko = rospy.get_param(&#x27;~controllers/&#x27;+name+&#x27;/Ko&#x27;, 50)        # parameters: acceleration        self.accel_limit = rospy.get_param(&#x27;~controllers/&#x27;+name+&#x27;/accel_limit&#x27;, 0.1)        self.max_accel = int(self.accel_limit*self.ticks_meter/self.rate)        # output for joint states publisher        self.joint_names = [&quot;base_l_wheel_joint&quot;,&quot;base_r_wheel_joint&quot;]        self.joint_positions = [0,0]        self.joint_velocities = [0,0]        # internal data                    self.v_left = 0                 # current setpoint velocity        self.v_right = 0        self.v_des_left = 0             # cmd_vel setpoint        self.v_des_right = 0        self.enc_left = None            # encoder readings        self.enc_right = None        self.x = 0                      # position in xy plane        self.y = 0        self.th = 0        self.dx = 0                     # speeds in x/rotation        self.dy = 0                     # add by yang  self.dr = 0        self.then = rospy.Time.now()    # time for determining dx/dy        # subscriptions        rospy.Subscriber(&quot;cmd_vel&quot;, Twist, self.cmdVelCb)        self.odomPub = rospy.Publisher(&quot;odom&quot;, Odometry, queue_size=5)        self.odomBroadcaster = TransformBroadcaster()            rospy.loginfo(&quot;Started yang DiffController (&quot;+name+&quot;). Geometry: &quot; + str(self.base_width) + &quot;m wide, &quot; + str(self.ticks_meter) + &quot; ticks/m.&quot;)    def startup(self):        if not self.fake:            self.setup(self.Kp,self.Kd,self.Ki,self.Ko)         def update(self):        now = rospy.Time.now()        if now &gt; self.t_next:            elapsed = now - self.then            self.then = now            elapsed = elapsed.to_sec()            if self.fake:                x = cos(self.th)*self.dx*elapsed                y = -sin(self.th)*self.dx*elapsed    #self.x and self.y has changed for the effort of dy                self.x += cos(self.th)*self.dx*elapsed + sin(self.th)*self.dy*elapsed                self.y += sin(self.th)*self.dx*elapsed + cos(self.th)*self.dy*elapsed                self.th += self.dr*elapsed            else:                # read encoders                try:                    left, right = self.status()                except Exception as e:                    rospy.logerr(&quot;Could not update encoders: &quot; + str(e))                    return                rospy.logdebug(&quot;Encoders: &quot; + str(left) +&quot;,&quot;+ str(right))                # calculate odometry                if self.enc_left == None:                    d_left = 0                    d_right = 0                else:                    d_left = (left - self.enc_left)/self.ticks_meter                    d_right = (right - self.enc_right)/self.ticks_meter                self.enc_left = left                self.enc_right = right                d = (d_left+d_right)/2                th = (d_right-d_left)/self.base_width                self.dx = d / elapsed                self.dr = th / elapsed                if (d != 0):                    x = cos(th)*d                    y = -sin(th)*d                    self.x = self.x + (cos(self.th)*x - sin(self.th)*y)                    self.y = self.y + (sin(self.th)*x + cos(self.th)*y)                if (th != 0):                    self.th = self.th + th            # publish or perish            quaternion = Quaternion()            quaternion.x = 0.0             quaternion.y = 0.0            quaternion.z = sin(self.th/2)            quaternion.w = cos(self.th/2)            self.odomBroadcaster.sendTransform(                (self.x, self.y, 0),                 (quaternion.x, quaternion.y, quaternion.z, quaternion.w),                rospy.Time.now(),                self.base_frame_id,                self.odom_frame_id                )            odom = Odometry()            odom.header.stamp = now            odom.header.frame_id = self.odom_frame_id            odom.pose.pose.position.x = self.x            odom.pose.pose.position.y = self.y            odom.pose.pose.position.z = 0            odom.pose.pose.orientation = quaternion            odom.child_frame_id = self.base_frame_id            odom.twist.twist.linear.x = self.dx            odom.twist.twist.linear.y = self.dy  #it was 0 before changed            odom.twist.twist.angular.z = self.dr            self.odomPub.publish(odom)            if now &gt; (self.last_cmd + rospy.Duration(self.timeout)):                self.v_des_left = 0                self.v_des_right = 0            # update motors            if not self.fake:                if self.v_left &lt; self.v_des_left:                    self.v_left += self.max_accel                    if self.v_left &gt; self.v_des_left:                        self.v_left = self.v_des_left                else:                    self.v_left -= self.max_accel                    if self.v_left &lt; self.v_des_left:                        self.v_left = self.v_des_left                                if self.v_right &lt; self.v_des_right:                    self.v_right += self.max_accel                    if self.v_right &gt; self.v_des_right:                        self.v_right = self.v_des_right                else:                    self.v_right -= self.max_accel                    if self.v_right &lt; self.v_des_right:                        self.v_right = self.v_des_right                self.write(self.v_left, self.v_right)            self.t_next = now + self.t_delta     def shutdown(self):        if not self.fake:            self.write(0,0)    def cmdVelCb(self,req):        &quot;&quot;&quot; Handle movement requests. &quot;&quot;&quot;        self.last_cmd = rospy.Time.now()        if self.fake:            self.dx = req.linear.x        # m/s            self.dy = req.linear.y        # m/s add by yang            self.dr = req.angular.z       # rad/s        else:            # set motor speeds in ticks per 1/30s            self.v_des_left = int( ((req.linear.x - (req.angular.z * self.base_width/2.0)) * self.ticks_meter) / 30.0)            self.v_des_right = int( ((req.linear.x + (req.angular.z * self.base_width/2.0)) * self.ticks_meter) / 30.0)    def getDiagnostics(self):        &quot;&quot;&quot; Get a diagnostics status. &quot;&quot;&quot;        msg = DiagnosticStatus()        msg.name = self.name        msg.level = DiagnosticStatus.OK        msg.message = &quot;OK&quot;        if not self.fake:            msg.values.append(KeyValue(&quot;Left&quot;, str(self.enc_left)))            msg.values.append(KeyValue(&quot;Right&quot;, str(self.enc_right)))        msg.values.append(KeyValue(&quot;dX&quot;, str(self.dx)))        msg.values.append(KeyValue(&quot;dR&quot;, str(self.dr)))        return msg    ###    ### Controller Specification:     ###    ###  setup: Kp, Kd, Ki, Ko (all unsigned char)    ###    ###  write: left_speed, right_speed (2-byte signed, ticks per frame)    ###    ###  status: left_enc, right_enc (4-byte signed)    ###         def setup(self, kp, kd, ki, ko):        success = self.device.execute(253, AX_CONTROL_SETUP, [10, kp, kd, ki, ko])    def write(self, left, right):        &quot;&quot;&quot; Send a closed-loop speed. Base PID loop runs at 30Hz, these values                are therefore in ticks per 1/30 second. &quot;&quot;&quot;        left = left&amp;0xffff        right = right&amp;0xffff        success = self.device.execute(253, AX_CONTROL_WRITE, [10, left%256, left&gt;&gt;8, right%256, right&gt;&gt;8])    def status(self):        &quot;&quot;&quot; read 32-bit (signed) encoder values. &quot;&quot;&quot;        values = self.device.execute(253, AX_CONTROL_STAT, [10])        left_values = &quot;&quot;.join([chr(k) for k in values[0:4] ])                right_values = &quot;&quot;.join([chr(k) for k in values[4:] ])        try:            left = unpack(&#x27;=l&#x27;,left_values)[0]            right = unpack(&#x27;=l&#x27;,right_values)[0]            return [left, right]        except:            return None]]></content>
-      <categories>
-        <category>ros</category>
-      </categories>
-      <tags>
-        <tag>ros</tag>
-        <tag>横向移动</tag>
-        <tag>机器人</tag>
-        <tag>rviz</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SLAM with LS01C and hector</title>
-    <url>/2017/10/09/%E5%8E%9F-%E6%89%8B%E6%8C%81%E9%95%AD%E7%A5%9ELS01C%E4%BD%BF%E7%94%A8hector-mapping%E6%96%B9%E6%B3%95%E8%BF%9B%E8%A1%8C%E5%BB%BA%E5%9B%BE%E5%AE%9E%E9%AA%8C/</url>
-    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）我的代码在ls01c可以拿去下载。
-本博客只是个人学习记录使用，瞎写写，内容比较粗糙。
-
-从镭神客服那里拿到驱动
-对驱动进行阅读，并启动节点获取雷达数据实验在启动激光雷达的过程中可能遇到这样的问题：驱动没问题，launch文件也没问题，但是雷达不旋转，也得不到数据，这是因为激光雷达的端口ttyUSB0(也可能是别的名称，自己查一下吧)没有权限，需要在终端执行以下语句：
-
-cd &#x2F;devsudo chmod 777 ttyUSB
-
-下载hector源码并编译hector的github下载地址
-启动launch文件就可以建图了
-
-可能遇到的问题：
-
-手持时，可能因为移动的太快或者转动太快导致地图混乱
-当有物体靠近激光雷达或者雷达收到振动时，终端会出现SearchDir angle change too large
-
-
-后记：建图混乱的原因致使因为这个雷达的性能不满足这个算法。我回头试试用cartographer和这个雷达试试能否建出好图。
-]]></content>
+If you’re trying to render video on a server, you’ll need to connect a fake display. The easiest way to do this is by running under xvfb-run (on Ubuntu, install the xvfb package):
+xvfb-run -s &quot;-screen 0 1400x900x24&quot; bash]]></content>
       <categories>
         <category>ros</category>
       </categories>
       <tags>
         <tag>ROS</tag>
+        <tag>rviz</tag>
         <tag>robot</tag>
-        <tag>SLAM</tag>
-        <tag>hector</tag>
       </tags>
   </entry>
   <entry>
@@ -1279,6 +1246,39 @@ VII. 讨论
         <tag>ros</tag>
         <tag>navigation</tag>
         <tag>layers</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>gazebo中机器人横向移动</title>
+    <url>/2017/01/10/%E5%9C%A8gazebo%E4%B8%AD%E5%90%AF%E5%8A%A8%E7%A7%BB%E5%8A%A8%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A8%A1%E5%9E%8B%EF%BC%8C%E5%B9%B6%E5%AE%9E%E7%8E%B0%E6%A8%AA%E5%90%91%E7%A7%BB%E5%8A%A8/</url>
+    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）本博客只是个人学习记录使用，瞎写写，内容比较粗糙。编写过程中，借鉴了yaked大神的实战youBot和ROS-WIKI以及其它一些大神的内容。现在大部分的移动机器人主要差动轮进行运动，只有linear.x和angular.z两个值，但是我的模型是４个瑞典轮，能提供横向的移动速度，即linear.y。在gazebo中的横向移动同样要修改控制方式，只不过在与rviz不同，不能直接修改，文件格式打不开，这里采用的方案是直接在xacro中加载一个平面移动的插件就可以了
+&lt;!-- position controller --&gt;
+&lt;gazebo&gt;
+  &lt;plugin name=&quot;base_controller&quot; filename=&quot;libgazebo_ros_planar_move.so&quot;&gt;
+    &lt;commandTopic&gt;cmd_vel&lt;/commandTopic&gt;
+    &lt;odometryTopic&gt;odom&lt;/odometryTopic&gt;
+    &lt;odometryFrame&gt;/odom&lt;/odometryFrame&gt;
+    &lt;odometryRate&gt;100.0&lt;/odometryRate&gt;
+    &lt;robotBaseFrame&gt;base_footprint&lt;/robotBaseFrame&gt;
+    &lt;broadcastTF&gt;true&lt;/broadcastTF&gt;
+  &lt;/plugin&gt;
+&lt;/gazebo&gt;`
+
+
+
+模型xacro加载到gazebo沿用yaked大神博客中的gazebo.launch进行修改，把自己的模型修改到他的launch文件中，就可以了。＇
+
+gazebo加入上面的代码
+
+
+]]></content>
+      <categories>
+        <category>ros</category>
+      </categories>
+      <tags>
+        <tag>ROS</tag>
+        <tag>横向移动</tag>
+        <tag>机器人</tag>
       </tags>
   </entry>
 </search>
