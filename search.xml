@@ -31,43 +31,6 @@ pip install shadowsocks时出现locale.Error: unsupported locale setting
       </tags>
   </entry>
   <entry>
-    <title>在markdown中引入图片的解决方案</title>
-    <url>/2018/01/20/20180119_markdown%E5%9B%BE%E7%89%87%E9%93%BE%E6%8E%A5/</url>
-    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io 未经允许请勿用于商业用途）#背景
-
-需要GitHub账号
-需要基本的git命令知识
-基本的计算机技能
-
-
-#方法说明：
-首先在github中新建一个repo，然后git clone下来，然后把你想要的图片放到这个文件夹中然后上传，然后到GitHub中找到这个图片查看地址，在markdown中引用就好了。
-
-#具体步骤
-
-新建一个repo
-
-打开终端,并到一个你的目录下面 git clone https://github.com/****/markdownImages.git ***为你的用户名
-
-把你要用的图片放进去,图片名要用英文
- git add 图片名 git commit -m “图片名” git push origin master
-
-打开浏览器进入你的github,找到相应的图片打开,github能预览出图片就OK,然后右键图片复制图片的地址
-
-打开你的markdown编辑器,享受吧
-
-
-]]></content>
-      <categories>
-        <category>IT</category>
-      </categories>
-      <tags>
-        <tag>markdown</tag>
-        <tag>images</tag>
-        <tag>links，github</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>科学上网教学</title>
     <url>/2018/01/18/20180120_%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%E6%95%99%E5%AD%A6/</url>
     <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io 未经允许请勿用于商业用途）1.打开ishadowishadow的网址为(https://global.ishadowx.net/)
@@ -90,6 +53,78 @@ pip install shadowsocks时出现locale.Error: unsupported locale setting
       <tags>
         <tag>shadowsocks</tag>
         <tag>免费翻墙</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>简单了解区块链技术以及比特币</title>
+    <url>/2018/01/22/20180122_%E7%AE%80%E5%8D%95%E4%BA%86%E8%A7%A3%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF%E4%BB%A5%E5%8F%8A%E6%AF%94%E7%89%B9%E5%B8%81/</url>
+    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io 未经允许请勿用于商业用途）
+视频地址: https://www.youtube.com/watch?v=obRzfcvMshM
+比特币主要技术和特点:
+利用SHA-256算法和非对称加密算法制作数字签名
+利用区块链中的区块存储比特币和交易记录
+设置额外的工作从而控制单位时间内生成区块的个数
+给予一定数量的比特币和交易费奖励生成区块链的矿工,激励矿工加入区块链社区,促进区块链社区的成长和发展
+不依赖银行和其他金融机构,达到去中心化的目的
+比特币的总量不超过2100万
+
+
+SHA-256函数与非对称加密算法SHA-256函数全称是安全哈希算法.用此方法把原始记录转化为256个二进制数字串
+非对称加密算法加密算法通过把SHA-256生成的哈希值加密后,生成新的字符串,然后再通过解密来达到还原哈希值非对称指的是,用私钥来加密,用公钥来解密,私钥只有自己拥有,公钥可以通过私钥推到,但是公钥不能反推到私钥.#整个流程如下:
+
+SHA-256计算原始信息得到256位的二进制哈希值
+哈希值经过老王的私钥加密,得到加密后的哈希值,这个加密后的哈希值就是老王的数字签名
+老李得到老王的数字签名,用老王提供的公钥来解密得到哈希值1
+老李再使用SHA-256把老王的原始信息计算得到哈希值2
+如果哈希值1 &#x3D; 哈希值2,那么说明这个数字签名是针对这个原始信息的,签名是老王的,记录使没有经过篡改的.
+
+比特币在SHA-256和非对称加密算法例子的改进和适配
+使用比特币作为基础货币
+使用支付作为专业的名字
+用一种方法确认付款方是否有足够的比特币进行支付,这个方法是这次交易的判断依据是上一次交易获得的比特币.比如:老王支付20比特币给老李-&gt;支付10比特币给老张+支付10比特币给老李流程如下老李支付时发送:支付消息 + 付款方的数字签名(针对该消息的) + 老李的公钥老张接收到支付消息后:
+
+
+判断是否足够金额
+用SHA-256解析接收到的支付消息,转化为哈希值1
+使用老李的公钥对老李的数字签名进行解密,得到哈希值2
+如果哈希值1&#x3D;哈希值2,交易成功
+
+
+交易双方使用账号进行交易账号是通过把公钥输入某个函数得到
+转账记录的存储和维护很多设备同时存储和维护
+
+三个一致性方面的问题和解决方案三个一致性方面的问题:
+如何进行同步
+如何防止记录被篡改
+如何防止同一笔比特别收入被重复使用
+
+比特币利用区块链解决三个一致性方面的问题:
+区块中包含很多交易信息
+区块线性连接成为一个区块链
+由矿工产生新区块,在此之前需要接收网络上的结点,并验证,然后才能去产生新区块
+使用额外的工作的方法限制矿工单位时间产生的新区快的数量额外的工作为:
+
+
+新制作的区块内容(组成一个字符串):前一个区块的SHA-256函数值 + 这个新区块的基本信息 + 这个新区块所包含的所有交易记录.每一个区块都含有上一个的SHA-256值
+在字符串后面加上一个随机数,组成新的字符串.新的字符串经过SHA-256计算后得到的256位的二进制数.如果这个256位二进制数的前72位全是0,则完成了这个额外的工作. 每一位为0的概率为0.5,72位全为0的概率为1&#x2F;72额外的工作完成之后把:前一个区块的SHA-256函数值 + 这个新区快的基本信息 + 这个新区快所包含的所有交易记录+找到的随机数 组成一个新的字符串,然后生成新区块加到区块链的末尾.
+
+对矿工的激励措施
+比特别网络奖励
+交易费收入
+
+比特币网络的调整
+增加额外工作的难度,前73位为0
+同时生成了2个新区块,看下一个新区块产生在谁的后面,那么就用谁.
+比特币网络只采用最长的新区块
+
+]]></content>
+      <categories>
+        <category>IT</category>
+      </categories>
+      <tags>
+        <tag>区块链</tag>
+        <tag>比特币</tag>
+        <tag>挖矿</tag>
       </tags>
   </entry>
   <entry>
@@ -163,103 +198,85 @@ next官网 http://theme-next.iissnan.com/
       </tags>
   </entry>
   <entry>
-    <title>NUC的Ubuntu无法上网的解决方案</title>
-    <url>/2018/03/28/20180328_NUC%E7%9A%84Ubuntu%E6%97%A0%E6%B3%95%E4%B8%8A%E7%BD%91%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
-    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）
-查询网卡型号lspci
+    <title>在markdown中引入图片的解决方案</title>
+    <url>/2018/01/20/20180119_markdown%E5%9B%BE%E7%89%87%E9%93%BE%E6%8E%A5/</url>
+    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io 未经允许请勿用于商业用途）#背景
 
-Ethernet controller是有线网卡Network controller是无线网卡
-#有线网卡具体步骤参考这个回答
-
-下载e1000e  下载地址
-把e1000e放到某个文件夹下，例如&#x2F;home&#x2F;hit&#x2F;
-解压缩 cd e1000e-&lt;x.x.x&gt;&#x2F;src&#x2F; tar zxf e1000e-&lt;x.x.x&gt;.tar.gz
-cd 到e1000e下的src目录下，进行编译安装 sudo make install
-模块装载 modprobe e1000e insmod e1000e
-测试是否成功
-
-无线网卡具体步骤参考这个回答
-1.下载http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.8.14/linux-headers-4.8.14-040814-generic_4.8.14-040814.201612101431_amd64.debhttp://kernel.ubuntu.com/~kernel-ppa/mainline/v4.8.14/linux-image-4.8.14-040814-generic_4.8.14-040814.201612101431_amd64.debhttp://kernel.ubuntu.com/~kernel-ppa/mainline/v4.8.14/linux-headers-4.8.14-040814_4.8.14-040814.201612101431_all.deb2. 安装   sudo dpkg -i *.deb3. 重启 好了4. 没好的话参考这个回答可以通过链接https://wireless.wiki.kernel.org/en/users/Drivers/iwlwifi下载相应的驱动。解压缩之后把文件
-]]></content>
-      <categories>
-        <category>tools</category>
-      </categories>
-      <tags>
-        <tag>NUC</tag>
-        <tag>Ubuntu</tag>
-        <tag>Network</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>简单了解区块链技术以及比特币</title>
-    <url>/2018/01/22/20180122_%E7%AE%80%E5%8D%95%E4%BA%86%E8%A7%A3%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF%E4%BB%A5%E5%8F%8A%E6%AF%94%E7%89%B9%E5%B8%81/</url>
-    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io 未经允许请勿用于商业用途）
-视频地址: https://www.youtube.com/watch?v=obRzfcvMshM
-比特币主要技术和特点:
-利用SHA-256算法和非对称加密算法制作数字签名
-利用区块链中的区块存储比特币和交易记录
-设置额外的工作从而控制单位时间内生成区块的个数
-给予一定数量的比特币和交易费奖励生成区块链的矿工,激励矿工加入区块链社区,促进区块链社区的成长和发展
-不依赖银行和其他金融机构,达到去中心化的目的
-比特币的总量不超过2100万
+需要GitHub账号
+需要基本的git命令知识
+基本的计算机技能
 
 
-SHA-256函数与非对称加密算法SHA-256函数全称是安全哈希算法.用此方法把原始记录转化为256个二进制数字串
-非对称加密算法加密算法通过把SHA-256生成的哈希值加密后,生成新的字符串,然后再通过解密来达到还原哈希值非对称指的是,用私钥来加密,用公钥来解密,私钥只有自己拥有,公钥可以通过私钥推到,但是公钥不能反推到私钥.#整个流程如下:
+#方法说明：
+首先在github中新建一个repo，然后git clone下来，然后把你想要的图片放到这个文件夹中然后上传，然后到GitHub中找到这个图片查看地址，在markdown中引用就好了。
 
-SHA-256计算原始信息得到256位的二进制哈希值
-哈希值经过老王的私钥加密,得到加密后的哈希值,这个加密后的哈希值就是老王的数字签名
-老李得到老王的数字签名,用老王提供的公钥来解密得到哈希值1
-老李再使用SHA-256把老王的原始信息计算得到哈希值2
-如果哈希值1 &#x3D; 哈希值2,那么说明这个数字签名是针对这个原始信息的,签名是老王的,记录使没有经过篡改的.
+#具体步骤
 
-比特币在SHA-256和非对称加密算法例子的改进和适配
-使用比特币作为基础货币
-使用支付作为专业的名字
-用一种方法确认付款方是否有足够的比特币进行支付,这个方法是这次交易的判断依据是上一次交易获得的比特币.比如:老王支付20比特币给老李-&gt;支付10比特币给老张+支付10比特币给老李流程如下老李支付时发送:支付消息 + 付款方的数字签名(针对该消息的) + 老李的公钥老张接收到支付消息后:
+新建一个repo
 
+打开终端,并到一个你的目录下面 git clone https://github.com/****/markdownImages.git ***为你的用户名
 
-判断是否足够金额
-用SHA-256解析接收到的支付消息,转化为哈希值1
-使用老李的公钥对老李的数字签名进行解密,得到哈希值2
-如果哈希值1&#x3D;哈希值2,交易成功
+把你要用的图片放进去,图片名要用英文
+ git add 图片名 git commit -m “图片名” git push origin master
 
+打开浏览器进入你的github,找到相应的图片打开,github能预览出图片就OK,然后右键图片复制图片的地址
 
-交易双方使用账号进行交易账号是通过把公钥输入某个函数得到
-转账记录的存储和维护很多设备同时存储和维护
+打开你的markdown编辑器,享受吧
 
-三个一致性方面的问题和解决方案三个一致性方面的问题:
-如何进行同步
-如何防止记录被篡改
-如何防止同一笔比特别收入被重复使用
-
-比特币利用区块链解决三个一致性方面的问题:
-区块中包含很多交易信息
-区块线性连接成为一个区块链
-由矿工产生新区块,在此之前需要接收网络上的结点,并验证,然后才能去产生新区块
-使用额外的工作的方法限制矿工单位时间产生的新区快的数量额外的工作为:
-
-
-新制作的区块内容(组成一个字符串):前一个区块的SHA-256函数值 + 这个新区块的基本信息 + 这个新区块所包含的所有交易记录.每一个区块都含有上一个的SHA-256值
-在字符串后面加上一个随机数,组成新的字符串.新的字符串经过SHA-256计算后得到的256位的二进制数.如果这个256位二进制数的前72位全是0,则完成了这个额外的工作. 每一位为0的概率为0.5,72位全为0的概率为1&#x2F;72额外的工作完成之后把:前一个区块的SHA-256函数值 + 这个新区快的基本信息 + 这个新区快所包含的所有交易记录+找到的随机数 组成一个新的字符串,然后生成新区块加到区块链的末尾.
-
-对矿工的激励措施
-比特别网络奖励
-交易费收入
-
-比特币网络的调整
-增加额外工作的难度,前73位为0
-同时生成了2个新区块,看下一个新区块产生在谁的后面,那么就用谁.
-比特币网络只采用最长的新区块
 
 ]]></content>
       <categories>
         <category>IT</category>
       </categories>
       <tags>
-        <tag>区块链</tag>
-        <tag>比特币</tag>
-        <tag>挖矿</tag>
+        <tag>markdown</tag>
+        <tag>images</tag>
+        <tag>links，github</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ROS用python读写串口数据</title>
+    <url>/2018/05/30/20180530_ROS%E7%94%A8python%E8%AF%BB%E5%86%99%E4%B8%B2%E5%8F%A3%E6%95%B0%E6%8D%AE/</url>
+    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）##程序：
+import serial
+import struct
+
+ser = serial.Serial(&#39;/dev/ttyUSB0&#39;,&#39;115200&#39;)
+#write
+data1 = 1
+data2 = 2
+data3 = 3
+data = struct.pack(&#39;&gt;BHB&#39;, data1, data2, data3)
+ser.write(data)
+#read
+data = &#39;&#39;
+data_temp = ser.read(4)
+data = struct.unpack(&#39;&gt;BHB&#39;, data_temp)
+
+##流程：###首先在Ubuntu下安装pyserial
+   pip install serial
+
+###查看串口名称，并给予权限
+   demsg | grep ttyUSB
+   sudo chmod a+x ttyUSBn(n为你看到的数)
+
+###进行读写实验
+
+在读写使用中用struct中的pack对数据进行转换再发送到串口，才能被STM32正常识别。同时，再读取时进行读取也能读出正常格式的数据。其中B代表无符号的字节占一位，H占两位。
+读取数据时，单片机发送多少位，读取多少位，可以完整的读取数据。
+
+##读与写的内容
+###读读出来的是16位byte类型的数据，先unpack之后，然后处理，前6位分别对应roll pitch yaw，第7、8位对应angular_z，第9到16位读出来是每个轮的转速。奇数位是方向位，偶数位是速度位。
+###写先把255 254 mode v_x v_y a_z flag(方向标志位)按照BBBHHHB的顺序pack，然后再写到串口
+]]></content>
+      <categories>
+        <category>ROS</category>
+      </categories>
+      <tags>
+        <tag>ROS</tag>
+        <tag>python</tag>
+        <tag>serial</tag>
+        <tag>struct</tag>
       </tags>
   </entry>
   <entry>
@@ -336,48 +353,31 @@ https://github.com/TKkk-iOSer/WeChatPlugin-MacOS
       </tags>
   </entry>
   <entry>
-    <title>ROS用python读写串口数据</title>
-    <url>/2018/05/30/20180530_ROS%E7%94%A8python%E8%AF%BB%E5%86%99%E4%B8%B2%E5%8F%A3%E6%95%B0%E6%8D%AE/</url>
-    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）##程序：
-import serial
-import struct
+    <title>NUC的Ubuntu无法上网的解决方案</title>
+    <url>/2018/03/28/20180328_NUC%E7%9A%84Ubuntu%E6%97%A0%E6%B3%95%E4%B8%8A%E7%BD%91%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
+    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）
+查询网卡型号lspci
 
-ser = serial.Serial(&#39;/dev/ttyUSB0&#39;,&#39;115200&#39;)
-#write
-data1 = 1
-data2 = 2
-data3 = 3
-data = struct.pack(&#39;&gt;BHB&#39;, data1, data2, data3)
-ser.write(data)
-#read
-data = &#39;&#39;
-data_temp = ser.read(4)
-data = struct.unpack(&#39;&gt;BHB&#39;, data_temp)
+Ethernet controller是有线网卡Network controller是无线网卡
+#有线网卡具体步骤参考这个回答
 
-##流程：###首先在Ubuntu下安装pyserial
-   pip install serial
+下载e1000e  下载地址
+把e1000e放到某个文件夹下，例如&#x2F;home&#x2F;hit&#x2F;
+解压缩 cd e1000e-&lt;x.x.x&gt;&#x2F;src&#x2F; tar zxf e1000e-&lt;x.x.x&gt;.tar.gz
+cd 到e1000e下的src目录下，进行编译安装 sudo make install
+模块装载 modprobe e1000e insmod e1000e
+测试是否成功
 
-###查看串口名称，并给予权限
-   demsg | grep ttyUSB
-   sudo chmod a+x ttyUSBn(n为你看到的数)
-
-###进行读写实验
-
-在读写使用中用struct中的pack对数据进行转换再发送到串口，才能被STM32正常识别。同时，再读取时进行读取也能读出正常格式的数据。其中B代表无符号的字节占一位，H占两位。
-读取数据时，单片机发送多少位，读取多少位，可以完整的读取数据。
-
-##读与写的内容
-###读读出来的是16位byte类型的数据，先unpack之后，然后处理，前6位分别对应roll pitch yaw，第7、8位对应angular_z，第9到16位读出来是每个轮的转速。奇数位是方向位，偶数位是速度位。
-###写先把255 254 mode v_x v_y a_z flag(方向标志位)按照BBBHHHB的顺序pack，然后再写到串口
+无线网卡具体步骤参考这个回答
+1.下载http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.8.14/linux-headers-4.8.14-040814-generic_4.8.14-040814.201612101431_amd64.debhttp://kernel.ubuntu.com/~kernel-ppa/mainline/v4.8.14/linux-image-4.8.14-040814-generic_4.8.14-040814.201612101431_amd64.debhttp://kernel.ubuntu.com/~kernel-ppa/mainline/v4.8.14/linux-headers-4.8.14-040814_4.8.14-040814.201612101431_all.deb2. 安装   sudo dpkg -i *.deb3. 重启 好了4. 没好的话参考这个回答可以通过链接https://wireless.wiki.kernel.org/en/users/Drivers/iwlwifi下载相应的驱动。解压缩之后把文件
 ]]></content>
       <categories>
-        <category>ROS</category>
+        <category>tools</category>
       </categories>
       <tags>
-        <tag>ROS</tag>
-        <tag>python</tag>
-        <tag>serial</tag>
-        <tag>struct</tag>
+        <tag>NUC</tag>
+        <tag>Ubuntu</tag>
+        <tag>Network</tag>
       </tags>
   </entry>
   <entry>
@@ -430,6 +430,55 @@ More info: Deployment
         <tag>Hexo</tag>
         <tag>Blogs</tag>
         <tag>Github</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>python连接gazebo/openAI的gym/erlerobot的gym-gazebo/google的tensorflow</title>
+    <url>/2018/01/10/%E5%8E%9F-python%E8%BF%9E%E6%8E%A5gazebo-openAI%E7%9A%84gym-erlerobot%E7%9A%84gym-gazebo-google%E7%9A%84tensorflow/</url>
+    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）笔记本型号：联想Y500CPU　:　Intel® Core™ i7-3630QM CPU @ 2.40GHz × 8内存：7.7 GiB显卡：GeForce GT 750M&#x2F;PCIe&#x2F;SSE2系统版本：ubuntu 14.04 LTS 64bitROS版本：indigogazebo版本：gazebo7tensorflow：1.4.1-gpupython：2.7
+
+中间一些令我吐血的地方：1.必须python2.7，不然要解决的问题太多了，我尝试了好久，边擦干净屏幕上的血，边把所有的东西改为了python2.72.百度不是解决问题的方法，谷歌才是，科学上网才是第一生产力3.遇到无法import rospy等ros的包的问题，请移步我的另一篇博客。在sublime text3和pycharm无法import rospy等ros Python库4.中间用到的一些工具，请移步我的另一篇博客ubuntu上我的装机必备小工具
+
+#安装步骤##1.先安装gazebo7我用的是新立得软件包管理装的，很方便，当然你可以选择别的方式##2.安装ros请移步ROSwikiroswiki注意：这里必须安装ros-indigo-desktop版本 不要装full##3.安装gazebo7和ros的control package在新立得软件包管理一搜就有了，关键词为：ros-indigo-gazebo7-ros把其中的都装了就好了##4.安装gymopenAI-gym的github按照github中的步骤来就好首先装依赖
+apt-get install -y python-numpy python-dev cmake zlib1g-dev libjpeg-dev xvfb libav-tools xorg-dev python-opengl libboost-all-dev libsdl2-dev swig
+
+注意git clone之后要装all版本git clone https://github.com/openai/gym.git cd gym pip install -e &#39;.[all]&#39;在他的安装说明提到了Rendering on a server，这个是我之前一直在找的东西。可以在你不查屏幕的时候运行gazebo和rviz，这在我之前的博文中提到了Rendering on a serverIf you’re trying to render video on a server, you’ll need to connect a fake display. The easiest way to do this is by running under xvfb-run (on Ubuntu, install the xvfb package):
+xvfb-run -s &quot;-screen 0 1400x900x24&quot; bash
+##5.gym-gazebo这个很难装，很繁琐，现在我还是比较懵逼的。不过我总结了一下经。先去看一下他的安装文档，然后不要着急。我们之前的有些已经装过了，那我们采用step-by-step的方式，安装过程中要看着setup.bash来，把不用的步骤省去参照此人的博客：理解gym-gazebo注意：    1.安装过程中可以打开gazebo.repos把系统中已经有的可以屏蔽掉。    2.如果CPU性能不是特别好，不建议那么多线程，make -j 1就好，慢点就慢点吧，不然会编译冲突错误。    3.路径的设置要根据自己安装的路径来。##6.tensorflow因为ros不兼容python3，所以我只能把原来的Python3的tensorflow废弃掉了。我编译安装tensorflow没成功，这里，我用pip安装的。安装过程中，不知道是网还是我的电脑的问题很多包在pip的时候会下载不下来，导致安装失败，我的应对方法是：从python官网把需要安装的whl包最新版下载下来用pip安装。
+##pip安装whl的方法如下：1.cd到whl包所在的目录2.pip install xxxx.whl（也可以加sudo）
+]]></content>
+      <categories>
+        <category>reinforcement learning</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>ros</tag>
+        <tag>gazebo</tag>
+        <tag>gym</tag>
+        <tag>Tensorflow</tag>
+        <tag>ubuntu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>setting-user of sublime</title>
+    <url>/2017/12/08/%E5%8E%9F-sublime%E7%9A%84setting-user/</url>
+    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）刚开始用sublime,因为感觉很好用，所以想折腾一下。 
+系统:ubuntu 14.04 
+sublime版本:3126
+作为一个渣渣，遇到的问题如下：
+
+注册的问题 百度一搜一大堆，关键词为：sublime3126注册码，举个栗子：用力戳这里
+配置文件不能修改的问题Perferences-setting打开之后，有两块左右各一，一开始很傻，一直在左边Default修改，发现怎么改也改不了，一度怀疑人生，后来才发现右边也有一个框，把你想要修改的部分复制到右边，然后再修改就好了，会优先加载user中的内容‘’’{“color_scheme”: “Packages&#x2F;Color Scheme - Default&#x2F;Monokai.tmTheme”,“font_face”: “Courier New”,“font_size”: 18,“ignored_packages”:[“Vintage”],“line_padding_bottom”: 1,“line_padding_top”: 1,“match_brackets”: true,“theme”: “Default.sublime-theme”,“tranlate_tabs_to_spaces”: true,“wrap_width”: 100}‘’’
+
+我的是这样的，我喜欢Courier New的字体，你也可以试试，看起来很舒服。因为想要用python，所以把tab转换为space，这样省了很多事情。
+]]></content>
+      <categories>
+        <category>tools</category>
+      </categories>
+      <tags>
+        <tag>ubuntu</tag>
+        <tag>sublime-text3</tag>
+        <tag>setting</tag>
       </tags>
   </entry>
   <entry>
@@ -506,58 +555,9 @@ sudo reboot
         <category>tools</category>
       </categories>
       <tags>
+        <tag>ubuntu</tag>
         <tag>launchpad</tag>
         <tag>图标异常</tag>
-        <tag>ubuntu</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>python连接gazebo/openAI的gym/erlerobot的gym-gazebo/google的tensorflow</title>
-    <url>/2018/01/10/%E5%8E%9F-python%E8%BF%9E%E6%8E%A5gazebo-openAI%E7%9A%84gym-erlerobot%E7%9A%84gym-gazebo-google%E7%9A%84tensorflow/</url>
-    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）笔记本型号：联想Y500CPU　:　Intel® Core™ i7-3630QM CPU @ 2.40GHz × 8内存：7.7 GiB显卡：GeForce GT 750M&#x2F;PCIe&#x2F;SSE2系统版本：ubuntu 14.04 LTS 64bitROS版本：indigogazebo版本：gazebo7tensorflow：1.4.1-gpupython：2.7
-
-中间一些令我吐血的地方：1.必须python2.7，不然要解决的问题太多了，我尝试了好久，边擦干净屏幕上的血，边把所有的东西改为了python2.72.百度不是解决问题的方法，谷歌才是，科学上网才是第一生产力3.遇到无法import rospy等ros的包的问题，请移步我的另一篇博客。在sublime text3和pycharm无法import rospy等ros Python库4.中间用到的一些工具，请移步我的另一篇博客ubuntu上我的装机必备小工具
-
-#安装步骤##1.先安装gazebo7我用的是新立得软件包管理装的，很方便，当然你可以选择别的方式##2.安装ros请移步ROSwikiroswiki注意：这里必须安装ros-indigo-desktop版本 不要装full##3.安装gazebo7和ros的control package在新立得软件包管理一搜就有了，关键词为：ros-indigo-gazebo7-ros把其中的都装了就好了##4.安装gymopenAI-gym的github按照github中的步骤来就好首先装依赖
-apt-get install -y python-numpy python-dev cmake zlib1g-dev libjpeg-dev xvfb libav-tools xorg-dev python-opengl libboost-all-dev libsdl2-dev swig
-
-注意git clone之后要装all版本git clone https://github.com/openai/gym.git cd gym pip install -e &#39;.[all]&#39;在他的安装说明提到了Rendering on a server，这个是我之前一直在找的东西。可以在你不查屏幕的时候运行gazebo和rviz，这在我之前的博文中提到了Rendering on a serverIf you’re trying to render video on a server, you’ll need to connect a fake display. The easiest way to do this is by running under xvfb-run (on Ubuntu, install the xvfb package):
-xvfb-run -s &quot;-screen 0 1400x900x24&quot; bash
-##5.gym-gazebo这个很难装，很繁琐，现在我还是比较懵逼的。不过我总结了一下经。先去看一下他的安装文档，然后不要着急。我们之前的有些已经装过了，那我们采用step-by-step的方式，安装过程中要看着setup.bash来，把不用的步骤省去参照此人的博客：理解gym-gazebo注意：    1.安装过程中可以打开gazebo.repos把系统中已经有的可以屏蔽掉。    2.如果CPU性能不是特别好，不建议那么多线程，make -j 1就好，慢点就慢点吧，不然会编译冲突错误。    3.路径的设置要根据自己安装的路径来。##6.tensorflow因为ros不兼容python3，所以我只能把原来的Python3的tensorflow废弃掉了。我编译安装tensorflow没成功，这里，我用pip安装的。安装过程中，不知道是网还是我的电脑的问题很多包在pip的时候会下载不下来，导致安装失败，我的应对方法是：从python官网把需要安装的whl包最新版下载下来用pip安装。
-##pip安装whl的方法如下：1.cd到whl包所在的目录2.pip install xxxx.whl（也可以加sudo）
-]]></content>
-      <categories>
-        <category>reinforcement learning</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>ros</tag>
-        <tag>ubuntu</tag>
-        <tag>gazebo</tag>
-        <tag>gym</tag>
-        <tag>Tensorflow</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Ubuntu上装机必备小工具</title>
-    <url>/2018/01/10/%E5%8E%9F-ubuntu%E4%B8%8A%E6%88%91%E7%9A%84%E8%A3%85%E6%9C%BA%E5%BF%85%E5%A4%87%E5%B0%8F%E5%B7%A5%E5%85%B7/</url>
-    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）1.system monitor indicator
-系统监视软件
-sudo add-apt-repository ppa:fossfreedom&#x2F;indicator-sysmonitorsudo apt-get updatesudo apt-get install indicator-sysmonitorindicator-sysmonitor &amp;
-2.touchpad-indicator一个触摸板禁用软件，插入鼠标自动禁用touchpad
-3.y-ppa-manager一个可以管理ppa的软件，可以清理修复ppa
-4.Terminator
-一个好用的可以把一个终端分成多个终端的软件
-5.新立得
-这是一个Ubuntu软件包管理软件，谁用谁知道。
-]]></content>
-      <categories>
-        <category>tools</category>
-      </categories>
-      <tags>
-        <tag>ubuntu</tag>
-        <tag>tools</tag>
-        <tag>software</tag>
       </tags>
   </entry>
   <entry>
@@ -604,65 +604,6 @@ Move the youbot using its wheels
       </tags>
   </entry>
   <entry>
-    <title>setting-user of sublime</title>
-    <url>/2017/12/08/%E5%8E%9F-sublime%E7%9A%84setting-user/</url>
-    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）刚开始用sublime,因为感觉很好用，所以想折腾一下。 
-系统:ubuntu 14.04 
-sublime版本:3126
-作为一个渣渣，遇到的问题如下：
-
-注册的问题 百度一搜一大堆，关键词为：sublime3126注册码，举个栗子：用力戳这里
-配置文件不能修改的问题Perferences-setting打开之后，有两块左右各一，一开始很傻，一直在左边Default修改，发现怎么改也改不了，一度怀疑人生，后来才发现右边也有一个框，把你想要修改的部分复制到右边，然后再修改就好了，会优先加载user中的内容‘’’{“color_scheme”: “Packages&#x2F;Color Scheme - Default&#x2F;Monokai.tmTheme”,“font_face”: “Courier New”,“font_size”: 18,“ignored_packages”:[“Vintage”],“line_padding_bottom”: 1,“line_padding_top”: 1,“match_brackets”: true,“theme”: “Default.sublime-theme”,“tranlate_tabs_to_spaces”: true,“wrap_width”: 100}‘’’
-
-我的是这样的，我喜欢Courier New的字体，你也可以试试，看起来很舒服。因为想要用python，所以把tab转换为space，这样省了很多事情。
-]]></content>
-      <categories>
-        <category>tools</category>
-      </categories>
-      <tags>
-        <tag>ubuntu</tag>
-        <tag>sublime-text3</tag>
-        <tag>setting</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>在sublime-text3和pycharm无法import-rospy等ros-Python库</title>
-    <url>/2018/01/10/%E5%8E%9F-%E5%9C%A8sublime-text3%E5%92%8Cpycharm%E6%97%A0%E6%B3%95import-rospy%E7%AD%89ros-Python%E5%BA%93/</url>
-    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）
-背景笔记本型号：联想Y500  
-CPU　:　Intel® Core™ i7-3630QM CPU @ 2.40GHz × 8  
-内存：7.7 GiB  
-显卡：GeForce GT 750M&#x2F;PCIe&#x2F;SSE2  
-系统版本：ubuntu 14.04 LTS 64bit 
-软件：sublime text 3 ;pycharm
-#错误情况
-import rospyImportError: No module named rospy
-
-#问题描述在pycharm和sublime下无法import rospy等模块，但是在Terminal下用命令行就可以正常运行，经过分析，原因为　&#x2F;opt&#x2F;ros&#x2F;indigo&#x2F;lib&#x2F;python2.7&#x2F;dist-packages　下的路径没有被添加到环境中
-
-#解决方案##sublime text 31.Terminal下 cd &#x2F;opt&#x2F;sublime_text&#x2F;Packages2.sudo gedit Python.sublime-package3.粘贴
-&#123;    &quot;shell_cmd&quot;: &quot;python -u \&quot;$file\&quot;&quot;,    &quot;file_regex&quot;: &quot;^[ ]*File \&quot;(...*?)\&quot;, line ([0-9]*)&quot;,    &quot;selector&quot;: &quot;source.python&quot;,    &quot;env&quot;: &#123;&quot;PYTHONPATH&quot;:&quot;/opt/ros/indigo/lib/python2.7/dist-packages&quot;&#125;,    &quot;variants&quot;:    [        &#123;            &quot;name&quot;: &quot;Syntax Check&quot;,            &quot;shell_cmd&quot;: &quot;python -m py_compile \&quot;$&#123;file&#125;\&quot;&quot;,        &#125;    ]&#125;
-
-４．保存退出５．接下来，用zip命令删除C++.sublime-package中的Python.sublime-build文件：sudo zip -d Python.sublime-package Python.sublime-build6.最后将之前的Python.sublime-build添加到此时的Python.sublime-package中：sudo zip -g Python.sublime-package Python.sublime-build7. 重启sublime text，实验调用默认的Python build system，成功！
-#pycharm1.打开File–&gt;Settings–&gt;Project:XXXX–&gt;Project Interpreter2.在Project Interpreter : Python 2.7 &#x2F;usr&#x2F;bin&#x2F;python (顶部的位置)点击下拉箭头3.选择Show ALL…4.点击右侧第四个按钮：interpreter Paths5.点击右侧的第一个加号按钮，并在弹出的对话框中粘贴以下路径
-/opt/ros/indigo/lib/python2.7/dist-packages
-6.一路ok就可以了7.然后运行一下，成功!
-
-#sublime 和pycharm的使用感受sublime实在是太轻便快捷了，用户体验极好，但是功能不够强大pycharm使用起来功能很多，比如看库的这种操作。但是有时候卡卡的。
-]]></content>
-      <categories>
-        <category>tools</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>ros</tag>
-        <tag>ubuntu</tag>
-        <tag>gazebo</tag>
-        <tag>gym</tag>
-        <tag>Tensorflow</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>小谈安装固态硬盘后Windows及Ubuntu的安装</title>
     <url>/2018/02/02/%E5%8E%9F-%E5%AE%89%E8%A3%85%E5%9B%BA%E6%80%81%E7%A1%AC%E7%9B%98%E5%90%8EWindows%E5%8F%8AUbuntu%E7%9A%84%E5%AE%89%E8%A3%85/</url>
     <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）
@@ -696,6 +637,97 @@ Ubuntu的安装对于Ubuntu版本,我这次选择的是16.04,由于我用到的�
         <tag>Windows 10</tag>
         <tag>升级</tag>
         <tag>固态硬盘</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在sublime-text3和pycharm无法import-rospy等ros-Python库</title>
+    <url>/2018/01/10/%E5%8E%9F-%E5%9C%A8sublime-text3%E5%92%8Cpycharm%E6%97%A0%E6%B3%95import-rospy%E7%AD%89ros-Python%E5%BA%93/</url>
+    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）
+背景笔记本型号：联想Y500  
+CPU　:　Intel® Core™ i7-3630QM CPU @ 2.40GHz × 8  
+内存：7.7 GiB  
+显卡：GeForce GT 750M&#x2F;PCIe&#x2F;SSE2  
+系统版本：ubuntu 14.04 LTS 64bit 
+软件：sublime text 3 ;pycharm
+#错误情况
+import rospyImportError: No module named rospy
+
+#问题描述在pycharm和sublime下无法import rospy等模块，但是在Terminal下用命令行就可以正常运行，经过分析，原因为　&#x2F;opt&#x2F;ros&#x2F;indigo&#x2F;lib&#x2F;python2.7&#x2F;dist-packages　下的路径没有被添加到环境中
+
+#解决方案##sublime text 31.Terminal下 cd &#x2F;opt&#x2F;sublime_text&#x2F;Packages2.sudo gedit Python.sublime-package3.粘贴
+&#123;    &quot;shell_cmd&quot;: &quot;python -u \&quot;$file\&quot;&quot;,    &quot;file_regex&quot;: &quot;^[ ]*File \&quot;(...*?)\&quot;, line ([0-9]*)&quot;,    &quot;selector&quot;: &quot;source.python&quot;,    &quot;env&quot;: &#123;&quot;PYTHONPATH&quot;:&quot;/opt/ros/indigo/lib/python2.7/dist-packages&quot;&#125;,    &quot;variants&quot;:    [        &#123;            &quot;name&quot;: &quot;Syntax Check&quot;,            &quot;shell_cmd&quot;: &quot;python -m py_compile \&quot;$&#123;file&#125;\&quot;&quot;,        &#125;    ]&#125;
+
+４．保存退出５．接下来，用zip命令删除C++.sublime-package中的Python.sublime-build文件：sudo zip -d Python.sublime-package Python.sublime-build6.最后将之前的Python.sublime-build添加到此时的Python.sublime-package中：sudo zip -g Python.sublime-package Python.sublime-build7. 重启sublime text，实验调用默认的Python build system，成功！
+#pycharm1.打开File–&gt;Settings–&gt;Project:XXXX–&gt;Project Interpreter2.在Project Interpreter : Python 2.7 &#x2F;usr&#x2F;bin&#x2F;python (顶部的位置)点击下拉箭头3.选择Show ALL…4.点击右侧第四个按钮：interpreter Paths5.点击右侧的第一个加号按钮，并在弹出的对话框中粘贴以下路径
+/opt/ros/indigo/lib/python2.7/dist-packages
+6.一路ok就可以了7.然后运行一下，成功!
+
+#sublime 和pycharm的使用感受sublime实在是太轻便快捷了，用户体验极好，但是功能不够强大pycharm使用起来功能很多，比如看库的这种操作。但是有时候卡卡的。
+]]></content>
+      <categories>
+        <category>tools</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>ros</tag>
+        <tag>gazebo</tag>
+        <tag>gym</tag>
+        <tag>Tensorflow</tag>
+        <tag>ubuntu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SLAM with LS01C and hector</title>
+    <url>/2017/10/09/%E5%8E%9F-%E6%89%8B%E6%8C%81%E9%95%AD%E7%A5%9ELS01C%E4%BD%BF%E7%94%A8hector-mapping%E6%96%B9%E6%B3%95%E8%BF%9B%E8%A1%8C%E5%BB%BA%E5%9B%BE%E5%AE%9E%E9%AA%8C/</url>
+    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）我的代码在ls01c可以拿去下载。
+本博客只是个人学习记录使用，瞎写写，内容比较粗糙。
+
+从镭神客服那里拿到驱动
+对驱动进行阅读，并启动节点获取雷达数据实验在启动激光雷达的过程中可能遇到这样的问题：驱动没问题，launch文件也没问题，但是雷达不旋转，也得不到数据，这是因为激光雷达的端口ttyUSB0(也可能是别的名称，自己查一下吧)没有权限，需要在终端执行以下语句：
+
+cd &#x2F;devsudo chmod 777 ttyUSB
+
+下载hector源码并编译hector的github下载地址
+启动launch文件就可以建图了
+
+可能遇到的问题：
+
+手持时，可能因为移动的太快或者转动太快导致地图混乱
+当有物体靠近激光雷达或者雷达收到振动时，终端会出现SearchDir angle change too large
+
+
+后记：建图混乱的原因致使因为这个雷达的性能不满足这个算法。我回头试试用cartographer和这个雷达试试能否建出好图。
+]]></content>
+      <categories>
+        <category>ros</category>
+      </categories>
+      <tags>
+        <tag>ROS</tag>
+        <tag>robot</tag>
+        <tag>SLAM</tag>
+        <tag>hector</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ubuntu上装机必备小工具</title>
+    <url>/2018/01/10/%E5%8E%9F-ubuntu%E4%B8%8A%E6%88%91%E7%9A%84%E8%A3%85%E6%9C%BA%E5%BF%85%E5%A4%87%E5%B0%8F%E5%B7%A5%E5%85%B7/</url>
+    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）1.system monitor indicator
+系统监视软件
+sudo add-apt-repository ppa:fossfreedom&#x2F;indicator-sysmonitorsudo apt-get updatesudo apt-get install indicator-sysmonitorindicator-sysmonitor &amp;
+2.touchpad-indicator一个触摸板禁用软件，插入鼠标自动禁用touchpad
+3.y-ppa-manager一个可以管理ppa的软件，可以清理修复ppa
+4.Terminator
+一个好用的可以把一个终端分成多个终端的软件
+5.新立得
+这是一个Ubuntu软件包管理软件，谁用谁知道。
+]]></content>
+      <categories>
+        <category>tools</category>
+      </categories>
+      <tags>
+        <tag>ubuntu</tag>
+        <tag>tools</tag>
+        <tag>software</tag>
       </tags>
   </entry>
   <entry>
@@ -742,100 +774,6 @@ Ubuntu的安装对于Ubuntu版本,我这次选择的是16.04,由于我用到的�
         <tag>ros</tag>
         <tag>robot</tag>
         <tag>sw2urdf</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>rviz闪退的解决方案</title>
-    <url>/2017/12/21/%E5%8E%9F-%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%9A%84%E6%9C%BA%E8%BD%BDPC%E7%9A%84rviz%E9%97%AA%E9%80%80%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
-    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）背景：项目用到自己做的机器人，在机器人上装上了一个miniPC，在上面装上了ros indigo版本，使用远程桌面连接miniPC，然后操作机器人进行建图实验。
-
-问题：在打开rviz后闪退
-
-原因：这是由于rviz在不接显示器的时候，是不能启动的
-
-解决方法： 
-
-使用zeroconf，通过ssh连接miniPC，进行控制，在自己的电脑上打开rviz，就能订阅miniPC上的topic 
-
-先插上显示器，打开rviz后，然后拔掉VGA或者HDMI.(这个方法是别人告诉我的不知道可不可行)
-
-Rendering on a server
-
-
-If you’re trying to render video on a server, you’ll need to connect a fake display. The easiest way to do this is by running under xvfb-run (on Ubuntu, install the xvfb package):
-xvfb-run -s &quot;-screen 0 1400x900x24&quot; bash]]></content>
-      <categories>
-        <category>ros</category>
-      </categories>
-      <tags>
-        <tag>ROS</tag>
-        <tag>robot</tag>
-        <tag>rviz</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>gazebo中机器人横向移动</title>
-    <url>/2017/01/10/%E5%9C%A8gazebo%E4%B8%AD%E5%90%AF%E5%8A%A8%E7%A7%BB%E5%8A%A8%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A8%A1%E5%9E%8B%EF%BC%8C%E5%B9%B6%E5%AE%9E%E7%8E%B0%E6%A8%AA%E5%90%91%E7%A7%BB%E5%8A%A8/</url>
-    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）本博客只是个人学习记录使用，瞎写写，内容比较粗糙。编写过程中，借鉴了yaked大神的实战youBot和ROS-WIKI以及其它一些大神的内容。现在大部分的移动机器人主要差动轮进行运动，只有linear.x和angular.z两个值，但是我的模型是４个瑞典轮，能提供横向的移动速度，即linear.y。在gazebo中的横向移动同样要修改控制方式，只不过在与rviz不同，不能直接修改，文件格式打不开，这里采用的方案是直接在xacro中加载一个平面移动的插件就可以了
-&lt;!-- position controller --&gt;
-&lt;gazebo&gt;
-  &lt;plugin name=&quot;base_controller&quot; filename=&quot;libgazebo_ros_planar_move.so&quot;&gt;
-    &lt;commandTopic&gt;cmd_vel&lt;/commandTopic&gt;
-    &lt;odometryTopic&gt;odom&lt;/odometryTopic&gt;
-    &lt;odometryFrame&gt;/odom&lt;/odometryFrame&gt;
-    &lt;odometryRate&gt;100.0&lt;/odometryRate&gt;
-    &lt;robotBaseFrame&gt;base_footprint&lt;/robotBaseFrame&gt;
-    &lt;broadcastTF&gt;true&lt;/broadcastTF&gt;
-  &lt;/plugin&gt;
-&lt;/gazebo&gt;`
-
-
-
-模型xacro加载到gazebo沿用yaked大神博客中的gazebo.launch进行修改，把自己的模型修改到他的launch文件中，就可以了。＇
-
-gazebo加入上面的代码
-
-
-]]></content>
-      <categories>
-        <category>ros</category>
-      </categories>
-      <tags>
-        <tag>ROS</tag>
-        <tag>横向移动</tag>
-        <tag>机器人</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SLAM with LS01C and hector</title>
-    <url>/2017/10/09/%E5%8E%9F-%E6%89%8B%E6%8C%81%E9%95%AD%E7%A5%9ELS01C%E4%BD%BF%E7%94%A8hector-mapping%E6%96%B9%E6%B3%95%E8%BF%9B%E8%A1%8C%E5%BB%BA%E5%9B%BE%E5%AE%9E%E9%AA%8C/</url>
-    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）我的代码在ls01c可以拿去下载。
-本博客只是个人学习记录使用，瞎写写，内容比较粗糙。
-
-从镭神客服那里拿到驱动
-对驱动进行阅读，并启动节点获取雷达数据实验在启动激光雷达的过程中可能遇到这样的问题：驱动没问题，launch文件也没问题，但是雷达不旋转，也得不到数据，这是因为激光雷达的端口ttyUSB0(也可能是别的名称，自己查一下吧)没有权限，需要在终端执行以下语句：
-
-cd &#x2F;devsudo chmod 777 ttyUSB
-
-下载hector源码并编译hector的github下载地址
-启动launch文件就可以建图了
-
-可能遇到的问题：
-
-手持时，可能因为移动的太快或者转动太快导致地图混乱
-当有物体靠近激光雷达或者雷达收到振动时，终端会出现SearchDir angle change too large
-
-
-后记：建图混乱的原因致使因为这个雷达的性能不满足这个算法。我回头试试用cartographer和这个雷达试试能否建出好图。
-]]></content>
-      <categories>
-        <category>ros</category>
-      </categories>
-      <tags>
-        <tag>ROS</tag>
-        <tag>robot</tag>
-        <tag>SLAM</tag>
-        <tag>hector</tag>
       </tags>
   </entry>
   <entry>
@@ -916,10 +854,72 @@ sudo update-alternatives –config x86_64-linux-gnu_gl_conf
         <category>tools</category>
       </categories>
       <tags>
-        <tag>ubuntu</tag>
         <tag>Tensorflow</tag>
+        <tag>ubuntu</tag>
         <tag>CUDA</tag>
         <tag>cuDDN</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>rviz闪退的解决方案</title>
+    <url>/2017/12/21/%E5%8E%9F-%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%9A%84%E6%9C%BA%E8%BD%BDPC%E7%9A%84rviz%E9%97%AA%E9%80%80%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
+    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）背景：项目用到自己做的机器人，在机器人上装上了一个miniPC，在上面装上了ros indigo版本，使用远程桌面连接miniPC，然后操作机器人进行建图实验。
+
+问题：在打开rviz后闪退
+
+原因：这是由于rviz在不接显示器的时候，是不能启动的
+
+解决方法： 
+
+使用zeroconf，通过ssh连接miniPC，进行控制，在自己的电脑上打开rviz，就能订阅miniPC上的topic 
+
+先插上显示器，打开rviz后，然后拔掉VGA或者HDMI.(这个方法是别人告诉我的不知道可不可行)
+
+Rendering on a server
+
+
+If you’re trying to render video on a server, you’ll need to connect a fake display. The easiest way to do this is by running under xvfb-run (on Ubuntu, install the xvfb package):
+xvfb-run -s &quot;-screen 0 1400x900x24&quot; bash]]></content>
+      <categories>
+        <category>ros</category>
+      </categories>
+      <tags>
+        <tag>ROS</tag>
+        <tag>robot</tag>
+        <tag>rviz</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>gazebo中机器人横向移动</title>
+    <url>/2017/01/10/%E5%9C%A8gazebo%E4%B8%AD%E5%90%AF%E5%8A%A8%E7%A7%BB%E5%8A%A8%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A8%A1%E5%9E%8B%EF%BC%8C%E5%B9%B6%E5%AE%9E%E7%8E%B0%E6%A8%AA%E5%90%91%E7%A7%BB%E5%8A%A8/</url>
+    <content><![CDATA[（转载请注明作者和出处：https://ningbo6.github.io）本博客只是个人学习记录使用，瞎写写，内容比较粗糙。编写过程中，借鉴了yaked大神的实战youBot和ROS-WIKI以及其它一些大神的内容。现在大部分的移动机器人主要差动轮进行运动，只有linear.x和angular.z两个值，但是我的模型是４个瑞典轮，能提供横向的移动速度，即linear.y。在gazebo中的横向移动同样要修改控制方式，只不过在与rviz不同，不能直接修改，文件格式打不开，这里采用的方案是直接在xacro中加载一个平面移动的插件就可以了
+&lt;!-- position controller --&gt;
+&lt;gazebo&gt;
+  &lt;plugin name=&quot;base_controller&quot; filename=&quot;libgazebo_ros_planar_move.so&quot;&gt;
+    &lt;commandTopic&gt;cmd_vel&lt;/commandTopic&gt;
+    &lt;odometryTopic&gt;odom&lt;/odometryTopic&gt;
+    &lt;odometryFrame&gt;/odom&lt;/odometryFrame&gt;
+    &lt;odometryRate&gt;100.0&lt;/odometryRate&gt;
+    &lt;robotBaseFrame&gt;base_footprint&lt;/robotBaseFrame&gt;
+    &lt;broadcastTF&gt;true&lt;/broadcastTF&gt;
+  &lt;/plugin&gt;
+&lt;/gazebo&gt;`
+
+
+
+模型xacro加载到gazebo沿用yaked大神博客中的gazebo.launch进行修改，把自己的模型修改到他的launch文件中，就可以了。＇
+
+gazebo加入上面的代码
+
+
+]]></content>
+      <categories>
+        <category>ros</category>
+      </categories>
+      <tags>
+        <tag>ROS</tag>
+        <tag>横向移动</tag>
+        <tag>机器人</tag>
       </tags>
   </entry>
   <entry>
